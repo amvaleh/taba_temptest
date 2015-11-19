@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+<!--main-->
+<main class="main" role="main">
+  <!--intro-->
+  <div class="intro">
+
+    <figure class="bg">
+      <%= image_tag "initial_image.jpg" %>
+    </figure>
+    <!--wrap-->
+    <div class="wrap clearfix">
+      <!--row-->
+      <div class="row">
+        <article class="three-fourth text wow zoomIn" data-wow-delay=".2s">
+
+          <!--<h3 style="margin-right:21%;text-align:center; color:#C31108;" dir="rtl">گلوگرافی</h3>-->
+          <p class="bold_main make_right main_text main_text_margin" dir="rtl">این ها احساسات گیاه شماست...</p>
+          <p class="make_right main_text main_text_margin" dir="rtl">   من تشنه ام!</p>
+          <p class="make_right main_text main_text_margin" dir="rtl">  نور محیط مناسب من نیست!</p>
+          <p class="make_right main_text main_text_margin" dir="rtl">  رطوبت خاک ریشه های مرا اذیت می کند!</p>
+          <p class="make_right main_text main_text_margin" dir="rtl"> من نیاز به نگهداری و مراقبت بیشتری دارم! </p>
+
+          <a href="users/sign_up" class="button white  medium">
+            عضوی از گیاه داران شو
+          </a>
+        </article>
+        <!--search recipes widget-->
+        <% if not user_signed_in? %>
+            <div class="one-fourth wow fadeInDown" data-wow-delay=".5s">
+              <div class="widget container" style="padding-bottom: 4%">
+                <div class="textwrap make_center">
+                  <h3 class="make_center">گلوگرافی</h3>
+                  <%= image_tag "glography.jpg"%>
+                </div>
+                <%= form_for("user", :url => user_session_path) do |f| %>
+                    <%= f.text_field :email , :placeholder => "ایمیل"  , class: "make_center" %>
+                    </br>
+                    <%= f.password_field :password , :placeholder => "رمز عبور", class: "make_center" %>
+                    </br>
+                    </br>
+                    <%= f.submit 'ورود به حساب کاربری', :class=>"b_farsi button sign_in_bt" %>
+                <% end %>
+                <br>
+                <br>
+                <br>
+                <%= link_to "رمز عبورم را فراموش کرده ام!",forgot_password_initial_index_path , :class => "btn btn-default btn-sm pull-right"%>
+                <%= link_to "عضویت" , new_user_registration_path , :class => "btn btn-info btn-sm pull-left" %>
+                </div>
+                </br>
+                <br>
+              </div>
+            </div>
+        <% end %>
+      </div>
+      <!--//wrap-->
+    </div>
+  </div>
+  <!--//intro-->
+
+  <!--wrap-->
+  <div class="wrap clearfix">
+
+    <!--row-->
+    <div class="row">
+      <!--content-->
+      <section class="content full-width">
+        <div class="icons dynamic-numbers">
+          <header class="s-title wow fadeInDown">
+            <h2 class="garden_title make_bold">آمار و ارقام</h2>
+          </header>
+
+          <!--row-->
+          <div class="row wow fadeInUp">
+            <!--item-->
+            <div class="one-sixth">
+              <div class="container">
+                <i class="ico i-members"></i>
+                <span class="title dynamic-number" data-dnumber="<%=User.all.count%>">0</span>
+                <span class="subtitle">گیاهداران</span>
+              </div>
+            </div>
+            <!--//item-->
+
+            <!--item-->
+            <div class="one-sixth">
+              <div class="container">
+                <i class="ico i-plants"></i>
+									<span class="title dynamic-number"
+                                          data-dnumber="<%= Planter.all.count %>">0</span>
+                <span class="subtitle">گیاهان</span>
+              </div>
+            </div>
+            <!--//item-->
+
+            <!--item-->
+            <div class="one-sixth">
+              <div class="container">
+                <i class="ico i-photos"></i>
+									<span class="title dynamic-number"
+                                          data-dnumber="<%=Shoppe::Product.all.active.count %>">0</span>
+                <span class="subtitle">
+                  محصولات
+                </span>
+              </div>
+            </div>
+            <!--//item-->
+
+            <!--item-->
+            <div class="one-sixth">
+              <div class="container">
+                <i class="ico i-posts"></i>
+									<span
+                                    class="title dynamic-number"
+                                    data-dnumber="<%=Post.all.count%>">0</span>
+									<span class="subtitle">‍‍‍
+									سوالات
+									</span>
+              </div>
+            </div>
+            <!--//item-->
+
+            <!--item-->
+            <div class="one-sixth">
+              <div class="container">
+                <i class="ico i-comment"></i>
+									<span class="title dynamic-number"
+                                          data-dnumber="<%=Comment.all.count%>">0</span>
+                <span class="subtitle">نظرات</span>
+              </div>
+            </div>
+            <!--//item-->
+
+            <!--item-->
+            <div class="one-sixth">
+              <div class="container">
+                <i class="ico i-articles"></i>
+									<span
+                                    class="title dynamic-number"
+                                    data-dnumber="<%=Shoppe::Order.received.all.count%>">0</span>
+                <span class="subtitle">خرید ها</span>
+              </div>
+            </div>
+            <!--//item-->
+            <!--
+                <div class="cta">
+                    <a href="login.html" class="button big">Join us!</a>
+                </div> -->
+          </div>
+          <!--//row-->
+        </div>
+      </section>
+      <!--//content-->
+      <!--content-->
+      <section class="content fullWidth">
+        <!--cwrap-->
+        <div class="cwrap">
+          <!--entries-->
+          <div class="entries row">
+            <!--featured garden-->
+            <% if @guy.present? %>
+
+          <div class="featured two-third wow fadeInLeft">
+              <header class="s-title">
+                <h2 class="make_center garden_title">
+                  تکنولوژی گلوگرافی
+                </h2>
+              </header>
+              <article class="entry">
+                <figure>
+                  <%= image_tag "idea2.PNG" , :width => "100%" %>
+                  <figcaption>
+                    <%= link_to profile_path(@guy) do %>
+                      <i class="ico i-view"></i> <span>
+                    مشاهده اطلاعات
+                  </span></figcaption>
+                        <% end %>
+                </figure>
+                <div class="container">
+                  <h2 class="make_right">
+                    به زودی
+                  </h2>
+                  <p class="make_right">
+                    با استفاده از تکنولوژی گلوگرافی می توانید
+                    خیلی ساده تر از وضعیت محیطی گیاهان خود با خبر شوید
+                    و اگر میزان آب آنها مناسب نیست،
+                    کود آنها کم است یا نیاز به نور بیشتر دارند،
+                    شرایط لازم رو برای گیاهتون فراهم کنید.
+                    اگر موفق بشید در
+                    <a href="#">ضریب  سلامت</a>
+                    تعیین شده برای گیاهان خود نفر اول باشید،
+                    برنده جایزه هفتگی گیاه داران خواهید بود..
+                  </p>
+                  <div class="actions">
+                    <div>
+                      <%= link_to new_user_registration_path , :class => "btn btn-success " do%>
+                      افرادی که قبل از تجاری شدن محصول عضو گلوگرام باشند
+                      در خرید تکنولوژی گلوگرام ۱۰٪ تخفیف خواهند گرفت..
+                    <% end %>
+                      <!--<div class="more"><a href="#">باغچه های برتر </a></div>-->
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </div>
+            <!--//featured garden-->
+
+                <!--featured member-->
+                <div class="featured one-third wow fadeInLeft" data-wow-delay=".2s">
+                  <header class="s-title">
+                    <h2 class="ribbon star">Featured member</h2>
+                  </header>
+                  <header class="s-title">
+                    <h2 class="make_center garden_title">باغچه دار برتر</h2>
+                  </header>
+                  <article class="entry">
+                    <figure class="make_center">
+                      <% if  @guy.profile_photo.present?%>
+                          <%= image_tag @guy.profile_photo_url %>
+                      <% else %>
+                          <%= image_tag "gardener.png" %>
+                      <% end %>
+                      <figcaption>
+                        <%= link_to profile_path(@guy) do %>
+                            <i class="ico i-view">
+                            </i>
+                    <span>
+                      <%= @guy.full_name %>
+                        <% end %>
+                        </span>
+                      </figcaption>
+                    </figure>
+                    <div class="container">
+                      <h2 class="make_center">
+                        <%= link_to @guy.full_name ,  profile_path(@guy) %>
+                      </h2>
+                      <blockquote class="make_right">
+                        ...من از گل هام مثل بچه هام مراقبت میکنم
+                        </br>
+                        مرسی از گلوگرافی
+                      </blockquote>
+                      <div class="actions">
+                        <div>
+                          <%= link_to "دیدن پروفایل باغچه دار برتر" , profile_path(@guy) , :class => "button" %>
+                          <div class="more"><a href="#">نفرات برتر بعدی</a></div>
+                        </div>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+                <!--//featured member-->
+            <% end %>
+          </div>
+          <!--//entries-->
+        </div>
+        <!--//cwrap-->
+
+        <!--cwrap-->
+        <div class="cwrap">
+          <header class="s-title">
+            <h2 class="make_right title_in_middle">
+              پر بازدید ترین سوالات
+            </h2>
+          </header>
+
+          <!--entries-->
+          <div class="entries row">
+            <!--item-->
+            <% Post.all.each do |post| %>
+                <%= render 'posts/post' , :post=> post %>
+            <% end %>
+            <!--item-->
+
+            <div class="quicklinks">
+              <%= link_to "همه سوالات" , posts_path , class: "button" %>
+              <a href="javascript:void(0)" class="button scroll-to-top">
+                برگرد بالا
+              </a>
+            </div>
+          </div>
+          <!--//entries-->
+        </div>
+        <!--//cwrap-->
+
+        <!--cwrap-->
+        <div class="cwrap">
+          <header class="s-title">
+            <h2 class="make_right title_in_middle">
+              محصولات اخیر
+              <%= link_to "فروشگاه" , store_show_path%>
+            </h2>
+          </header>
+          <!--entries-->
+          <div class="entries row">
+            <% Shoppe::Product.all.active.featured.first(8).each do |prod| %>
+                <%= render 'products/product' , :prod => prod , :rel => 4 %>
+            <% end %>
+
+            <div class="quicklinks">
+              <%= link_to "می خوام گل بخرم"  , store_show_path , :class =>"button" %>
+              <a href="javascript:void(0)" class="button scroll-to-top">
+                برگرد بالا
+              </a>
+            </div>
+          </div>
+          <!--//entries-->
+        </div>
+        <!--//cwrap-->
+      </section>
+      <!--//content-->
+
+      <!--//right sidebar-->
+    </div>
+    <!--//wrap-->
+  </div>
+</main>
+<!--//main-->
+
+</html>
+
+

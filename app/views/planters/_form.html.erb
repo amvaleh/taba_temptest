@@ -1,0 +1,183 @@
+<section class="content center full-width wow fadeInDown animated" style="visibility: visible;">
+<div class=" container new_forms">
+<%= form_for @planter, html: { multipart: true } do |f| %>
+  <% if @planter.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@planter.errors.count, "error") %> prohibited this planter from being saved:</h2>
+
+      <ul>
+      <% @planter.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <div class="field one-third ">
+    <p class="make_right">نام</p>
+    <%= f.text_field :name %>
+  </div>
+
+
+    <div class="field one-third pull-right">
+    <p class="make_right">نام لاتین</p>
+    <%= f.text_field :latin_name %>
+  </div>
+
+
+    <div class="field one-third pull-right">
+    <p class="make_right">نام دیگر</p>
+    <%= f.text_field :second_name %>
+  </div>
+
+    <div class="field one-third pull-right">
+    <p class="make_right">نحوه تکثیر</p>
+    <%= f.text_field :germination %>
+  </div>
+
+  <div class="field one-third pull-right">
+    <p class="make_right">آفت ها</p>
+    <%= f.text_field :plague %>
+  </div>
+
+  <div class="field one-third pull-right">
+    <p class="make_right">نحوه نگهداری</p>
+    <%= f.text_field :keeping %>
+  </div>
+
+      <div class="field one-third pull-right">
+    <p class="make_right">ارتفاع</p>
+    <%= f.text_field :height %>
+  </div>
+
+    <div class="field one-third pull-right">
+    <p class="make_right">میزان رطوبت خاک</p>
+    <%= f.number_field :humidity_soil %>
+  </div>
+  <div class="field one-third pull-right">
+    <p class="make_right">میزان رطوبت هوا</p>
+    <%= f.number_field :humidity_air %>
+  </div>
+  <div class="field one-third pull-right">
+    <p class="make_right">میزان دما</p>
+    <%= f.number_field :temperature %>
+  </div>
+  <div class="field one-third pull-right">
+    <p class="make_right">میزان نور</p>
+    <%= f.number_field :light_degree %>
+  </div>
+
+  <div class="field one-third pull-right">
+    <p class="make_right">درباره این گیاه</p>
+    <%= f.text_area :brief_desc %>
+  </div>
+  <div class="modal">
+
+          <img id="blah1" src="/assets/default_plant.png" alt="your image" , width="200px" />
+
+          <%= f.file_field :image_1 , :id=>"imgInp1"%>  
+
+          <img id="blah2" src="/assets/default_plant.png" alt="your image", width="200px" />
+          <%= f.file_field :image_2 , :id=>"imgInp2"%>  
+
+          <img id="blah3" src="/assets/default_plant.png" alt="your image", width="200px" />
+          <%= f.file_field :image_3 , :id=>"imgInp3"%>  
+
+          <img id="blah4" src="/assets/default_plant.png" alt="your image" , width="200px"/>
+          <%= f.file_field :image_4 , :id=>"imgInp4"%>  
+
+
+          <img id="blah5" src="/assets/default_plant.png" alt="your image" , width="200px" />
+          <%= f.file_field :additional_image , :id=>"imgInp5"%>  
+
+ </div>
+</br>
+  <div class="actions">
+    <%= f.submit  'اضافه کردن این گیاه' , :class=>"far_class tool_plant_creat  make_dir_right b_farsi button"%>
+<%= link_to 'بازگشت', planters_path , class: "button pull-left"%>
+
+  </div>
+
+<% end %>
+</div>
+</section>
+
+<script type="text/javascript">
+    function readURL1(input) {
+
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#blah1').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    function readURL2(input) {
+
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#blah2').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    function readURL3(input) {
+
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#blah3').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    function readURL4(input) {
+
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#blah4').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    function readURL5(input) {
+
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#blah5').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#imgInp1").change(function(){
+        readURL1(this);
+    });
+    $("#imgInp2").change(function(){
+        readURL2(this);
+    });
+    $("#imgInp3").change(function(){
+        readURL3(this);
+    });
+    $("#imgInp4").change(function(){
+        readURL4(this);
+    });
+    $("#imgInp5").change(function(){
+        readURL5(this);
+    });
+
+</script>

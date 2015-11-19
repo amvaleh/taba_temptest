@@ -1,0 +1,57 @@
+- @page_title = 'Checkout'
+= render 'checkout_sidebar'
+
+%section.content.three-fourth.make_right
+  %article.white_container
+    %h2 سفارش خود را نهایی کنید
+    %p
+      بسیار عالی! شما آماده اید تا سفارش خود را نهایی کنید، فقط اطلاعات زیر را تکمیل کنید  تا ما خرید شما را آماده ارسال کنیم
+    %h3 سبد خرید خود را مرور کنید
+    = render 'shared/order_items', :order => @order
+    - unless @order.delivery_required? && @order.delivery_service.nil?
+      %h3 فورم زیر را به دقت تکمیل کنید تا سفارش شما نهایی شود
+      = form_for @order, :url => checkout_path, :html => {:class => 'checkout disableable'} do |f|
+        = f.error_messages
+        .content
+          = field_set_tag do
+            %dl
+              %dt= f.label :first_name, "نام و نام خانوادگی", style: "color: #FF7B74;"
+              %dd.name
+                = f.text_field :first_name, :placeholder => 'نام'  , class: "make_right"
+                = f.text_field :last_name, :placeholder => 'نام خانوادگی' , class: "make_right"
+            %dl
+              %dt= f.label :phone_number , "شماره موبایل"  , style: "color: #FF7B74;"
+              %dd
+                =f.text_field :phone_number , :placeholder => "۰۹*********" , class: "make_right"
+            %dl
+              %dt= f.label :company, "نام شرکت"  , style: "color: #FF7B74;"
+              %dd= f.text_field :company , class: "make_right"
+            %dl
+              %dt= f.label :email_address, 'آدرس پست الکترونیکی' , style: "color: #FF7B74;"
+              %dd= f.text_field :email_address , class: "make_right"
+
+          = field_set_tag do
+            %dl
+              %dt= f.label :billing_address1, "آدرس پستی دقیق", style: "color: #FF7B74;"
+              %dd= f.text_field :billing_address1, :placeholder => "خیابان اصلی" , class: "make_right"
+              %dd= f.text_field :billing_address3, :placeholder => "خیابان فرعی", class: "make_right"
+              %dd= f.text_field :billing_address4, :placeholder => "کوچه", class: "make_right"
+              %dd= f.text_field :billing_postcode, :placeholder => "پلاک", :class => 'postcode make_right'
+              -#%dd= f.collection_select :billing_country_id, Shoppe::Country.ordered, :id, :name
+              %dd
+                = f.check_box :separate_delivery_address
+                %br
+                = f.label :separate_delivery_address, ":اگر به آدرس دیگری می خواهید بفرستید فورم زیر را کامل کنید"
+            %dl.delivery
+              %dt= f.label :delivery_address1, "آدرس دریافت سفارش" , style: "color: #FF7B74;"
+              %dd= f.text_field :delivery_name, :placeholder => "نام محل دریافتی", class: "make_right"
+              %dd= f.text_field :delivery_address1, :placeholder => "خیابان اصلی", class: "make_right"
+              %dd= f.text_field :delivery_address3, :placeholder => "خیابان فرعی", class: "make_right"
+              %dd= f.text_field :delivery_address4, :placeholder => "کوچه", class: "make_right"
+              %dd= f.text_field :delivery_postcode, :placeholder => "پلاک", :class => 'postcode make_right'
+              -#%dd= f.collection_select :delivery_country_id, Shoppe::Country.ordered, :id, :name
+
+        %p.make_center= f.submit "ثبت نهایی" , :class => "button btn-block "
+
+    - else
+      %p لطفا برای ایجاد این سفارش با ما تماس بگیرید .

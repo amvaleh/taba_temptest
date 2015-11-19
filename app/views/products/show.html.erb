@@ -1,0 +1,130 @@
+<section class="content three-fourth">
+  <div class="row product type-product status-publish has-post-thumbnail product_cat-clothing product_cat-t-shirts taxable shipping-taxable purchasable product-type-simple product-cat-clothing product-cat-t-shirts instock">
+    <div class="one-half">
+
+      <% if @product.default_image %>
+          <%= image_tag @product.default_image.path , style: "width: 100%;" %>
+      <% end %>
+
+    </div>
+
+    <div class="one-half summary entry-summary">
+
+      <h1 class="product_title entry-title make_center">
+        <%= @product.name %>
+      </h1>
+
+      <div class="woocommerce-product-rating">
+
+        <div>
+          <p style="text-align: right;">
+            <%= @product.short_description %>
+          </p>
+        </div>
+        <p class="price">
+          <small class="amount pull-left">
+            <%= number_to_currency @product.price %>
+          </small>
+        </p>
+        <div style="text-align: right;">
+          <%= render 'products/part'%>
+        </div>
+      </div>
+    </div>
+
+    <div class="bottom">
+
+    </div>
+
+    <div class="f-row make_right">
+      <span class="posted_in">
+        <% cat = Shoppe::ProductCategorization.where(:product_id => @product.id).first.product_category %>
+        دسته بندی:
+        <%=link_to cat.name , products_path(cat.permalink) %>
+
+      </span>
+    </div>
+
+    <div class="woocommerce-tabs">
+      <ul class="tabs">
+
+        <li class="description_tab active righted">
+          <a href="#tab-description">
+            بیشتر بدانید
+          </a>
+        </li>
+      </ul>
+
+      <div class="panel entry-content" id="tab-description" style="display: block;">
+
+        <h2 class="make_right">
+          مشخصات اصلی
+        </h2>
+
+        <p class="make_right">
+          <%= @product.description %>
+        </p>
+      </div>
+
+
+
+      <% if @planter.present? %>
+
+
+      <ul class="tabs">
+
+        <li class="description_tab active righted">
+          <a href="#tab-comments">
+            گلوگرافی
+          </a>
+        </li>
+      </ul>
+
+
+      <div class="panel entry-content" id="tab-reviews" style="direction: rtl;">
+        <div id="reviews">
+          <div id="comments">
+
+
+                <p class="make_right">
+                  اگر می خواهی بیشتر بدانی سری به باغ
+                  <%= link_to planter_path(@planter) do %>
+                  <% @planter.name %>
+                  <% end %>
+                  بزن..
+                </p>
+              <!--<%= @product.name %>-->
+          </div>
+          <div class="clear"></div>
+        </div>
+      </div>
+      <% end %>
+
+    </div>
+
+
+    <div class="woocommerce-tabs">
+
+      <ul class="tabs">
+
+
+        <li class="description_tab active righted">
+          <a href="#tab-description">
+            شاید از این ها هم خوشت بیاید:
+          </a>
+        </li>
+      </ul>
+
+      <div class="panel">
+
+      <ul class="products" style="direction: rtl;">
+        <% cat.products.first(3).each do |prod| %>
+            <% if prod != @product %>
+                <%= render 'products/product' , :prod => prod , :rel => 3%>
+            <% end %>
+        <% end %>
+      </ul>
+      </div>
+    </div>
+  </div>
+</section>

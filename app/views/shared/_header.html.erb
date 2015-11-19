@@ -1,0 +1,87 @@
+<!--header-->
+<header class="head" role="banner">
+  <!--wrap-->
+  <div class="wrap clearfix">
+    <a href="/" class="logo">
+      <img src="/assets/logo.png" width="180px" alt="" />
+    </a>
+
+    <nav class="main-nav" role="navigation" id="menu">
+      <ul>
+        <li class="current-menu-item">
+          <a href="/" title="Home">
+            <span>خانه</span>
+          </a>
+        </li>
+
+        <li>
+          <%= link_to store_show_path do  %>
+              <span>فروشگاه</span>
+          <% end %>
+          <ul>
+            <% for cat in Shoppe::ProductCategory.all.each do %>
+                <li class="make_center">
+                  <%= link_to cat.name , products_path(cat.permalink) %>
+                </li>
+            <% end %>
+          </ul>
+        </li>
+        <li>
+          <%= link_to services_initial_index_path  do %> <span>خدمات</span> <% end %>
+          <ul>
+            <li><%=link_to "پشتیبانی گلینو", services_initial_index_path(:section=>1) , :class=>"make_right"%></li>
+            <li><%=link_to "فروش گل و گیاه و محصولات جانبی", services_initial_index_path(:section=>2) , :class=>"make_right"%></li>
+            <li><%=link_to "خدمات باغیار", services_initial_index_path(:section=>3) , :class=>"make_right"%></li>
+            <li><%=link_to "گلوگرافی", services_initial_index_path(:section=>4) , :class=>"make_right"%></li>
+            <li><%=link_to "تبلیغات", services_initial_index_path(:section=>5) , :class=>"make_right"%></li>
+          </ul>
+        </li>
+        
+        <li>
+        </li>
+        <li><%= link_to services_initial_index_path(:section=>6)  do %> <span>ارتباط با ما</span> <% end %></li>
+
+        <li><%= link_to new_survey_idea_path()  do %> <span>نظرسنجی</span> <% end %></li>
+
+      </ul>
+    </nav>
+
+    <nav class="user-nav" role="navigation">
+      <ul>
+        <% if user_signed_in? %>
+            <li class="dark">
+              <%= link_to destroy_user_session_path ,:method => :delete,:class =>"" do %>
+                  <i class="ico i-kids"></i>
+              <span>
+                                خروج
+              </span>
+
+              <%end%>
+            </li>
+      <% else %>
+        <% end %>
+        <li class="medium">
+          <%if user_signed_in? and current_user.profile.present? %>
+              <%= link_to profile_path(current_user) do%>
+                  <i class="ico i-account"></i>
+                  <span>حساب کاربری</span>
+              <% end %>
+          <%else%>
+              <%= link_to new_user_registration_path do%>
+                  <i class="ico i-account"></i>
+                  <span>عضویت</span>
+              <% end %>
+          <% end %>
+        </li>
+        <li class="light">
+          <a href="/search" title="Search for recipes">
+            <i class="ico i-search"></i>
+            <span>جستجو</span></a>
+
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <!--//wrap-->
+</header>
+<!--//header-->

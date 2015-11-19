@@ -1,0 +1,99 @@
+// Place all the styles related to the profiles controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.gender_sel{
+	width: 30% !important;
+	background: aliceblue !important;
+}
+
+ .img_profile{
+ 	width:200px;
+ 	height:200px;
+ 	background-image:url('default_profile.png');
+ 	background-size:contain;
+ }
+ .img_cover_photo{
+ 	height:300px;
+ 	width:100%;
+ 	border:none;
+ }
+ .sign_up_in_dashbord{
+ 	float:right;
+ 	margin-top:2px;
+ }
+ .inner_text{
+ 	color:white !important;
+ }
+ .inner_text:hover{
+ 	color:#252525 !important;
+ }
+ .img_profile_pos{
+ 	margin-top:-100px;
+ 	margin-left:10%;
+ 	width:180px;
+ 	height:180px;
+ 	background-color:#e3e3e3;
+ }
+ .plant_in_garden{
+ 	width:150px;
+ 	height:100px;
+ }
+ .gardens_box{
+ 	background-color:white;
+ 	padding:1%;
+ 	margin:1%;
+ }
+ .garden_name{
+ 	color:#125463;
+ 	font-weight:bold;
+ 	text-align:center;
+    font-size: 25px;
+ }
+ .edit_style{
+ 	font-weight:bold;
+ 	color:black;
+ }
+
+ .destroy_style{
+ 	font-weight:bold;
+ 	color:red;
+ }
+ .make_bold{
+ 	font-weight:bold;
+ }
+ .fasele_az_bala{
+ 	margin-top:10%;
+ }
+ .border_plant{
+ 	border:dashed 1px #F4716A;
+ 	padding:5%;
+ 	margin:3%;
+ }
+ .setting_option{
+ 	text-align:center;
+ }
+ .stretch_img{
+   width: 100%;
+   min-height: 30px;
+ }
+
+ .search-div{
+ float: right !important;
+//padding-right: 23%;
+  width: 100%;
+}
+
+.mylist{
+	position: absolute !important;
+	z-index: 100;
+	width: 100% !important;
+}
+
+.myli{
+	padding: 18px;
+}
+ .cm_class_in_my_post{
+ 	border: dashed 1px #F4716A;
+ }

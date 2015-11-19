@@ -1,0 +1,135 @@
+<div class = "modal one-third gardens_box wow zoomIn animated animated" >
+        <p class="garden_name"><%= @garden.name%></p>
+        <div class="setting_option">
+          <%= link_to 'تنظیمات', edit_garden_path(@garden) , :class=>"edit_style"%> |
+
+          <%= link_to 'حذف باغچه', garden_path(@garden), :class=>"destroy_style", method: :delete, data: { confirm: 'Are you sure?' }%>
+        </div>
+      </br>    
+      <% @garden.plants.each do |p| %>
+      <div class="border_plant">
+        <p class="make_center"> 
+          <%=link_to p.name , p ,:class=>"make_bold" %>
+        </p>
+        <div>
+        <%if p.image_url.present?%>
+          <%= image_tag(p.image_url, :class=>"plant_in_garden") %>
+        <%else%>
+          <%= image_tag("img11.jpg", :class=>"plant_in_garden") %>
+        <%end%>
+        </div>
+        <!-- <div>
+          <p class="make_bold make_right">  :دما <%=p.temperature %></p>
+          <p class="make_bold make_right">  :رطوبت خاک <%=p.humidity_soil %></p>
+          <p class="make_bold make_right">  :رطوبت هوا <%=p.humidity_air %></p>
+          <p class="make_bold make_right">  :نور <%=p.light_degree %></p>
+        </div> -->
+
+      <dl class="basic">
+
+        <dt class="make_center">نژاد</dt>
+        <dd><%= p.race%></dd>
+
+        <dt class="make_center">ارتفاع</dt>
+        <dd><%= p.height %></dd>
+
+        <dt class="make_center">رطوبت هوا</dt>
+        <dd><%= p.humidity_air%></dd>
+
+        <dt class="make_center">رطوبت خاک</dt>
+        <dd><%= p.humidity_soil%></dd>
+
+        <dt class="make_center">دما</dt>
+        <dd><%= p.temperature%></dd>
+
+        <dt class="make_center">نور</dt>
+        <dd><%= p.light_degree%></dd>
+
+
+
+      </dl>
+
+      </div>
+      <% end %>
+    </div>
+  </div>
+  <!--//content-->
+</div>
+</div>
+
+<div class="one-one">
+<section class="modal wow two-third fadeInLeft animated style="visibility: visible;"">
+<div class=" container new_forms">
+  <p class="make_bold" style="color:#f4716a;">نظرات کاربران</p>
+
+  <%= form_for(@comment) do |f| %>
+    <% if @comment.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+        <ul>
+        <% @comment.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.hidden_field :commentable_id , :value => @garden.id %>
+    </div>
+    <div class="field">
+      <%= f.hidden_field :commentable_type  , :value =>"Garden"%>
+    </div>
+    <div class="field  make_center">
+      <%= f.text_area :content %>
+    </div>
+    <div class="actions">
+      <%= f.submit  'ثبت نظر' , :class=>"cm_bt button" %>
+    </div>
+  <% end %>
+</div>
+</section>
+</div>
+
+
+<div class="comments">
+<br>
+<% @garden.comments.each do |cmnt| %>
+
+<ol class="commetn-list three-fourth">
+
+  <li class="comment byuser comment-author-test99899 even thread-even depth-1 clearfix">
+    
+    <div class="avatar">
+      <!-- user profile picture must set in here -->
+      <% if cmnt.user.profile.profile_photo.present?%>
+      <%=image_tag cmnt.user.profile.profile_photo_url%>
+      <%else %>
+      <%=image_tag "default_plant.png"%>
+      <%end%>
+    </div>
+    <div class="comment-box" style="padding:1%">
+
+      <div class="comment-author meta make_right">
+        <!-- info about commenter-->
+        <%= cmnt.user.profile.first_name %>
+        <%= cmnt.user.profile.last_name %>
+        <%if has_auth(cmnt)%>
+        <%= link_to 'حذف نظر', cmnt, method: :delete, data: { confirm: 'Are you sure?' } , :class=>"b_farsi btn btn-danger btn-xs" %>
+        <%end%>
+        <p class="make_right"><%= cmnt.created_at %></p>
+      </div>
+      
+      <div class="comment-text">
+      <!-- comment content must set here-->
+            <p><%= cmnt.content %></p>  
+      </div>
+      
+    </div>
+    
+  </li>
+  
+</ol>
+  <% end %>  
+</div>

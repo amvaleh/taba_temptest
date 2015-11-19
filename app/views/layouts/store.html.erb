@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <%= stylesheet_link_tag 'appshopstyle', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'appstoration', 'data-turbolinks-track' => true %>
+
+  <%= csrf_meta_tags %>
+  <%= favicon_link_tag 'flower.png' %>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <meta name="keywords" content="WisePot- Social wise pot" />
+  <meta name="description" content="SocialPot - Social Pot">
+  <meta name="author" content="rasadpot.ir">
+
+  <title>
+    <%= @page_title %> - <%=Shoppe.settings.store_name %>
+  </title>
+  <%= render 'shared/header' %>
+
+
+</head>
+
+<body class="home single single-product woocommerce woocommerce-page js">
+
+<% if notice %>
+    <div id ="my_notice" class="notification">
+      <%= notice %>
+    </div>
+<% end %>
+
+<main class="main" role="main">
+  <!--wrap-->
+  <div class="wrap clearfix">
+
+
+    <div class="content full-width ">
+      <div class="one-half pull-right make_right">
+      </div>
+    </div>
+
+    <!--breadcrumbs-->
+    <nav class="breadcrumbs">
+      <ul>
+        <li class="pull-right animated fadeInRight" style="width: 50%;margin-right: 22%;">
+
+          <%=form_tag({controller: "/search" , action: "shop_search" },method: "get" ) do%>
+              <%=text_field_tag :query,nil,placeholder: "جستجوی گیاهان، گلدان ها" ,  autocomplete: :off , :class => "pull-right make_center",:style=>"width: 80% !important;width: 80% !important;
+height: 42px;border-radius: 0px;"%>
+              <%= button_tag"جستجو" , :class=>"btn btn-primary pull-left search_commit" %>
+          <% end %>
+        </li>
+        <li><a href="#" title="Home">خانه</a></li>
+        <li>فروشگاه</li>
+      </ul>
+    </nav>
+
+    <section id="secondary-left" class="left-sidebar sidebar widget-area one-fourth" role="complementary">
+      <div class="">
+        <ul>
+          <li class="widget widget-sidebar make_center">
+            <h5>سبد خرید</h5>
+            <div class="widget_shopping_cart_content">
+              <%= render 'shared/basket', :order => current_order %>
+            </div>
+          </li>
+
+
+          <li class="widget make_center" style="background: none; border: none">
+            <h5 style="background: #ffffff">
+              دسته بندی ها
+            </h5>
+            <%= render 'shared/categories_side_panel' %>
+          </li>
+
+          <li class="widget widget-sidebar">
+            <%= image_tag "delivery_logo.png" %>
+          </li>
+
+          <li class="widget widget-sidebar">
+            <h5 style="text-align:center">
+              به اینها هم یه سر بزن
+            </h5>
+
+            <div class="widget_shopping_cart_content">
+            <ul class="product_list_widget">
+              <% Shoppe::Product.all.order("RAND()").first(6).each do |p| %>
+              <li>
+              <%= link_to product_path(p.product_category.permalink, p.permalink), :class=>"attachment-shop_thumbnail wp-post-image" , :width => "90" , :height => "90" do %>
+                <%= image_tag p.default_image.path %>
+                <span class="product-title">
+                <%= p.name %>
+                </span>                
+               <% end %>
+               <ins>
+               <span class="">
+          <%=number_to_currency p.price%>
+               </span>
+               </ins>
+               </li>
+               <% end %>
+             </ul>
+            </div>
+
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <%= yield %>
+
+  </div>
+</main>
+</body>
+<%= render 'shared/footer' %>
+
+
+
+<script type="application/javascript">
+    $("#my_notice").delay(5000).show(10000).hide(1000);
+</script>
+

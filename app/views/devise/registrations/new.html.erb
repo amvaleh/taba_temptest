@@ -1,0 +1,39 @@
+<section class="content center full-width wow fadeInDown animated style="visibility: visible;"">
+<div class="modal container new_forms">
+<h2 class="center">ثبت نام در گلوگرافی</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+  <div class="field">
+    <p class="make_right"><%= f.label :ایمیل%></p>
+    <%= f.email_field :email, autofocus: true%>
+  </div>
+
+  <div class="field">
+    <p class="make_right">رمز عبور</p>
+    <% if @validatable %>
+    <p class="make_right"><em>(<%= @minimum_password_length %> حداقل تعداد کاراکتر)</em></p>
+    <% end %>
+    <%= f.password_field :password, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <p class="make_right">تایید رمز عبور</p>
+    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  </div>
+  </br>
+  <div style="display:table; margin:0 auto;">
+    <%=show_simple_captcha %>
+  </div>
+  <div class="center">
+    <%= f.submit "ثبت نام", :class=>"b_farsi sign_in_bt modal far_class"%>
+  </div>
+<% end %>
+
+</div>
+</section>
+
+
+<div>
+<%#= render "devise/shared/links"%>
+</div>

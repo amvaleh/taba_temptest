@@ -1,0 +1,63 @@
+<p id="notice"><%= notice %></p>
+
+
+<h1>نمایش سوالات</h1>
+
+<% if user_signed_in? and current_user.admin? %>
+
+    <table>
+      <thead>
+      <tr>
+        <th>User</th>
+        <th>Planter</th>
+        <th>Title</th>
+        <th>Content</th>
+        <th colspan="3"></th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @posts.each do |post| %>
+          <tr>
+            <td><%= post.user_id %></td>
+            <td><%= post.planter_id %></td>
+            <td><%= post.title %></td>
+            <td><%= post.content %></td>
+            <td><%= link_to 'Show', post %></td>
+            <td><%= link_to 'Edit', edit_post_path(post) %></td>
+            <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <%= link_to 'New Post', new_post_path %>
+    <br>
+<% end %>
+
+
+<section class="wrap clearfix ">
+
+  <div class="cwrap">
+    <header class="s-title">
+    </header>
+
+    <!--entries-->
+
+    <div class="entries row">
+      <% Post.all.each do |post| %>
+        <%= render 'posts/post' , :post => post %>
+      <% end %>
+    </div>
+
+    <div class="quicklinks">
+      <%= link_to "همه سوالات" , posts_path , class: "button" %>
+      <a href="javascript:void(0)" class="button scroll-to-top">
+        برگرد بالا
+      </a>
+    </div>
+
+    <!--//entries-->
+  </div>
+  <!--//cwrap-->
+
+</section>
