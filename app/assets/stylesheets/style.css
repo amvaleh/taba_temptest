@@ -440,6 +440,8 @@ dl 			{display:inline-block;width:100%;margin:0 0 22px;}
 
 .recipefinder .tab-content {background:#fff;padding:17px 20px 20px;}
 
+
+
 /*TABS*/
 .tabs 				{float:left;width:100%;background:#fff;margin:0 0 30px;-webkit-box-shadow:0 1px 0 rgba(0,0,0,0.15);-moz-box-shadow:0 1px 0 rgba(0,0,0,0.15);box-shadow:0 1px 0 rgba(0,0,0,0.15);}
 .tabs li 				{float:left;height:50px;font-size:13px;line-height:50px;font-weight:500;border-right:1px solid #ddd;text-transform:uppercase;width:25%;text-align:center;position:relative;}

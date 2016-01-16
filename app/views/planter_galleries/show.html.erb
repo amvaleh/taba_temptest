@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Planter:</strong>
+  <%= @planter_gallery.planter_id %>
+</p>
+
+<p>
+  <strong>Avatar:</strong>
+  <%= @planter_gallery.avatar %>
+</p>
+
+<%= link_to 'Edit', edit_planter_gallery_path(@planter_gallery) %> |
+<%= link_to 'Back', planter_galleries_path %>

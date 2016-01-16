@@ -1,0 +1,43 @@
+<section class="content center full-width wow fadeInDown animated" style="visibility: visible;">
+<div class=" container new_forms">
+
+<div class="one-half modal">
+
+<%= image_tag @planter_gallery.avatar %>
+
+<%= form_for(@planter_gallery) do |f| %>
+  <% if @planter_gallery.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@planter_gallery.errors.count, "error") %> prohibited this planter_gallery from being saved:</h2>
+
+      <ul>
+      <% @planter_gallery.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%#= f.label :planter_id %><br>
+    <%= f.number_field :planter_id , :readonly => true %>
+  </div>
+
+  <br>
+
+    <div class="field">
+      <%= f.label :avatar %><br>
+      <%= f.file_field :avatar %>
+    </div>
+
+<br>
+  <div class="actions modal">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+
+</div>
+
+</div>
+</section>

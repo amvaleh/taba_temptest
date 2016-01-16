@@ -2,7 +2,7 @@ class PlantersController < ApplicationController
 
 
   before_action :authenticate_user! , :except => :show
-  after_action :verify_authorized, :except => [:index , :show, :follow , :unfollow]
+  after_action :verify_authorized, :except => [:index , :show, :follow , :unfollow,:import]
 
   before_action :set_planter, only: [:show, :edit, :update, :destroy, :follow , :unfollow, :create]
 
@@ -12,6 +12,37 @@ class PlantersController < ApplicationController
   def index
     @planters = Planter.all
   end
+
+
+  def import
+  puts "****************************************************"
+  doc = Nokogiri::XML(File.open("planters.xml"))
+  co = 1
+    doc.css('plantt').each do |node|
+      children = node.children
+      planter = Planter.new(
+        :id => co,
+        :name => children.css('farsi_name').inner_text,
+        :latin_name => children.css('latin_name').inner_text,
+        :category => children.css('category').inner_text,
+        :family => children.css('family').inner_text,
+        :brief_desc => children.css('summary').inner_text,
+        :explanation => children.css('explanation').inner_text,
+        :types => children.css('types').inner_text,
+        :soil => children.css('soil').inner_text,
+        :keeping => children.css('triment').inner_text,
+        :germination => children.css('propagatoin').inner_text,
+        :usage => children.css('usage').inner_text,
+        :note => children.css('note').inner_text
+      )
+      co = co + 1 
+      planter.save
+    end
+    puts "||||||||||||||||||||||||||||||||||||||||||||||||||||||"
+
+    redirect_to :back
+  end
+
 
   def follow
 
@@ -47,17 +78,21 @@ class PlantersController < ApplicationController
   def show
     @comment = Comment.new
     @followers = Follow.where(:followable_type => "Planter" , :followable_id => @planter.id).order("created_at")
+    @planter_galleries = @planter.planter_galleries.all
   end
 
   # GET /planters/new
   def new
     @planter = Planter.new
+    @planter_gallery = @planter.planter_galleries.build
     authorize @planter
   end
 
   # GET /planters/1/edit
   def edit
     authorize @planter
+    @planter_images = @planter.planter_galleries
+    # @planter_galleries = @planter.planter_galleries.build!
   end
 
   # POST /planters
@@ -67,6 +102,9 @@ class PlantersController < ApplicationController
     authorize @planter
     respond_to do |format|
       if @planter.save
+        params[:planter_galleries]['avatar'].each do |a|
+          @planter_gallery = @planter.planter_galleries.create!(:avatar => a)
+        end
         format.html { redirect_to @planter, notice: 'Planter was successfully created.' }
         format.json { render :show, status: :created, location: @planter }
       else
@@ -82,6 +120,11 @@ class PlantersController < ApplicationController
     authorize @planter
     respond_to do |format|
       if @planter.update(planter_params)
+        if params[:planter_galleries].present?
+        params[:planter_galleries]['avatar'].each do |a|
+          @planter_gallery = @planter.planter_galleries.create!(:avatar => a)
+        end
+      end
         format.html { redirect_to @planter, notice: 'Planter was successfully updated.' }
         format.json { render :show, status: :ok, location: @planter }
       else
@@ -106,7 +149,7 @@ class PlantersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_planter
       @planter = Planter.find_by_latin_name(params[:id])
-      @page_title = "باغ"
+      @page_title = "گیاه"
       if @planter.present?
         @page_title = @page_title + " " + @planter.name
       end
@@ -116,6 +159,7 @@ class PlantersController < ApplicationController
     def planter_params
       params.require(:planter).permit(:height , :brief_desc ,:plant_id , :humidity_soil, :humidity_air ,  
         :temperature, :light_degree , :name, :image_1, :image_2, :image_3,
-        :image_4, :additional_image,:latin_name,:second_name,:germination,:plague,:keeping )
+        :image_4, :additional_image,:latin_name,:second_name,:germination,:plague,:keeping, :category,:family,:explanation,
+      :types,:soil,:usage,:note, planter_galleries_attributes: [:id,:planter_id,:avatar])
     end
 end

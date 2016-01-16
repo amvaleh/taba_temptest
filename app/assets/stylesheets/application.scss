@@ -23,6 +23,22 @@
  */
 
 
+.my_width{
+  width: 100px;
+}
+
+.fill_parent{
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+
+.ratio_stable{
+  max-height: 100%;
+  max-width: 100%;
+}
+
 .content_center{
   display: table;
   margin: 0 auto;
@@ -232,7 +248,7 @@ audio, canvas, video { display: inline-block; *display: inline; *zoom: 1;max-wid
 .oldie .row   		{zoom:1;}
 
 ::-moz-selection {background:#fff;color:#F4716A;-webkit-text-shadow:none;-moz-text-shadow:none;text-shadow:none;}
-::selection 	 	{background:#fff;color:#F4716A;-webkit-text-shadow:none;-moz-text-shadow:none;text-shadow:none;}
+//::selection 	 	{background:#fff;color:#F4716A;-webkit-text-shadow:none;-moz-text-shadow:none;text-shadow:none;}
 
 /*TYPOGRAPHY*/
 h1 {font-size:29px;font-weight:400;padding:0 0 12px;margin:0;}
@@ -609,27 +625,46 @@ dl 			{display:inline-block;width:100%;margin:0 0 22px;}
 .submit_recipe button,
 .submit_recipe .button {width:263px;text-align:center;max-width:100%;}
 
+
+///*SEARCH FOR RECIPES*/
+//.recipefinder			{width:100%;padding:22px 30px 30px !important;margin:0 0 30px;}
+//.recipefinder h3			{color:#666;padding:5px 0 25px;font-size:16px;}
+//.recipefinder .left		{float:left;width:30%;}
+//.recipefinder .right 	{float:right;width:70%;padding-left:30px;}
+//.recipefinder .f-row 	{padding:10px 0 0 !important;}
+//.recipefinder button 		{position:absolute;top:10px;right:0;font-size:37px;padding:0;width:37px;height:37px;line-height:37px;-webkit-border-radius:0 3px 3px 0;-moz-border-radius:0 3px 3px 0;border-radius:0 3px 3px 0;}
+//.recipefinder input[type="submit"] {float:right;}
+//.recipefinder .gold 	{margin:0 3px 3px 0;}
+//
+//.recipefinder .ingredients	{padding:0 0 29px;}
+//.ingredients .button 		{text-transform:none;}
+//.recipefinder .search 					{position:relative;}
+//.recipefinder .search input[type="submit"] {background:url(/assets/icons.png) -198px 0 no-repeat !important;width:17px;height:17px;position:absolute;top:10px;right:25px;padding:0 !important;font-size:0px;}
+//
+//.recipefinder .dropdown 			{position:relative;float:left;width:270px;border:1px solid #ddd;font-size:13px;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;padding:9px 10px;color:#999;}
+//.recipefinder .dropdown:before 	{content:"";background:url(/assets/icons.png) -152px -168px no-repeat;width:11px;height:10px;position:absolute;top:13px;right:13px;}
+//.recipefinder .dropdown dt 		{cursor:pointer;}
+//.recipefinder .dropdown dd		{display:none;padding:9px 0 0;}
+//.recipefinder .dropdown dd a 			{color:#999;}
+//.recipefinder .dropdown dd a:hover 	{color:#666;}
+//
+//.recipefinder .tab-content {background:#fff;padding:17px 20px 20px;}
+
 /*SEARCH FOR RECIPES*/
-.recipefinder			{width:100%;padding:22px 30px 30px !important;margin:0 0 30px;}
-.recipefinder h3			{color:#666;padding:5px 0 25px;font-size:16px;}
+.recipefinder			{width:100%;margin:0 0 30px;float:left;}
+.recipefinder h3			{color:#666;padding:5px 0 22px;font-size:16px;}
 .recipefinder .left		{float:left;width:30%;}
 .recipefinder .right 	{float:right;width:70%;padding-left:30px;}
-.recipefinder .f-row 	{padding:10px 0 0 !important;}
-.recipefinder button 		{position:absolute;top:10px;right:0;font-size:37px;padding:0;width:37px;height:37px;line-height:37px;-webkit-border-radius:0 3px 3px 0;-moz-border-radius:0 3px 3px 0;border-radius:0 3px 3px 0;}
+.recipefinder button 		{position:absolute;top:0;right:0;font-size:37px;padding:0;width:37px;height:37px;line-height:37px;-webkit-border-radius:0 3px 3px 0;-moz-border-radius:0 3px 3px 0;border-radius:0 3px 3px 0;}
 .recipefinder input[type="submit"] {float:right;}
 .recipefinder .gold 	{margin:0 3px 3px 0;}
 
 .recipefinder .ingredients	{padding:0 0 29px;}
 .ingredients .button 		{text-transform:none;}
 .recipefinder .search 					{position:relative;}
-.recipefinder .search input[type="submit"] {background:url(/assets/icons.png) -198px 0 no-repeat !important;width:17px;height:17px;position:absolute;top:10px;right:25px;padding:0 !important;font-size:0px;}
+.recipefinder .search input[type="submit"] {background:url(../images/ico/icons.png) -198px 0 no-repeat !important;width:17px;height:17px;position:absolute;top:10px;right:25px;padding:0 !important;font-size:0px;}
 
-.recipefinder .dropdown 			{position:relative;float:left;width:270px;border:1px solid #ddd;font-size:13px;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;padding:9px 10px;color:#999;}
-.recipefinder .dropdown:before 	{content:"";background:url(/assets/icons.png) -152px -168px no-repeat;width:11px;height:10px;position:absolute;top:13px;right:13px;}
-.recipefinder .dropdown dt 		{cursor:pointer;}
-.recipefinder .dropdown dd		{display:none;padding:9px 0 0;}
-.recipefinder .dropdown dd a 			{color:#999;}
-.recipefinder .dropdown dd a:hover 	{color:#666;}
+.recipefinder .tab-content {background:#fff;padding:17px 20px 20px;}
 
 /*TABS*/
 .tabs 				{float:left;width:100%;background:#fff;margin:0 0 30px;-webkit-box-shadow:0 1px 0 rgba(0,0,0,0.15);-moz-box-shadow:0 1px 0 rgba(0,0,0,0.15);box-shadow:0 1px 0 rgba(0,0,0,0.15);}
@@ -644,6 +679,20 @@ dl 			{display:inline-block;width:100%;margin:0 0 22px;}
 .container .tabs li 			{border:1px solid #ddd;}
 .container .tab-content 		{padding:0 15px;border:1px solid #ddd;border-top:0;margin:0 0 20px;float:left;width:100%;}
 
+
+/*TABS*/
+.tabs 				{float:left;width:100%;background:#fff;margin:0 0 30px;-webkit-box-shadow:0 1px 0 rgba(0,0,0,0.15);-moz-box-shadow:0 1px 0 rgba(0,0,0,0.15);box-shadow:0 1px 0 rgba(0,0,0,0.15);}
+.tabs li 				{float:left;height:50px;font-size:13px;line-height:50px;font-weight:500;border-right:1px solid #ddd;text-transform:uppercase;width:25%;text-align:center;position:relative;}
+.tabs li:last-child 	{border-right:none;}
+.tabs li a 			{display:inline-block;width:100%;height:100%;padding:0 15px;color:#444;}
+.tabs .active  a,
+.tabs a:hover 		{color:#fff !important;}
+.tabs .active:before	{display:block;border-style: solid;border-width: 8px 8px 0;top:48px;content: "";height: 0;left:48%;position: absolute;width: 0;}
+
+.container .tabs 			{-webkit-box-shadow:none;-moz-box-shadow:none;box-shadow:none;margin:0;}
+.container .tabs li 			{border:1px solid #ddd;}
+.tab-content 				{float:left;width:100%;}
+.container .tab-content 		{padding:0 15px;border:1px solid #ddd;border-top:0;margin:0 0 20px;}
 
 /*MY PROFILE*/
 .tab-content .basic dt 	{width:38%;height:38px;line-height:40px;}

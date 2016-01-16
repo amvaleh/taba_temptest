@@ -122,25 +122,46 @@
           <%= f.text_area :explanation%>
         </div>
 
-
         </br>
 
         <div class="field one-third pull-right">
           <p class="make_right">
             تصویر جدید
           </p>
-          <%= f.fields_for :planter_galleries do |p| %>
-              <%= p.label :avatar %><br>
-              <%= p.file_field :avatar, :multiple => true, name: "planter_galleries[avatar][]" %>
-          <% end %>
+              <%= f.label :avatar %><br>
+              <%= f.file_field :avatar, :multiple => true, name: "planter_galleries[avatar][]" %>
         </div>
 
+
         <div class="actions">
-          <%= f.submit  'اضافه کردن این گیاه' , class: "btn btn-warning pull-right"%>
+          <%= f.submit  'اعمال تغییرات' , class: "btn btn-warning pull-right"%>
           <%= link_to 'بازگشت', planters_path , class: "btn btn-success pull-left"%>
+          <%= link_to @planter.latin_name , @planter , class: "btn btn-link pull-left" %>
+
         </div>
 
     <% end %>
 
   </div>
+
+
+  <div class="container new_forms">
+
+    <% if @planter.planter_galleries.any? %>
+        <div class="row">
+          <p class="make_right">
+            گالری این گیاه:
+          </p>
+          <% @planter.planter_galleries.each do |p| %>
+              <div class="field one-sixth pull-right">
+                <%= image_tag p.avatar_url %>
+                <%= link_to "تغییر عکس", edit_planter_gallery_path(p) %>
+                |
+                <%= link_to "حذف عکس" ,p, method: :delete, data: { confirm: 'حتمن حذف شه؟' } %>
+              </div>
+          <% end %>
+        </div>
+    <% end %>
+  </div>
+
 </section>

@@ -1,4 +1,5 @@
 class SearchController < ApplicationController
+
   layout "store" , :only => :shop_search
 
 
@@ -35,6 +36,16 @@ class SearchController < ApplicationController
     end
   
   end
+
+  def search_page
+
+  end
+
+
+
+
+
+
 
 
 end

@@ -74,10 +74,11 @@
           <% end %>
         </li>
         <li class="light">
-          <a href="/search" title="Search for recipes">
+        <%= link_to search_page_search_index_path do %>
+          <!-- <a href="/search" title="Search for recipes"> -->
             <i class="ico i-search"></i>
-            <span>جستجو</span></a>
-
+            <span>جستجو</span>
+            <% end %>
         </li>
       </ul>
     </nav>

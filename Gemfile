@@ -13,6 +13,14 @@ gem 'simple_captcha2', require: 'simple_captcha'
 
 # gem 'mysql2'
 
+gem 'mail'
+
+gem 'backup'
+gem 'net-scp'
+gem 'net-ssh', '<= 2.5.2'
+
+gem 'nokogiri'
+
 gem 'mysql2', '~> 0.3.18'
 
 gem 'seed_dump'
@@ -54,7 +62,7 @@ gem 'nifty-attachments'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
-gem "parsi-date"
+gem "parsi-date"	
 gem "pundit"
 gem 'image-picker-rails'
 

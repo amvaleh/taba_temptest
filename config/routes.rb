@@ -1,13 +1,14 @@
 Rails.application.routes.draw do
 
+  resources :planter_galleries
+
   resources :search do
     collection do
       get :shop_search
       get :main_search
+      get :search_page
     end
   end
-
-
 
   resources :survey_ideas
 
@@ -47,10 +48,15 @@ Rails.application.routes.draw do
   resources :posts
 
   resources :planters do
+
     member do
       get :follow
       get :unfollow
     end
+    # collection do
+    #   get :import
+    # end
+
   end
 
   resources :plants do

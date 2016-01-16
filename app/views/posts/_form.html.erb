@@ -22,7 +22,7 @@
 
               </p>
               <!--<%#= f.select(:planter_id , options_from_collection_for_select(Planter.all,"id" ,:image_1),{},{:class=>"image-picker"} )%>-->
-              <%= f.select :planter_id , Planter.all.map { |f| [f.name, f.id, { 'data-img-src' => f.image_1_url(:medium)} ] }, { :prompt => "با دقت انتخاب کنید:"}, { :class=>"image-picker show-html" } %>
+              <%= f.select :planter_id , Planter.all.map { |f| [f.name, f.id, { 'data-img-src' => get_image(f) }] }, { :prompt => "با دقت انتخاب کنید:"}, { :class=>"image-picker show-html my_width" } %>
             </div>
             <div class="one-half pull-left">
       <% end %>

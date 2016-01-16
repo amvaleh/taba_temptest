@@ -1,26 +1,30 @@
 <div class="entry one-third">
-  <figure>
-    <!-- <img src="/assets/img7.jpg" alt=""> -->
-    <%= image_tag p.image_1.url %>
+  <figure style="overflow: hidden; height: 270px;">
+    <% if p.planter_galleries.first.present? %>
+    <%= image_tag p.planter_galleries.first.avatar_url, class: "fill_parent" %>
+        <% else %>
+        <%= image_tag "barggologram.png" , class: "fill_parent" %>
+        <% end %>
     <figcaption>
-      <!-- <a href="http://www.themeenergy.com/themes/html/social-chef/recipe.html"> -->
       <%= link_to planter_path(p) do  %>
           <i class="ico i-view"></i> <span><%= p.name %></span>
       <%end%>
     </figcaption>
   </figure>
   <div class="container make_right">
-    <h2><a href="http://www.themeenergy.com/themes/html/social-chef/recipe.html">\
-      <%= p.brief_desc %>
-    </a></h2>
+    <h2 style="height: 90px;">
+      <%= link_to p do %>
+      <%= truncate(p.brief_desc , :length => 140 )%>
+      <% end %>
+    </h2>
     <div class="">
-      <a href="/planters/<%=p.latin_name%>/follow" class="btn-info btn-xs<% if current_user.following?(p)%> invis <%else%> visible <%end%>" data-remote="true" id=<%="follow_butt"+p.latin_name%>>
-        <i class="">این گیاه را دنبال کن</i>
-      </a>
+      <!--<a href="/planters/<%=p.latin_name%>/follow" class="btn-info btn-xs<% if current_user.following?(p)%> invis <%else%> visible <%end%>" data-remote="true" id=<%="follow_butt"+p.latin_name%>>-->
+        <!--<i class="">این گیاه را دنبال کن</i>-->
+      <!--</a>-->
 
-      <a href="/planters/<%=p.latin_name%>/unfollow" class="button btn-xs <% if current_user.following?(p)%> visible <%else%> invis <%end%>" data-remote="true"  id=<%="unfollow_butt"+p.latin_name%> class="button">
-        <i class="">این گیاه را دنبال نکن</i>
-      </a>
+      <!--<a href="/planters/<%=p.latin_name%>/unfollow" class="button btn-xs <% if current_user.following?(p)%> visible <%else%> invis <%end%>" data-remote="true"  id=<%="unfollow_butt"+p.latin_name%> class="button">-->
+        <!--<i class="">این گیاه را دنبال نکن</i>-->
+      <!--</a>-->
     </div>
     <div class="actions">
       <div>

@@ -1,5 +1,5 @@
 <title>
-  فروشگاه|<%=@planter.name%>
+  <%=@planter.name%>
 </title>
 
 <div class="main" role="main">
@@ -26,24 +26,17 @@
               <div style="background: #ffffff; direction: ltr;">
                 <div class="flexslider">
                   <ul class="slides">
-                    <li data-thumb= <%=@planter.image_1_url(:medium)%> >
-                      <%=image_tag @planter.image_1_url%>
-                    </li>
-                    <li data-thumb= <%=@planter.image_2_url(:medium)%>>
-                      <%=image_tag @planter.image_2_url%>
 
-                    </li>
-                    <li data-thumb=<%=@planter.image_3_url(:medium)%>>
-                      <%=image_tag @planter.image_3_url%>
-                    </li>
-                    <li data-thumb=<%=@planter.image_4_url(:medium)%>>
-                      <%=image_tag @planter.image_4_url%>
-                    </li>
+                    <% @planter_galleries.each do |p| %>
+                        <li data-thumb= <%=p.avatar_url(:medium)%> >
+                          <%= image_tag p.avatar_url %>
+                        </li>
+                    <% end %>
                   </ul>
                 </div>
                 <div class="intro make_right">
                   <p >:در مورد این گیاه</p>
-                  <p style="direction: rtl;"><%= @planter.brief_desc %></p>
+                  <p style="direction: rtl;"><%= @planter.explanation %></p>
                 </div>
               </div>
 
@@ -77,10 +70,25 @@
                     <dd>نام لاتین</dd>
                 <% end %>
 
-                <% if @planter.second_name.present? %>
-                    <dt><%= @planter.second_name%></dt>
-                    <dd>نام دیگر</dd>
+                <% if @planter.category.present? %>
+                    <dt><%= @planter.category%></dt>
+                    <dd>
+                      دسته بندی
+                    </dd>
                 <% end %>
+
+
+                <% if @planter.family.present? %>
+                    <dt><%= @planter.family%></dt>
+                    <dd>
+                      خانواده
+                    </dd>
+                <% end %>
+
+
+
+
+
 
                 <% if @planter.humidity_air.present?  %>
                     <dt><%= @planter.humidity_air%></dt>
@@ -111,21 +119,29 @@
                 <dt >علاقه مندان</dt>
                 <dd><%= @followers.count%></dd>
               </dl>
-              <h2 class="make_center" style="direction: rtl;">نفرات برتر در نگهداری <%=@planter.name%></h2>
-              <dl class="ingredients make_center">
-                <dt>میزان سلامت</dt>
-                <dd>
-                  <p calss="make_center">
-                    کاربران برتر</p></dd>
-                <dt>80%</dt>
-                <dd>user_profile_link0</dd>
-                <dt>50%</dt>
-                <dd>user_profile_link1</dd>
-                <dt>42%</dt>
-                <dd>user_profile_link2</dd>
-                <dt>33.1%</dt>
-                <dd>user_profile_link3</dd>
-              </dl>
+
+
+
+              <!--<h3 class="make_center" style="direction: rtl;">-->
+              <!--نفرات برتر در نگهداری-->
+              <!--<%=@planter.name%>-->
+              <!--</h3>-->
+
+
+              <!--<dl class="ingredients make_center">-->
+              <!--<dt>میزان سلامت</dt>-->
+              <!--<dd>-->
+              <!--<p calss="make_center">-->
+              <!--کاربران برتر</p></dd>-->
+              <!--<dt>80%</dt>-->
+              <!--<dd>user_profile_link0</dd>-->
+              <!--<dt>50%</dt>-->
+              <!--<dd>user_profile_link1</dd>-->
+              <!--<dt>42%</dt>-->
+              <!--<dd>user_profile_link2</dd>-->
+              <!--<dt>33.1%</dt>-->
+              <!--<dd>user_profile_link3</dd>-->
+              <!--</dl>-->
 
             </article>
             <!--//one-third-->
@@ -138,84 +154,8 @@
         <div class="comments wow fadeIn animated" id="comments" itemprop="interactionCount" content="UserComments:0">
           <% if @planter.comments.any? %>
               <% @planter.comments.each do |cmnt| %>
-                  <!---->
-                  <ol class="commetn-list ">
-                    <!--/-->
-                    <!--<li class="comment byuser comment-author-test99899 even thread-even depth-1 clearfix">-->
-                    <!--&lt;!&ndash;&ndash;&gt;-->
-                    <!--<div class="avatar">-->
-                    <!--&lt;!&ndash; user profile picture must set in here &ndash;&gt;-->
-                    <!--<% if cmnt.user.profile.profile_photo.present?%>-->
-                        <!--<%= link_to profile_path(cmnt.user.profile) do %>-->
-                            <!--<%=image_tag cmnt.user.profile.profile_photo_url%>-->
-                            <!--<% end %>-->
-                        <!--<%else %>-->
-                        <!--<%= link_to profile_path(cmnt.user.profile) do %>-->
-                            <!--<%=image_tag "default_plant.png"%>-->
-                            <!--<% end %>-->
-                        <!--<%end%>-->
-                    <!--</div>-->
-
-                    <!--<div class="comment-box" style="padding:1%">-->
-                    <!--&lt;!&ndash;&ndash;&gt;-->
-                    <!--<div class="comment-author meta make_right">-->
-                    <!--&lt;!&ndash; info about commenter&ndash;&gt;-->
-                    <!--<%= cmnt.user.profile.first_name %>-->
-                    <!--<%= cmnt.user.profile.last_name %>-->
-                    <!--<%if user_signed_in? and has_auth(cmnt)%>-->
-                        <!--<%= link_to 'حذف نظر', cmnt, method: :delete, data: { confirm: 'Are you sure?' } , :class=>"b_farsi btn btn-danger btn-xs" %>-->
-                        <!--<%end%>-->
-                    <!--<p class="make_right"><%= cmnt.created_at %></p>-->
-                    <!--</div>-->
-                    <!--&lt;!&ndash;&ndash;&gt;-->
-                    <!--<div class="comment-text">-->
-                    <!--&lt;!&ndash; comment content must set here&ndash;&gt;-->
-                    <!--<p><%= cmnt.content %></p>-->
-                    <!--</div>-->
-                    <!--&lt;!&ndash;&ndash;&gt;-->
-                    <!--</div>-->
-                    <!--&lt;!&ndash;&ndash;&gt;-->
-                    <!--</li>-->
-                    <li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1 clearfix" id="article-comment-23">
-
-                      <div class="comment-box">
-                        <div class="comment-author meta make_center">
-                          <a rel="nofollow" class="comment-reply-link pull-right" href="#" onclick="return addComment.moveForm( &quot;comment-23&quot;, &quot;23&quot;, &quot;respond&quot;, &quot;125&quot; )" aria-label="Reply to admin">
-                            جواب بده
-                          </a>
-                          <strong>
-                            <!--<a href="http://www.themeenergy.com/themes/wordpress/social-chef/members/admin/" rel="external nofollow" class="url">-->
-                            <!--admin-->
-                            <!--</a>-->
-                            <%= link_to cmnt.user.profile.full_name , profile_path(cmnt.user.profile) %>
-                          </strong>
-
-                          <!--said on December 5, 2014-->
-                          در تاریخ
-                          <% time = cmnt.created_at.to_parsi %><%= time.strftime "%A %d %B %Y" %>
-                          گفت:
-
-                        </div>
-                        <div class="comment-text">
-                          <%= cmnt.content %>
-                        </div>
-                      </div>
-                      <div class="avatar">
-                        <!--<img src="http://www.themeenergy.com/themes/wordpress/social-chef/wp-content/uploads/avatars/1/66244049ec442247c05ab60c29b6ecbe-bpthumb.jpg" class="avatar user-1-avatar avatar-90 photo" width="90" height="90" alt="Profile photo of admin">-->
-                        <% if cmnt.user.profile.profile_photo.present?%>
-                            <%= link_to profile_path(cmnt.user.profile) do %>
-                                <%=image_tag cmnt.user.profile.profile_photo_url, :class => "avatar user-1-avatar avatar-90 photo"%>
-                            <% end %>
-                        <%else %>
-                            <%= link_to profile_path(cmnt.user.profile) do %>
-                                <%=image_tag "default_plant.png"  , :class => "avatar user-1-avatar avatar-90 photo"%>
-                            <% end %>
-                        <%end%>
-                        <div class="comment-meta commentmetadata"></div>
-                      </div>
-                    </li>
-                    <!---->
-                  </ol>
+                  <!--a comment box-->
+                  <%= render 'comments/comment' , :cmnt => cmnt %>
               <% end %>
 
           <% else %>
@@ -271,6 +211,65 @@
           </h3>
           <table class="make_right">
             <tbody>
+
+            <% if @planter.brief_desc.present? %>
+                <tr>
+                  <td style="direction:rtl;">
+                    <%= @planter.brief_desc %>
+                  </td>
+                  <td>
+                    خلاصه
+                  </td>
+                </tr>
+            <% end %>
+
+            <% if @planter.types.present? %>
+                <tr>
+                  <td style="direction:rtl;">
+                    <%= @planter.types%>
+                  </td>
+                  <td>
+                    گونه ها
+                  </td>
+                </tr>
+            <% end %>
+
+            <% if @planter.soil.present? %>
+                <tr>
+                  <td style="direction:rtl;">
+                    <%= @planter.soil%>
+                  </td>
+                  <td>
+                    خاک مناسب
+                  </td>
+                </tr>
+            <% end %>
+
+
+
+            <% if @planter.usage.present? %>
+                <tr>
+                  <td style="direction:rtl;">
+                    <%= @planter.usage%>
+                  </td>
+                  <td>
+                    محل استفاده
+                  </td>
+                </tr>
+            <% end %>
+
+            <% if @planter.note.present? %>
+                <tr>
+                  <td style="direction:rtl;">
+                    <%= @planter.note%>
+                  </td>
+                  <td>
+                    چند نکته
+                  </td>
+                </tr>
+            <% end %>
+
+
             <% if @planter.germination.present? %>
                 <tr>
                   <td style="direction:rtl;">
@@ -287,6 +286,7 @@
                 </tr>
 
             <% end %>
+
             <% if @planter.keeping.present? %>
                 <tr>
                   <td style="direction:rtl;"><%=@planter.keeping %></td>

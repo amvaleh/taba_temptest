@@ -12,13 +12,17 @@ class Planter < ActiveRecord::Base
 
 	acts_as_followable
 
+	has_many :planter_galleries
+	accepts_nested_attributes_for :planter_galleries
+
 
 	def to_param
 		latin_name
 	end
 
+
 	validates :name, presence: true
 	validates :latin_name, presence: true
-	validates :brief_desc, presence: true
+	# validates :brief_desc, presence: true
 	
 end
