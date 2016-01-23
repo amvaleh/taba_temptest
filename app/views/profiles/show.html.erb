@@ -53,10 +53,21 @@
             <% if can_edit %>
                 <%= link_to "ساخت باغچه", new_garden_path , :class => "button btn" %>
                 <%= link_to "اضافه کردن گل جدید", new_plant_path , :class => "button btn" %>
+
             <% end %>
+
+
             </br>
             </br>
           </div>
+          <% if current_user.role == 1 %>
+
+          <div class="container">
+                <%= link_to "همه گیاهان" , planters_path , :class => "btn btn-block btn-green" %>
+            </br>
+          </div>
+          <% end %>
+
           <div class="container make_center">
             <div style="direction: rtl;">
               <%=link_to "سوال، مطلب یا نکته ای بنویسید .." , new_post_path, :class=>"btn btn-warning btn-block"%>
@@ -82,6 +93,11 @@
                 <% end %>
 
               </li>
+              <% if current_user.role == 1 %>
+              <li class="" style="direction: rtl;">
+              </li>
+                  <% end %>
+
               <!-- <li class="active"><a href="http://www.themeenergy.com/themes/html/social-chef/my_profile.html#about" title="About me">درباره ی من</a></li>
                -->
               <!--<li class="">-->
@@ -469,8 +485,6 @@
   <!--//wrap-->
 </main>
 <!--//main-->
-
-
 
 </body>
 </html>

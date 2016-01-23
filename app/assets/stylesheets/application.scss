@@ -65,10 +65,9 @@
 }
 
 .default_profile_pic{
-  background: white;
+  background: floralwhite;
   margin-bottom: 3%;
-  border-radius: 162px;
-
+  border-radius: 7px;
 }
 
 
@@ -4459,3 +4458,9 @@ Copyright (c) 2014 Daniel Eden
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
 }
 /////////////////////////////////////////////////////////////////////////
+
+.btn-green{
+  color: #fff;
+  background-color: #45B917;
+  border-color: #4cae4c;
+}
