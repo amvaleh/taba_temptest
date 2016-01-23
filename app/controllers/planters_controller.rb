@@ -2,6 +2,7 @@ class PlantersController < ApplicationController
 
 
   before_action :authenticate_user! , :except => :show
+
   after_action :verify_authorized, :except => [:index , :show, :follow , :unfollow,:import]
 
   before_action :set_planter, only: [:show, :edit, :update, :destroy, :follow , :unfollow, :create]
@@ -17,8 +18,9 @@ class PlantersController < ApplicationController
   def import
   puts "****************************************************"
   doc = Nokogiri::XML(File.open("planters.xml"))
+  puts " I am in ***********"
   co = 1
-    doc.css('plantt').each do |node|
+    doc.css('طبقه_x0020_بندی_x0020_اطلاعات_x0020_گیاهان').each do |node|
       children = node.children
       planter = Planter.new(
         :id => co,
@@ -40,7 +42,7 @@ class PlantersController < ApplicationController
     end
     puts "||||||||||||||||||||||||||||||||||||||||||||||||||||||"
 
-    redirect_to :back
+    redirect_to planters_path
   end
 
 
