@@ -18,7 +18,6 @@ class PlantersController < ApplicationController
   def import
   puts "****************************************************"
   doc = Nokogiri::XML(File.open("planters.xml"))
-  puts " I am in ***********"
   co = 1
     doc.css('طبقه_x0020_بندی_x0020_اطلاعات_x0020_گیاهان').each do |node|
       children = node.children

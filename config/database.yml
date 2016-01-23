@@ -34,9 +34,9 @@ test:
 production:
  adapter: mysql2
  encoding: utf8
- database: rasadpot_db
+ database: gologram_db
  username: root
- password: 810190501
+ password: parspacksqldb
  host: 127.0.0.1
 
 

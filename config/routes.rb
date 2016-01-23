@@ -53,9 +53,9 @@ Rails.application.routes.draw do
       get :follow
       get :unfollow
     end
-    collection do
-      get :import
-    end
+    # collection do
+    #   get :import
+    # end
 
   end
 
