@@ -17,8 +17,9 @@ class PlantersController < ApplicationController
   def import
   puts "****************************************************"
   doc = Nokogiri::XML(File.open("planters.xml"))
+ puts "in"
   co = 1
-    doc.css('plantt').each do |node|
+    doc.css('طبقه_x0020_بندی_x0020_اطلاعات_x0020_گیاهان').each do |node|
       children = node.children
       planter = Planter.new(
         :id => co,
@@ -40,7 +41,7 @@ class PlantersController < ApplicationController
     end
     puts "||||||||||||||||||||||||||||||||||||||||||||||||||||||"
 
-    redirect_to :back
+    redirect_to planters_path
   end
 
 
