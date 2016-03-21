@@ -12,9 +12,9 @@ default: &default
 development:
  adapter: mysql2
  encoding: utf8
- database: rasadpot_db
+ database: gologram_db
  username: root
- password: 810190501
+ password:
  host: 127.0.0.1
 
 # Warning: The database defined as "test" will be erased and
@@ -22,10 +22,10 @@ development:
 # Do not set this db to the same as development or production.
 test:
  adapter: mysql2
- encoding: utf8	
- database: rasadpot_db
+ encoding: utf8
+ database: gologram_db
  username: root
- password: 810190501
+ password:
  host: 127.0.0.1
 
 # production:
@@ -38,6 +38,3 @@ production:
  username: root
  password: parspacksqldb
  host: 127.0.0.1
-
-
-
