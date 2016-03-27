@@ -1,6 +1,6 @@
 class ProfilesController < ApplicationController
 
-  before_action :authenticate_user! 
+  before_action :authenticate_user!
 
   before_action :set_profile, only: [:show, :edit, :update, :destroy,:my_gardens, :about_me,:my_posts, :my_flowers]
 
@@ -67,9 +67,9 @@ class ProfilesController < ApplicationController
   # POST /profiles.json
   def create
     @profile = Profile.new(profile_params)
-    
+
     @profile.user_id = current_user.id
-    @profile.full_name = @profile.first_name + @profile.last_name
+    @profile.full_name = @profile.first_name + "-"+ @profile.last_name
 
     respond_to do |format|
       if @profile.save
@@ -84,7 +84,7 @@ class ProfilesController < ApplicationController
   # PATCH/PUT /profiles/1
   # PATCH/PUT /profiles/1.json
   def update
-   if params[:profile][:remove_profile_photo] == "1" 
+   if params[:profile][:remove_profile_photo] == "1"
     @profile.remove_profile_photo = nil
     @profile.save
    end
@@ -92,7 +92,9 @@ class ProfilesController < ApplicationController
     @profile.remove_cover_photo = nil
     @profile.save
    end
-    
+
+   profile_params[:user_id] = current_user.id
+
     respond_to do |format|
       if @profile.update(profile_params)
         format.html { redirect_to @profile, :notice => t('alerts.profiles.update') }
@@ -117,7 +119,7 @@ class ProfilesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_profile
-      @profile = Profile.find_by_full_name(params[:id])
+      @profile = Profile.friendly.find(params[:id])
       if @profile.gender == 0
       @page_title = "آقای"
       else
@@ -131,6 +133,6 @@ class ProfilesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def profile_params
       params.require(:profile).permit(:user_id, :profile_photo, :cover_photo ,
-       :first_name , :last_name , :gender , :remove_cover_photo , :remove_profile_photo,:full_name, :mobile_number)
+       :first_name , :last_name , :gender , :remove_cover_photo , :remove_profile_photo,:full_name, :mobile_number,:id)
     end
 end

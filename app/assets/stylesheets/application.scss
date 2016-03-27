@@ -30,7 +30,6 @@
 .fill_parent{
   object-fit: cover;
   width: 100%;
-  height: 100%;
 }
 
 
@@ -417,7 +416,7 @@ tr:nth-child(2n+1) td{background:#f6f6f6;}
 
 /*HOME*/
 .home .main 	{padding-top:0;}
-.intro 		
+.intro
 {
 width: 100%;
 height: 100vh;
@@ -482,7 +481,7 @@ blockquote:before 			{content:"";background:url(/assets/icons.png) -297px -17px 
 .featured.two-third .more 		{padding:10px 0 0 20px !important;}
 .featured.one-third .button		{width:100%;margin:0 0 17px;}
 
-.actions .difficulty			{border-right:0;width:50%;}
+.actions .difficulty			{border-right:0;width:100%;}
 .actions .difficulty .ico 	{margin-bottom:-1px;}
 
 .main .quicklinks 	{float:left;display:block;width:100%;text-align:center;padding:0 0 30px;}
@@ -517,7 +516,7 @@ section.cta h2 	{padding:0;line-height:48px;}
 .post .actions 			{width:455px;padding:0 20px;}
 .post .actions > div 		{margin:11px 0 0;}
 
-.actions div div				{float:left;border-right:1px solid #ddd;padding:0 15px 0 0;margin:0 14px 0 0;color:#666;}
+.actions div div				{float:left;border-right:1px solid #ddd;margin:0 14px 0 0;color:#666;}
 .actions div div:last-child 	{border:none;padding:0;margin:0;}
 .actions div div a 				{color:#666;}
 .actions div div a:hover		{color:#F5716A;}

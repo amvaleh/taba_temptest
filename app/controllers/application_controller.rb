@@ -19,9 +19,9 @@ require 'nokogiri'
 
 	def after_sign_in_path_for(user)
 		if user.profile.present?
-			profile_path(user)
+			profile_path(user.profile)
 		else
-			new_profile_path(user)
+			new_profile_path
 		end
 	end
 
@@ -29,7 +29,7 @@ require 'nokogiri'
 		if user.profile.present?
 			profile_path(user)
 		else
-			new_profile_path(user)
+			new_profile_path
 		end
 	end
 
@@ -69,7 +69,7 @@ require 'nokogiri'
 		return 12
     	# Lots of stuff
   	end
-  	
+
   	helper_method :my_method
 
 

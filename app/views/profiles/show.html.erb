@@ -1,6 +1,3 @@
-<!--<p id="notice"><%= notice %></p>-->
-<!DOCTYPE html>
-<!-- saved from url=(0066)http://www.themeenergy.com/themes/html/social-chef/my_profile.html -->
 <title>حساب کاربری <%= @profile.last_name %></title>
 
 <!--main-->
@@ -11,7 +8,7 @@
     <!--breadcrumbs-->
     <nav class="breadcrumbs">
       <ul>
-        <li class="pull_left">حساب کاربری من</li>
+        <!-- <li class="pull-right">حساب کاربری من</li> -->
       </ul>
     </nav>
 
@@ -53,20 +50,15 @@
             <% if can_edit %>
                 <%= link_to "ساخت باغچه", new_garden_path , :class => "button btn" %>
                 <%= link_to "اضافه کردن گل جدید", new_plant_path , :class => "button btn" %>
-
             <% end %>
-
-
             </br>
             </br>
           </div>
-          <% if current_user.role == 1 %>
 
           <div class="container">
                 <%= link_to "همه گیاهان" , planters_path , :class => "btn btn-block btn-green" %>
             </br>
           </div>
-          <% end %>
 
           <div class="container make_center">
             <div style="direction: rtl;">
@@ -125,7 +117,7 @@
 
           <!--about-->
           <!-- <div class="tab-content" id="about_me">
-            
+
           </div>
            -->
 
@@ -151,13 +143,13 @@
                 </dt>
                 <dd><%= current_user.posts.count %></dd>
                 <dt class="make_center">رتبه بین کاربران</dt>
-                <dd>9</dd>
+                <dd>۰</dd>
                 <dt class="make_center">تعداد گیاهان</dt>
                 <dd>
                   <%= @plants_count %>
                 </dd>
                 <dt class="make_center">
-                  گلینو های فعال
+                  گجت های فعال 
                 </dt>
                 <dd>
                     <%= current_user.bluetooth_devices.active.count %>
@@ -488,4 +480,3 @@
 
 </body>
 </html>
-

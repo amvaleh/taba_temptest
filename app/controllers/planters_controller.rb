@@ -1,7 +1,7 @@
 class PlantersController < ApplicationController
 
 
-  before_action :authenticate_user! , :except => :show
+  before_action :authenticate_user! , :except => [:show, :index]
 
   after_action :verify_authorized, :except => [:index , :show, :follow , :unfollow,:import]
 
@@ -11,9 +11,8 @@ class PlantersController < ApplicationController
   # GET /planters
   # GET /planters.json
   def index
-    @planters = Planter.all
+    @planters, @alphaParams = Planter.alpha_paginate(params[:letter], {db_mode: true, :enumerate=>true , :default_field=> "c" , :pagination_class => "categories"  , db_field: "latin_name"})
   end
-
 
   def import
   puts "****************************************************"
@@ -36,7 +35,7 @@ class PlantersController < ApplicationController
         :usage => children.css('usage').inner_text,
         :note => children.css('note').inner_text
       )
-      co = co + 1 
+      co = co + 1
       planter.save
     end
     puts "||||||||||||||||||||||||||||||||||||||||||||||||||||||"
@@ -149,7 +148,7 @@ class PlantersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_planter
-      @planter = Planter.find_by_latin_name(params[:id])
+      @planter = Planter.friendly.find(params[:id])
       @page_title = "گیاه"
       if @planter.present?
         @page_title = @page_title + " " + @planter.name
@@ -158,7 +157,7 @@ class PlantersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def planter_params
-      params.require(:planter).permit(:height , :brief_desc ,:plant_id , :humidity_soil, :humidity_air ,  
+      params.require(:planter).permit(:height , :brief_desc ,:plant_id , :humidity_soil, :humidity_air ,
         :temperature, :light_degree , :name, :image_1, :image_2, :image_3,
         :image_4, :additional_image,:latin_name,:second_name,:germination,:plague,:keeping, :category,:family,:explanation,
       :types,:soil,:usage,:note, planter_galleries_attributes: [:id,:planter_id,:avatar])

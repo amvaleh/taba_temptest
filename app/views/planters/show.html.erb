@@ -309,12 +309,12 @@
             </li>
             <% if user_signed_in? %>
                 <li class="dark">
-                  <a href="/planters/<%=@planter.latin_name%>/follow" class="<% if current_user.following?(@planter)%> invis <%else%> visible <%end%>" title="Favourites">
+                  <a href="/planters/<%=@planter.slug%>/follow" class="<% if current_user.following?(@planter)%> invis <%else%> visible <%end%>" title="Favourites">
                     <i class="ico i-favourites "></i>
                     <span>اضافه به علاقه ها</span>
                   </a>
 
-                  <a href="/planters/<%=@planter.latin_name%>/unfollow" class="<% if current_user.following?(@planter)%> visible <%else%> invis <%end%>" title="Favourites">
+                  <a href="/planters/<%=@planter.slug%>/unfollow" class="<% if current_user.following?(@planter)%> visible <%else%> invis <%end%>" title="Favourites">
                     <i class="ico i-favourites"></i>
                     <span>حذف از علاقه ها</span>
                   </a>

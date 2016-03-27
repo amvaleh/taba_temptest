@@ -13,7 +13,11 @@
             <span>خانه</span>
           </a>
         </li>
-
+        <li>
+          <%= link_to planters_path do %>
+              <span>گیاهان</span>
+            <% end %>
+        </li>
         <li>
           <%= link_to store_show_path do  %>
               <span>فروشگاه</span>
@@ -36,7 +40,7 @@
             <li><%=link_to "تبلیغات", services_initial_index_path(:section=>5) , :class=>"make_right"%></li>
           </ul>
         </li>
-        
+
         <li>
         </li>
         <li><%= link_to services_initial_index_path(:section=>6)  do %> <span>ارتباط با ما</span> <% end %></li>
@@ -60,7 +64,7 @@
         <% end %>
         <li class="medium">
           <%if user_signed_in? and current_user.profile.present? %>
-              <%= link_to profile_path(current_user) do%>
+              <%= link_to profile_path(current_user.profile) do%>
                   <i class="ico i-account"></i>
                   <span>حساب کاربری</span>
               <% end %>
@@ -72,7 +76,7 @@
           <% end %>
         </li>
         <li class="light">
-        <%= link_to search_page_search_index_path do %>
+        <%= link_to planters_path do %>
           <!-- <a href="/search" title="Search for recipes"> -->
             <i class="ico i-search"></i>
             <span>جستجو</span>

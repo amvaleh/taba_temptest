@@ -10,7 +10,6 @@ gem 'mini_magick'
 #gem 'ancestry'
 #gem 'groupdate'
 gem 'simple_captcha2', require: 'simple_captcha'
-
 # gem 'mysql2'
 
 gem 'mail'
@@ -27,8 +26,8 @@ gem 'seed_dump'
 
 gem 'acts_as_votable', '~> 0.10.0'
 
-gem 'kaminari'
-
+# gem 'kaminari'
+ gem 'alphabetical_paginate'
 
 gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
 
@@ -55,6 +54,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'haml'
 gem 'nifty-attachments'
+gem 'friendly_id', '~> 5.1.0'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -62,7 +62,7 @@ gem 'nifty-attachments'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
-gem "parsi-date"	
+gem "parsi-date"
 gem "pundit"
 gem 'image-picker-rails'
 
@@ -83,4 +83,3 @@ group :development, :test do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   # gem 'spring' , '~> 1.3.3'
 end
-

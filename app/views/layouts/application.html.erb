@@ -9,39 +9,42 @@
   <%= favicon_link_tag 'flower.png' %>
 
 
-    <%= render 'shared/header' %>
+  <%= render 'shared/header' %>
   <title style ="direction: rtl;">
     گلوگرام
 
-|    <%= @page_title %>
+    |    <%= @page_title %>
   </title>
 </head>
 <body class="home">
 
-<% if notice %>
-    <div id ="my_notice" class="notification">
-      <%= notice %>
-    </div>
-<% end %>
+  <% if notice %>
+  <div id ="my_notice" class="notification">
+    <%= notice %>
+  </div>
+  <% end %>
 
-    <!--breadcrumbs-->
-    <% if user_signed_in? %>
-    <nav class="row">
-      <ul>
-        <li class="pull-right " style="width: 50%;margin-right: 26%;">
-          <%=form_tag({controller: "/search" , action: "main_search" },method: "get" ) do%>
-              <%=text_field_tag :query,nil,placeholder: "جستجوی گلوگرام" ,  autocomplete: :off , :class => "pull-right make_center",:style=>"width: 80% !important;width: 80% !important;
-height: 42px;border-radius: 0px;"%>
-              <%= button_tag"جستجو" , :class=>"button search_commit" %>
-          <% end %>
-        </li>
-      </ul>
-    </nav>
+  <!--breadcrumbs-->
+  <% if user_signed_in? %>
+  <!-- <nav class="row">
+    <ul>
+      <li class="pull-right " style="width: 50%;margin-right: 26%;">
+        <%=form_tag({controller: "/search" , action: "main_search" },method: "get" ) do%>
+        <%=text_field_tag :query,nil,placeholder: "جستجوی گلوگرام" ,  autocomplete: :off , :class => "pull-right make_center",:style=>"width: 80% !important;width: 80% !important;
+        height: 42px;border-radius: 0px;"%>
+        <%= button_tag"جستجو" , :class=>"button search_commit" %>
+        <% end %>
+      </li>
+    </ul>
+  </nav> -->
 
-<% end %>
+  <% end %>
 
+  <main class="main">
 
-<%= yield %>
+    <%= yield %>
+
+  </main>
 
 </body>
 
@@ -50,40 +53,40 @@ height: 42px;border-radius: 0px;"%>
 </html>
 
 <script type="application/javascript">
-        $("#my_notice").delay(5000).show(10000).hide(1000);
+$("#my_notice").delay(5000).show(10000).hide(1000);
 </script>
 
 <script>
-    window.dynamicNumbersBound = false;
-    var wow = new WOW();
-    WOW.prototype.show = function(box) {
-        wow.applyStyle(box);
-        if (typeof box.parentNode !== 'undefined' && hasClass(box.parentNode, 'dynamic-numbers') && !window.dynamicNumbersBound) {
-            bindDynamicNumbers();
-            window.dynamicNumbersBound = true;
-        }
-        return box.className = "" + box.className + " " + wow.config.animateClass;
-    };
-    wow.init();
+window.dynamicNumbersBound = false;
+var wow = new WOW();
+WOW.prototype.show = function(box) {
+  wow.applyStyle(box);
+  if (typeof box.parentNode !== 'undefined' && hasClass(box.parentNode, 'dynamic-numbers') && !window.dynamicNumbersBound) {
+    bindDynamicNumbers();
+    window.dynamicNumbersBound = true;
+  }
+  return box.className = "" + box.className + " " + wow.config.animateClass;
+};
+wow.init();
 
-    function hasClass(element, cls) {
-        return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;
-    }
+function hasClass(element, cls) {
+  return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;
+}
 
-    function bindDynamicNumbers() {
-        $('.dynamic-number').each(function() {
-            var startNumber = $(this).text();
-            var endNumber = $(this).data('dnumber');
-            var dynamicNumberControl = $(this);
+function bindDynamicNumbers() {
+  $('.dynamic-number').each(function() {
+    var startNumber = $(this).text();
+    var endNumber = $(this).data('dnumber');
+    var dynamicNumberControl = $(this);
 
-            $({numberValue: startNumber}).animate({numberValue: endNumber}, {
-                duration: 4000,
-                easing: 'swing',
-                step: function() {
-                    $(dynamicNumberControl).text(Math.ceil(this.numberValue));
-                }
-            });
-        });
-    }
+    $({numberValue: startNumber}).animate({numberValue: endNumber}, {
+      duration: 4000,
+      easing: 'swing',
+      step: function() {
+        $(dynamicNumberControl).text(Math.ceil(this.numberValue));
+      }
+    });
+  });
+}
 
 </script>

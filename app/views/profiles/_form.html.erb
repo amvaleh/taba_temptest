@@ -13,9 +13,11 @@
             </div>
         <% end %>
 
+        <% if current_user.profile.present? %>
         <div class="field col-md-12 text-primary pull-left">
           <%= link_to "میخواهم رمز عبورم را تغییر دهم.." , edit_user_registration_path , :class=>"btn btn-primary b-farsi pull-left" %>
         </div>
+        <% end %>
 
         <br><br>
 

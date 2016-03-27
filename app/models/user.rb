@@ -9,9 +9,12 @@ class User < ActiveRecord::Base
   has_many :posts , :dependent => :destroy
   has_many :bluetooth_devices
   acts_as_voter
+
   acts_as_follower
   acts_as_followable
+
   apply_simple_captcha
+  validates_presence_of :email
 
 
   def admin?
@@ -19,14 +22,6 @@ class User < ActiveRecord::Base
   end
 
 
-
-  def to_param
-    if self.profile.present?
-      self.profile.full_name
-    else
-      id
-    end
-  end
 
   # before_create :generate_authentication_token!
 
