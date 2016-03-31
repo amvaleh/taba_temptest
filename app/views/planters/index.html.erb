@@ -15,7 +15,7 @@
         <% i =1 %>
 
         <% FaAlphabet.all.each do |fa| %>
-        <li class=" <%=themes[i%3] %> pull-right">
+        <li class=" <%=themes[i%3] %> pull-right" style="height: 66px !important;">
           <% i = i+1 %>
           <%= link_to find_planters_path(:letter => fa.value), class: "fa" ,:remote => true  do %>
           <!-- <a href="recipes.html" title="Appetizers"> -->
@@ -24,7 +24,7 @@
           <% end %>
         </li>
         <% end %>
-        <li class="pull-right">
+        <li class="pull-right"  style="height: 66px !important;">
           <%= image_tag "ajax-loader.gif" , class: "myspinner" , id: "myspinner"%>
         </li>
       </ul>
