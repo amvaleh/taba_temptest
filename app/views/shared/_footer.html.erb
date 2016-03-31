@@ -17,27 +17,23 @@
 <footer class="foot" role="contentinfo">
   <div class="wrap clearfix make_right">
     <div class="row">
-      <article class="one-half">
-        <h5 style="color:#F4716A;">چرا گلوگرافی</h5>
-        <p dir="rtl">سامانه ای که پیش روی شماست امکان تعامل با گیاه را در هر لحظه فراهم می سازد.شما با این سامانه و گلدانی که ما آن را برای شما هوشمند می سازیم می توانید شرایط محیط رشد گیاه اعم از نور - دمای محیط  و رطوبت گیاه را رصد کنید .در واقع ما حرف دل گیاه شما را روی گوشی موبایل و یا صفحه ی شخصی شما نمایش خواهیم داد و مزیت این خواهد بود که  قبل از پژمردن گیاه متوجه نا به سامانی شرایط شوید و در نتیجه همیشه گیاهانی شاد و سالم داشته باشید. </p>
+      <article class="two-third">
+        <h5 style="color:#F4716A;">چرا گلوگرام</h5>
+        <p dir="rtl">
+          <%= t('footer.text1') %>
+        </p>
       </article>
-      <article class="one-fourth">
+      <article class="one-third">
         <p class="make_right" style="color:#F4716A;">ارتباط با ما از طریق تلفن یا ایمیل</p>
         <p class="make_right"><em>تلفن:</em></br>09353954916<br><em>ایمیل:</em></br>rasadpot.social.network@gmail.com</p>
       </article>
-      <article class="one-fourth">
-        <h5 style="color:#F4716A;">گلوگرافی در شبکه های اجتماعی</h5>
+      <!-- <article class="one-fourth">
+        <h5 style="color:#F4716A;">گلوگرام در شبکه های اجتماعی</h5>
         <ul class="social">
-          <li class="facebook"><a href="#" title="facebook">facebook</a></li>
-          <li class="youtube"><a href="#" title="youtube">youtube</a></li>
-          <li class="rss"><a href="#" title="rss">rss</a></li>
           <li class="gplus"><a href="#" title="gplus">google plus</a></li>
           <li class="linkedin"><a href="#" title="linkedin">linkedin</a></li>
-          <li class="twitter"><a href="#" title="twitter">twitter</a></li>
-          <li class="pinterest"><a href="#" title="pinterest">pinterest</a></li>
-          <li class="vimeo"><a href="#" title="vimeo">vimeo</a></li>
         </ul>
-      </article>
+      </article> -->
 
       <div class="bottom">
         <p class="copy">
@@ -60,7 +56,7 @@
               <%= link_to "بیشتر بدانید" , services_initial_index_path %>
             </li>
             <li>
-              <%= link_to "جستجو در مورد گیاهان" , "#" %>
+              <%= link_to "جستجو در مورد گیاهان" , planters_path%>
             </li>
             <li>
               <%= link_to "ورود" , new_user_session_path %>

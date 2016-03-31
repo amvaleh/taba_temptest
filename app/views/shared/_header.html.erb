@@ -2,8 +2,8 @@
 <header class="head" role="banner">
   <!--wrap-->
   <div class="wrap clearfix">
-    <a href="/" class="logo">
-      <%= image_tag "logo.png" , width: "180px" %>
+    <a href="/" class="logo make_center">
+      <%= image_tag "logo.png" , width: "65px"  %>
     </a>
 
     <nav class="main-nav" role="navigation" id="menu">
@@ -18,7 +18,7 @@
               <span>گیاهان</span>
             <% end %>
         </li>
-        <li>
+        <!-- <li>
           <%= link_to store_show_path do  %>
               <span>فروشگاه</span>
           <% end %>
@@ -29,7 +29,7 @@
                 </li>
             <% end %>
           </ul>
-        </li>
+        </li> -->
         <li>
           <%= link_to services_initial_index_path  do %> <span>خدمات</span> <% end %>
           <ul>
@@ -43,9 +43,9 @@
 
         <li>
         </li>
-        <li><%= link_to services_initial_index_path(:section=>6)  do %> <span>ارتباط با ما</span> <% end %></li>
+        <!-- <li><%= link_to services_initial_index_path(:section=>6)  do %> <span>ارتباط با ما</span> <% end %></li> -->
 
-        <li><%= link_to new_survey_idea_path()  do %> <span>نظرسنجی</span> <% end %></li>
+        <!-- <li><%= link_to new_survey_idea_path()  do %> <span>نظرسنجی</span> <% end %></li> -->
 
       </ul>
     </nav>
