@@ -2,7 +2,33 @@
 <div class="wrap clearfix">
 
   <div class="row">
-    <h1 style="text-align: center;">همه گیاهان</h1>
+    <h1 style="text-align: center;">جستجو بر اساس حروف الفبا</h1>
+
+    <div class="row">
+
+    </div>
+    <aside class="above-sidebar full-width  wow fadeInDown animated" style="visibility: visible; animation-name: fadeInDown;">
+
+      <ul class="boxed">
+        <!-- <button class="button pull-right"> جستجو بر اساس حروف الفبا </button> -->
+        <% themes = ["dark" , "medium" , "light"] %>
+        <% i =1 %>
+
+        <% FaAlphabet.all.each do |fa| %>
+        <li class=" <%=themes[i%3] %> pull-right">
+          <% i = i+1 %>
+          <%= link_to find_planters_path(:letter => fa.value), class: "fa" ,:remote => true  do %>
+          <!-- <a href="recipes.html" title="Appetizers"> -->
+          <h4><%=fa.name%></h4>
+          <!-- </a> -->
+          <% end %>
+        </li>
+        <% end %>
+        <li class="pull-right">
+          <%= image_tag "ajax-loader.gif" , class: "myspinner" , id: "myspinner"%>
+        </li>
+      </ul>
+    </aside>
 
     <aside class="sidebar one-fourth wow fadeInLeft animated" style="visibility: visible; animation-name: fadeInLeft;"  >
       <div class="widget">
@@ -12,8 +38,7 @@
 
     <section class="content three-fourth"  >
 
-      <div id="pagination_table">
-
+      <div id="pagination_table" class="planters">
         <% @planters.first(20).each do |p| %>
         <%= render 'sample' , :p => p %>
         <% end %>
@@ -67,21 +92,14 @@
 
     <% end %>
 
-    <!--<section class="wrap clearfix ">-->
-
-    <!--<div class="cwrap">-->
-    <!--<header class="s-title">-->
-    <!--</header>-->
-
-
-    <!--<div class="entries row">-->
-    <!--<%# Planter.all.each do |planter| %>-->
-    <!--<%#= render 'planters/sample' , :p => planter %>-->
-    <!--<%# end %>-->
-    <!--</div>-->
-
 
   </div>
 
 
 </div>
+
+<script type="application/javascript">
+$('.fa').click(function(){
+    $('#myspinner').css('display','block');
+  });
+</script>

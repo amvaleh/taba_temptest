@@ -1,9 +1,8 @@
 class PlantersController < ApplicationController
 
+  before_action :authenticate_user! , :except => [:show, :index,:find]
 
-  before_action :authenticate_user! , :except => [:show, :index]
-
-  after_action :verify_authorized, :except => [:index , :show, :follow , :unfollow,:import]
+  after_action :verify_authorized, :except => [:index , :show, :follow , :unfollow,:import,:find]
 
   before_action :set_planter, only: [:show, :edit, :update, :destroy, :follow , :unfollow, :create]
 
@@ -12,6 +11,16 @@ class PlantersController < ApplicationController
   # GET /planters.json
   def index
     @planters, @alphaParams = Planter.alpha_paginate(params[:letter], {db_mode: true, :enumerate=>true , :default_field=> "c" , :pagination_class => "categories"  , db_field: "latin_name"})
+    @page_title = "گیاهان "
+  end
+
+  def find
+    @planters = []
+    Planter.all.each do |pl|
+      if pl.name.start_with? params[:letter]
+        @planters.push(pl)
+      end
+    end
   end
 
   def import

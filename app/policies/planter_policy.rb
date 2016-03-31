@@ -1,7 +1,5 @@
 class PlanterPolicy
   attr_reader :user, :planter
-
-
   def initialize(user,planter)
     # raise Pundit::NotAuthorizedError, "شما باید ابتدا عضوی از گیاهداران باشید" unless user
     @user = user
@@ -27,6 +25,10 @@ class PlanterPolicy
 
   def update?
     user.admin?
+  end
+
+  def find?
+    true
   end
 
 

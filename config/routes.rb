@@ -55,6 +55,7 @@ Rails.application.routes.draw do
     end
     collection do
       get :import
+      get :find
     end
 
   end
