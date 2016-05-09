@@ -333,11 +333,11 @@
             </li>
             <% if user_signed_in? %>
                 <li class="dark">
-                  <a href="/plants/<%=@plant.slug%>/follow" class="<% if current_user.following?(@plant)%> invis <%else%> visible <%end%>" title="Favourites">
+                  <a href="/plants/<%=@plant.farsi_name%>/follow" class="<% if current_user.following?(@plant)%> invis <%else%> visible <%end%>" title="Favourites">
                     <i class="ico i-favourites "></i>
                     <span>اضافه به علاقه ها</span>
                   </a>
-                  <a href="/plants/<%=@plant.slug%>/unfollow" class="<% if current_user.following?(@plant)%> visible <%else%> invis <%end%>" title="Favourites">
+                  <a href="/plants/<%=@plant.farsi_name%>/unfollow" class="<% if current_user.following?(@plant)%> visible <%else%> invis <%end%>" title="Favourites">
                     <i class="ico i-favourites"></i>
                     <span>حذف از علاقه ها</span>
                   </a>

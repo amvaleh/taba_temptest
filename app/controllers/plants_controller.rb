@@ -98,7 +98,6 @@ class PlantsController < ApplicationController
   def new
     @plant = Plant.new
     authorize @plant
-
   end
 
   # GET /plants/1/edit
