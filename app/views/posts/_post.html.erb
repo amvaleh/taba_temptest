@@ -23,10 +23,10 @@
     <div class="actions">
       <div>
         <div class="likes" style="text-align: left">
-          <%= link_to(planter_path(post.planter),:class=>"" )do %>
+          <%= link_to(plant_path(post.plant),:class=>"" )do %>
               <small>
               <i class="ico i-smallplant"></i>
-              <%= post.planter.name %>
+              <%= post.plant.name %>
               </small>
           <% end %>
         </div>

@@ -1,0 +1,39 @@
+<%= form_for(@watering) do |f| %>
+  <% if @watering.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@watering.errors.count, "error") %> prohibited this watering from being saved:</h2>
+
+      <ul>
+      <% @watering.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :plant_id %><br>
+    <%= f.number_field :plant_id , value: @plant.id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :season_id %><br>
+    <%= f.select :season_id , options_for_select(Season.all.map {|s| [s.name, s.id]}) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :time_space %><br>
+    <%= f.select :time_space , ['ماه','هفته','روز'] %>
+  </div>
+
+
+  <div class="field">
+    <%= f.label :times %><br>
+    <%= f.number_field :times %>
+  </div>
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

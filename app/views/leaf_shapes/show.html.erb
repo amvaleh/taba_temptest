@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @leaf_shape.name %>
+</p>
+
+<p>
+  <strong>Avatar:</strong>
+  <%= @leaf_shape.avatar %>
+</p>
+
+<%= link_to 'Edit', edit_leaf_shape_path(@leaf_shape) %> |
+<%= link_to 'Back', leaf_shapes_path %>

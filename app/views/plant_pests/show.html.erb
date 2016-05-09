@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Plant:</strong>
+  <%= @plant_pest.plant_id %>
+</p>
+
+<p>
+  <strong>Pest:</strong>
+  <%= @plant_pest.pest_id %>
+</p>
+
+<%= link_to 'Edit', edit_plant_pest_path(@plant_pest) %> |
+<%= link_to 'Back', plant_pests_path %>

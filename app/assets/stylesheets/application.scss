@@ -13,7 +13,6 @@
 *= require comments
 *= require gardens
 *= require initial
-*= require planters
 *= require plants
 *= require profiles
 *= require flexslider
@@ -22,6 +21,13 @@
 *= require image-picker
 */
 
+
+.make_center{
+  text-align: center;
+}
+.make_center input{
+  text-align: center;
+}
 .myspinner{
   margin-right: auto;
   margin-left: auto;

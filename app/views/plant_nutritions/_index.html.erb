@@ -1,0 +1,32 @@
+
+<h1>Listing Plant Nutritions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nutrition</th>
+      <th> season </th>
+      <th>Time space</th>
+      <th>Time</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @plant_nutritions.each do |plant_nutrition| %>
+      <tr>
+        <td><%= plant_nutrition.nutrition.name %></td>
+        <td><%= plant_nutrition.season.name if plant_nutrition.season.present?%></td>
+        <td><%= plant_nutrition.time_space %></td>
+        <td><%= plant_nutrition.time %></td>
+        <!-- <td><%#= link_to 'Show', plant_nutrition %></td> -->
+        <td><%= link_to 'Edit', edit_plant_nutrition_path(plant_nutrition) %></td>
+        <td><%= link_to 'Destroy', plant_nutrition, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Plant Nutrition', new_plant_nutrition_path(:plant=>@plant),class:"btn btn-info" %>

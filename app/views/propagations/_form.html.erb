@@ -1,0 +1,25 @@
+<%= form_for(@propagation) do |f| %>
+  <% if @propagation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@propagation.errors.count, "error") %> prohibited this propagation from being saved:</h2>
+
+      <ul>
+      <% @propagation.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :explain %><br>
+    <%= f.text_area :explain %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nutrition:</strong>
+  <%= @plant_nutrition.nutrition_id %>
+</p>
+
+<p>
+  <strong>Plant:</strong>
+  <%= @plant_nutrition.plant_id %>
+</p>
+
+<p>
+  <strong>Time space:</strong>
+  <%= @plant_nutrition.time_space %>
+</p>
+
+<p>
+  <strong>Time:</strong>
+  <%= @plant_nutrition.time %>
+</p>
+
+<%= link_to 'Edit', edit_plant_nutrition_path(@plant_nutrition) %> |
+<%= link_to 'Back', plant_nutritions_path %>

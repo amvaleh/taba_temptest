@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @pest.name %>
+</p>
+
+<p>
+  <strong>Cause:</strong>
+  <%= @pest.cause %>
+</p>
+
+<p>
+  <strong>Treatment:</strong>
+  <%= @pest.treatment %>
+</p>
+
+<p class="make_center">
+  <strong>Avatars:</strong>
+  <% @pest.avatars.each do |a| %>
+    <%= image_tag a.url(:thumb) %>
+  <% end%>
+</p>
+
+<%= link_to 'Edit', edit_pest_path(@pest) %> |
+<%= link_to 'Back', pests_path %>

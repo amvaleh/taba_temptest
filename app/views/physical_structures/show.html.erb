@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @physical_structure.name %>
+</p>
+
+<p>
+  <strong>Avatar:</strong>
+  <%= @physical_structure.avatar %>
+</p>
+
+<%= link_to 'Edit', edit_physical_structure_path(@physical_structure) %> |
+<%= link_to 'Back', physical_structures_path %>

@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Physical Structures</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Avatar</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @physical_structures.each do |physical_structure| %>
+      <tr>
+        <td><%= physical_structure.name %></td>
+        <td><%=image_tag physical_structure.avatar_url(:thumb) %></td>
+        <td><%= link_to 'Show', physical_structure %></td>
+        <td><%= link_to 'Edit', edit_physical_structure_path(physical_structure) %></td>
+        <td><%= link_to 'Destroy', physical_structure, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Physical structure', new_physical_structure_path %>

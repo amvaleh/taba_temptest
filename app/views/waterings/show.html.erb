@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Plant:</strong>
+  <%= @watering.plant_id %>
+</p>
+
+<p>
+  <strong>Season:</strong>
+  <%= @watering.season_id %>
+</p>
+
+<p>
+  <strong>Times:</strong>
+  <%= @watering.times %>
+</p>
+
+<p>
+  <strong>Time space:</strong>
+  <%= @watering.time_space %>
+</p>
+
+<%= link_to 'Edit', edit_watering_path(@watering) %> |

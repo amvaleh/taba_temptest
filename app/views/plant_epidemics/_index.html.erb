@@ -1,0 +1,22 @@
+
+
+<h1>Listing Plant Epidemics</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Epidemic</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @plant_epidemics.each do |plant_epidemic| %>
+      <tr>
+        <td><%= plant_epidemic.epidemic.sign %></td>
+        <td><%= link_to 'Destroy', plant_epidemic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

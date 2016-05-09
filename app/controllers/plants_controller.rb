@@ -1,62 +1,157 @@
 class PlantsController < ApplicationController
+  # before_action :set_plant, only: [:show, :edit, :update, :destroy]
 
 
-  before_action :authenticate_user!
+    before_action :authenticate_user! , :except => [:show, :index,:find]
 
-  before_action :set_plant, only: [:show, :edit, :update, :destroy, :vote_up,:del_vote_up]
+    after_action :verify_authorized, :except => [:index , :show, :follow , :unfollow,:import,:find,:destroy]
 
-  def vote_up
-    @plant.liked_by current_user
-  end
+    before_action :set_plant, only: [:show, :edit, :update, :destroy, :follow , :unfollow]
 
 
-  def del_vote_up
-    @plant.unliked_by current_user
-  end
+      def find
+        @plants = []
+        Plant.all.each do |pl|
+          if pl.farsi_name.start_with? params[:letter]
+            @plants.push(pl)
+          end
+        end
+      end
+
+      def import
+      puts "****************************************************"
+      doc = Nokogiri::XML(File.open("plants.xml"))
+      co = 1
+        doc.css('طبقه_x0020_بندی_x0020_اطلاعات_x0020_گیاهان').each do |node|
+          children = node.children
+          plant = Planter.new(
+            :id => co,
+            :name => children.css('farsi_name').inner_text,
+            :latin_name => children.css('latin_name').inner_text,
+            :category => children.css('category').inner_text,
+            :family => children.css('family').inner_text,
+            :brief_desc => children.css('summary').inner_text,
+            :explanation => children.css('explanation').inner_text,
+            :types => children.css('types').inner_text,
+            :soil => children.css('soil').inner_text,
+            :keeping => children.css('triment').inner_text,
+            :germination => children.css('propagatoin').inner_text,
+            :usage => children.css('usage').inner_text,
+            :note => children.css('note').inner_text
+          )
+          co = co + 1
+          plant.save
+        end
+        puts "||||||||||||||||||||||||||||||||||||||||||||||||||||||"
+
+        redirect_to plants_path
+      end
+
+
+      def follow
+
+        @follow = Follow.new
+
+        if not current_user.following?(@plant)
+          @follow.followable_id=@plant.id
+          @follow.followable_type=@plant.class
+          @follow.follower_id=current_user.id
+          @follow.follower_type=current_user.class
+          @follow.created_at=Time.now
+          @follow.save
+        end
+
+        respond_to do |format|
+          format.html { redirect_to @plant , notice: 'این باغ به علاقه های شما اضافه شد' }
+          format.json { render :show, status: :created, location: @plant }
+          format.js
+        end
+      end
+
+
+      def unfollow
+        current_user.stop_following(@plant)
+        respond_to do |format|
+          format.html { redirect_to @plant , notice: 'این باغ از علاقه های شما حذف شد' }
+          format.js
+        end
+      end
+
 
 
   # GET /plants
   # GET /plants.json
   def index
-    @plants = Plant.all
+    # @plants = Plant.all
+    @plants, @alphaParams = Plant.alpha_paginate(params[:letter], {db_mode: true, :enumerate=>true , :default_field=> "c" , :pagination_class => "categories"  , db_field: "latin_name"})
+    @page_title = "گیاهان "
   end
+
 
   # GET /plants/1
   # GET /plants/1.json
   def show
     @comment = Comment.new
-    # @plant.humidity_soil = DataLog.last.humidity_soil
-    # @plant.humidity_air = 8#DataLog.last.humidity_air
-    # @plant.temperature = 27 #DataLog.last.temperature
-    # @plant.light_degree = DataLog.last.light
-
-    #@plant.save
   end
 
   # GET /plants/new
   def new
-    @garden = Garden.find(params[:garden_id]) if params[:garden_id].present?
     @plant = Plant.new
+    authorize @plant
+
   end
 
   # GET /plants/1/edit
   def edit
+    authorize @plant
+
   end
 
   # POST /plants
   # POST /plants.json
   def create
     @plant = Plant.new(plant_params)
-    @plant.name = Planter.find(params[:planter_id]).name
-    @plant.garden_id = params[:garden_id]
-    # @plant.humidity_soil = DataLog.last.humidity_soil
-    # @plant.humidity_air = DataLog.last.humidity_air
-    # @plant.temperature = DataLog.last.temperature
-    # @plant.light_degree = DataLog.last.light
+    authorize @plant
 
     respond_to do |format|
-      if @plant.save
-        format.html { redirect_to profile_path(current_user.profile), :notice => t('alerts.plants.create') }
+      if @plant.save!
+
+        if params[:soiles].present?
+            soils = params[:soiles]
+          soils.each do |x|
+            soil = Soil.find(x)
+            @plant.plant_soils.create!(:soil => soil,:plant => @plant)
+          end
+        end
+
+
+
+        if params[:propagations].present?
+            props = params[:propagations]
+          props.each do |x|
+            prop = Propagation.find(x)
+            @plant.plant_propagations.create!(:propagation => prop ,:plant => @plant)
+          end
+        end
+
+        if params[:epidemics].present?
+            epids = params[:epidemics]
+          epids.each do |x|
+            epid = Epidemic.find(x)
+            @plant.plant_epidemics.create!(:epidemic => epid ,:plant => @plant)
+          end
+        end
+
+        if params[:pests].present?
+            pests = params[:pests]
+          pests.each do |x|
+            pest = Pest.find(x)
+            @plant.plant_pests.create!(:pest => pest ,:plant => @plant)
+          end
+        end
+
+
+        format.html { redirect_to edit_plant_path(@plant) , notice: 'Plant was successfully created.' }
         format.json { render :show, status: :created, location: @plant }
       else
         format.html { render :new }
@@ -68,14 +163,45 @@ class PlantsController < ApplicationController
   # PATCH/PUT /plants/1
   # PATCH/PUT /plants/1.json
   def update
-    @plant.name = Planter.find(params[:planter_id]).name
-  if params[:plant][:remove_image] == "1"
-    @plant.image = nil
-    @plant.save
-  end
+    authorize @plant
+
+    if params[:soiles].present?
+      soils = params[:soiles]
+      soils.each do |x|
+        soil = Soil.find(x)
+        @plant.plant_soils.create!(:soil => soil,:plant => @plant)
+      end
+    end
+
+
+    if params[:propagations].present?
+        props = params[:propagations]
+      props.each do |x|
+        prop = Propagation.find(x)
+        @plant.plant_propagations.create!(:propagation => prop ,:plant => @plant)
+      end
+    end
+
+    if params[:epidemics].present?
+        epids = params[:epidemics]
+      epids.each do |x|
+        epid = Epidemic.find(x)
+        @plant.plant_epidemics.create!(:epidemic => epid ,:plant => @plant)
+      end
+    end
+
+    if params[:pests].present?
+        pests = params[:pests]
+      pests.each do |x|
+        pest = Pest.find(x)
+        @plant.plant_pests.create!(:pest => pest ,:plant => @plant)
+      end
+    end
+
+
     respond_to do |format|
-      if @plant.update(plant_params)
-        format.html { redirect_to @plant, :notice => t('alerts.plants.update') }
+      if @plant.update!(plant_params)
+        format.html { redirect_to edit_plant_path(@plant) , notice: 'Plant was successfully updated.' }
         format.json { render :show, status: :ok, location: @plant }
       else
         format.html { render :edit }
@@ -87,10 +213,9 @@ class PlantsController < ApplicationController
   # DELETE /plants/1
   # DELETE /plants/1.json
   def destroy
-    garden = @plant.garden
     @plant.destroy
     respond_to do |format|
-      format.html { redirect_to garden , :notice => t('alerts.plants.destroy') }
+      format.html { redirect_to plants_url, notice: 'Plant was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -98,17 +223,18 @@ class PlantsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_plant
-      @plant = Plant.find(params[:id])
+      @plant = Plant.find_by_farsi_name(params[:id])
+
       @page_title = "گیاه"
       if @plant.present?
-        @page_title = @page_title + " " + @plant.name
+        @page_title = @page_title + " " + @plant.farsi_name
       end
-    end
 
+    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def plant_params
-      params.require(:plant).permit(:name, :race, :age, :height, :temperature, :humidity_soil, :humidity_air, :light_degree, :health_factor, 
-        :remove_image, :description, :image)
+      params.require(:plant).permit(:farsi_name, :latin_name, :scientific_name, :family, :hardness, :geo_origin, :min_height, :max_height, :min_light, :max_light, :min_temp, :max_temp, :min_moisture, :max_moisture , {avatars: []},
+      :leaf_color_id,:leaf_shape_id,:bloom_color_id , :life_time)
     end
 end

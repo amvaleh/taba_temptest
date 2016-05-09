@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @propagation.name %>
+</p>
+
+<p>
+  <strong>Explain:</strong>
+  <%= @propagation.explain %>
+</p>
+
+<%= link_to 'Edit', edit_propagation_path(@propagation) %> |
+<%= link_to 'Back', propagations_path %>

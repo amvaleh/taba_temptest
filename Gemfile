@@ -71,7 +71,8 @@ gem 'image-picker-rails'
 
 gem 'devise'
 gem 'shoppe' , '1.0.7'
-gem 'carrierwave'
+# gem 'carrierwave'
+gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

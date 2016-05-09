@@ -18,7 +18,7 @@ class PlantsControllerTest < ActionController::TestCase
 
   test "should create plant" do
     assert_difference('Plant.count') do
-      post :create, plant: { age: @plant.age, description: @plant.description, health_factor: @plant.health_factor, height: @plant.height, humidity_air: @plant.humidity_air, humidity_soil: @plant.humidity_soil, image: @plant.image, light_degree: @plant.light_degree, name: @plant.name, race: @plant.race, temperature: @plant.temperature }
+      post :create, plant: { family: @plant.family, farsi_name: @plant.farsi_name, geo_origin: @plant.geo_origin, hardness: @plant.hardness, latin_name: @plant.latin_name, max_height: @plant.max_height, max_light: @plant.max_light, max_moisture: @plant.max_moisture, max_temp: @plant.max_temp, min_height: @plant.min_height, min_light: @plant.min_light, min_moisture: @plant.min_moisture, min_temp: @plant.min_temp, scientific_name: @plant.scientific_name }
     end
 
     assert_redirected_to plant_path(assigns(:plant))
@@ -35,7 +35,7 @@ class PlantsControllerTest < ActionController::TestCase
   end
 
   test "should update plant" do
-    patch :update, id: @plant, plant: { age: @plant.age, description: @plant.description, health_factor: @plant.health_factor, height: @plant.height, humidity_air: @plant.humidity_air, humidity_soil: @plant.humidity_soil, image: @plant.image, light_degree: @plant.light_degree, name: @plant.name, race: @plant.race, temperature: @plant.temperature }
+    patch :update, id: @plant, plant: { family: @plant.family, farsi_name: @plant.farsi_name, geo_origin: @plant.geo_origin, hardness: @plant.hardness, latin_name: @plant.latin_name, max_height: @plant.max_height, max_light: @plant.max_light, max_moisture: @plant.max_moisture, max_temp: @plant.max_temp, min_height: @plant.min_height, min_light: @plant.min_light, min_moisture: @plant.min_moisture, min_temp: @plant.min_temp, scientific_name: @plant.scientific_name }
     assert_redirected_to plant_path(assigns(:plant))
   end
 

@@ -1,0 +1,31 @@
+<%= form_for(@bloom_season) do |f| %>
+  <% if @bloom_season.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@bloom_season.errors.count, "error") %> prohibited this bloom_season from being saved:</h2>
+      <ul>
+      <% @bloom_season.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.select :name , options_for_select(['تابستان' , 'بهار','پاییز','زمستان']) %>
+  </div>
+  <div class="field">
+    <%= f.label :plant_id %><br>
+    <%= f.number_field :plant_id , :value => @plant.id %>
+  </div>
+  <div class="field">
+    <%= f.label :number %><br>
+    <%= f.number_field :number %>
+  </div>
+  <br>
+  <br>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+<% end %>

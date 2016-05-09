@@ -1,0 +1,36 @@
+<%= form_for(@pest) do |f| %>
+  <% if @pest.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@pest.errors.count, "error") %> prohibited this pest from being saved:</h2>
+
+      <ul>
+      <% @pest.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :cause %><br>
+    <%= f.text_area :cause %>
+  </div>
+  <div class="field">
+    <%= f.label :treatment %><br>
+    <%= f.text_area :treatment %>
+  </div>
+
+
+  <div class="field">
+  <%= f.label :avatars %><br>
+  <%= f.file_field :avatars, multiple: true %>
+</div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

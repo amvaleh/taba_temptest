@@ -1,5 +1,50 @@
-<h1>Editing Plant</h1>
+<p id="notice"><%= notice %></p>
 
-<%= render 'form' %>
-<%= link_to 'Show', @plant %> |
-<%= link_to 'Back', plants_path %>
+<div class="content full-width">
+  <h1>Editing Plant</h1>
+
+    <%= link_to 'Show', @plant,class:"btn btn-default" %> |
+    <%= link_to 'Back', plants_path ,class:"btn btn-default"%>
+
+  <div class="two-third">
+  <%= render 'form' %>
+</div>
+
+<div class="one-third">
+
+  <div class="full-width">
+  <%= render 'waterings/index' , :@waterings => @plant.waterings %>
+  </div>
+
+  <div class="full-width">
+  <%= render 'plant_shapes/index' , :@plant_shapes => @plant.plant_shapes %>
+  </div>
+
+  <div class="full-width">
+  <%= render 'plant_nutritions/index' , :@plant_nutritions => @plant.plant_nutritions %>
+  </div>
+
+  <div class="full-width">
+  <%= render 'bloom_seasons/index' , :@bloom_seasons => @plant.bloom_seasons %>
+  </div>
+
+  <div class="full-width">
+  <%= render 'plant_soils/index' , :@plant_soils => @plant.plant_soils %>
+  </div>
+
+  <div class="full-width">
+  <%= render 'plant_propagations/index' , :@plant_propagations => @plant.plant_propagations %>
+  </div>
+
+  <div class="full-width">
+  <%= render 'plant_epidemics/index' , :@plant_epidemics => @plant.plant_epidemics %>
+  </div>
+
+  <div class="full-width">
+  <%= render 'plant_pests/index' , :@plant_pests => @plant.plant_pests %>
+  </div>
+
+
+</div>
+
+</div>

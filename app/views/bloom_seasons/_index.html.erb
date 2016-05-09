@@ -1,0 +1,29 @@
+
+<h1>Listing Bloom Seasons</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Plant</th>
+      <th>Number</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @bloom_seasons.each do |bloom_season| %>
+      <tr>
+        <td><%= bloom_season.name %></td>
+        <td><%= bloom_season.plant_id %></td>
+        <td><%= bloom_season.number %></td>
+        <td><%= link_to 'Edit', edit_bloom_season_path(bloom_season,:plant => @plant) %></td>
+        <td><%= link_to 'Destroy', bloom_season, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Bloom season', new_bloom_season_path(:plant => @plant),class: "btn btn-info" %>

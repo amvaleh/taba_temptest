@@ -1,0 +1,28 @@
+
+<h1>Listing Soils</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Explain</th>
+      <th>Avatar</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% soils.each do |soil| %>
+      <tr>
+        <td><%= soil.name %></td>
+        <td><%= soil.explain %></td>
+        <td><%= soil.avatars.count %></td>
+        <td><%= link_to 'Show', soil %></td>
+        <td><%= link_to 'Edit', edit_soil_path(soil) %></td>
+        <td><%= link_to 'Destroy', plant_soil_path(PlantSoil.where(plant: @plant,soil:soil).first) , method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

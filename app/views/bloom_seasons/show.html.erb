@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @bloom_season.name %>
+</p>
+
+<p>
+  <strong>Plant:</strong>
+  <%= @bloom_season.plant_id %>
+</p>
+
+<p>
+  <strong>Number:</strong>
+  <%= @bloom_season.number %>
+</p>
+
+<%= link_to 'Edit', edit_bloom_season_path(@bloom_season) %> |
+<%= link_to 'Back', bloom_seasons_path %>

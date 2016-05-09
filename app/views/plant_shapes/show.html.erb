@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Plant:</strong>
+  <%= @plant_shape.plant.farsi_name %>
+</p>
+
+<p>
+  <strong>Leaf shape:</strong>
+  <%= @plant_shape.leaf_shape.name %>
+</p>
+
+<p>
+  <strong>Leaf color:</strong>
+  <%= @plant_shape.leaf_color.name %>
+</p>
+
+<p>
+  <strong>flower shape:</strong>
+  <%= @plant_shape.physical_structure.name %>
+</p>
+
+<p>
+  <strong>Bloom color:</strong>
+  <%= @plant_shape.bloom_color.name %>
+</p>
+
+<%= link_to 'Edit', edit_plant_shape_path(@plant_shape) %> |
+<%= link_to 'Back', plant_shapes_path %>

@@ -19,12 +19,12 @@ class PostsController < ApplicationController
   # GET /posts/new
   def new
     @post = Post.new
-    @planter_id = params[:planter_id] if params[:planter_id].present?
+    @plant_id = params[:plant_id] if params[:plant_id].present?
   end
 
   # GET /posts/1/edit
   def edit
-    @planter_id = params[:planter_id]
+    @plant_id = params[:plant_id]
   end
 
   # POST /posts
@@ -79,6 +79,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:user_id, :planter_id, :title, :content, :image)
+      params.require(:post).permit(:user_id, :plant_id, :title, :content, :image)
     end
 end

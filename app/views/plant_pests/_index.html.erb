@@ -1,0 +1,24 @@
+
+<h1>Listing Plant Pests</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Pest</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @plant_pests.each do |plant_pest| %>
+      <tr>
+        <td><%= plant_pest.pest.name %></td>
+        <!-- <td><%= link_to 'Show', plant_pest %></td> -->
+        <!-- <td><%= link_to 'Edit', edit_plant_pest_path(plant_pest) %></td> -->
+        <td><%= link_to 'Destroy', plant_pest, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

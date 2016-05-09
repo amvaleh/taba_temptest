@@ -5,7 +5,6 @@
   <% if not user_signed_in? %>
   <!--intro-->
   <div class="intro">
-
     <figure class="bg">
       <%= image_tag "initial_image.jpg" %>
     </figure>
@@ -87,10 +86,10 @@
           <!--item-->
           <div class="one-sixth">
             <div class="container">
-              <%= link_to planters_path do %>
+              <%= link_to plants_path do %>
               <i class="ico i-plants"></i>
               <span class="title dynamic-number"
-              data-dnumber="<%= Planter.all.count %>">0</span>
+              data-dnumber="<%= Plant.all.count %>">0</span>
               <span class="subtitle">گیاهان</span>
               <% end %>
             </div>

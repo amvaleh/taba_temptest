@@ -1,40 +1,28 @@
 // Place all the styles related to the plants controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
-.info_component{
-	background-color:white;
-	padding:5%;
+.image_in_planter{
+	float:left;
+	margin:1%;
 }
-.for_inner_text{
-	text-align:left;
-	font-size:30px;
+.make_center{
+	text-align:center;
 }
-.tool_plant_creat{
-	width:200px;
+.make_right{
+	text-align:right;
+	font-weight:bold;
 }
-.lost{
-	display: none;
+.make_dir_right{
+	float:right;
 }
-
-.showw{
-	display: block;
+.righted{
+  float: right !important;
+  direction: rtl;
 }
-.field_in_plant{	
-	border:dashed 1px #F4716A;
-	margin:10px;
-}
-.whole_box_in_plant{
-	border:solid 1px #F4716A;
-}
-.tb_in_plant{
-	 color:rgb(244, 113, 106) !important;
-	 font-weight:bold !important;
-	 font-size:18px !important; 
+.lefted{
+  float: left !important;
 }
 
-
-.selector{
-  width: 30% !important;
-  background: aliceblue !important;
+.bold{
+  font-weight: bold;
 }

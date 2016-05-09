@@ -1,0 +1,2 @@
+module EpidemicsHelper
+end

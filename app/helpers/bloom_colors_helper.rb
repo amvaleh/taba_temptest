@@ -1,0 +1,2 @@
+module BloomColorsHelper
+end

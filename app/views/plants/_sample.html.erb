@@ -1,45 +1,63 @@
-<div class="entry one-fourth">
-  <figure>
-    <% if p.image.present? %>
-        <%=image_tag p.image_url , :width => "270" , :height => "203" %>
+<div class="entry one-fourth wow fadeIn animated">
+  <figure style="overflow: hidden;   height: 140px;">
+    <% if p.avatars.first.present? %>
+    <%= image_tag p.avatars.first.url, class: "fill_parent" %>
     <% else %>
-        <%= image_tag("img11.jpg", :class=>"") %>
+    <%= image_tag "barggologram.png" , class: "fill_parent"   %>
     <% end %>
     <figcaption>
-      <%=link_to p ,:class=>"make_bold"  do %>
-          <!-- <a href="recipe.html"> -->
-          <i class="ico i-view"></i>
-          <span><%= p.name %> </span>
-          <!-- </a> -->
-      <% end %>
+      <%= link_to plant_path(p) do  %>
+      <i class="ico i-view"></i> <span><%= p.latin_name %></span>
+      <%end%>
     </figcaption>
   </figure>
-  <div class="container">
-    <p class="make_center"><%= p.name %></p>
-    <p class="ssmal make_right">  دما <%=p.temperature %></p>
-    <p class="ssmal make_right">  رطوبت خاک <%=p.humidity_soil %></p>
-    <p class="ssmal make_right">  رطوبت هوا <%=p.humidity_air %></p>
-    <p class="ssmal make_right">  نور <%=p.light_degree %></p>
-  </div>
-  <div class="actions #">
-    <div>
-      <div class="difficulty"><i class="ico i-medium"></i><a href="#">medium</a></div>
-      <div class="likes">
+  <div class="container make_right">
+    <p style="height: 60px; text-align: center;">
+      <%= link_to p do %>
+      <%= p.farsi_name %>
+      <% end %>
+    </p>
+    <% if user_signed_in? %>
+    <div class="">
+      <!--<a href="/plants/<%=p.latin_name%>/follow" class="btn-info btn-xs<% if current_user.following?(p)%> invis <%else%> visible <%end%>" data-remote="true" id=<%="follow_butt"+p.latin_name%>>-->
+      <!--<i class="">این گیاه را دنبال کن</i>-->
+      <!--</a>-->
 
-        <i class="ico i-likes"></i>
-        <i id=<%="likes_"+p.id.to_s%> >
-          <%= p.votes_for.size %>
-        </i>
-        <a href="/plants/<%=p.id%>/vote_up" class="<% if current_user.voted_for? p%>lost <%else%> showw <%end%>" data-remote="true" id=<%="vote_up_"+p.id.to_s%>
-                <i class="">like</i>
-        </a>
+      <!--<a href="/plants/<%=p.latin_name%>/unfollow" class="button btn-xs <% if current_user.following?(p)%> visible <%else%> invis <%end%>" data-remote="true"  id=<%="unfollow_butt"+p.latin_name%> class="button">-->
+      <!--<i class="">این گیاه را دنبال نکن</i>-->
+      <!--</a>-->
+    </div>
+    <% end %>
+    <div class="actions">
+      <div>
+        <div class="difficulty">
 
-        <a href="/plants/<%=p.id%>/del_vote_up" class="<% if current_user.voted_for? p %> showw <%else%> lost <%end%>" data-remote="true"  id=<%="del_vote_up_"+p.id.to_s%>
-                <i class="">unlike</i>
-        </a>
-
+          <% case p.hardness %>
+          <% when 1 %>
+          <i class="ico i-easy"></i>
+          <span>آسان</span>
+          <% when 2 %>
+          <i class="ico i-medium"></i>
+          <span>متوسط</span>
+          <% when 3 %>
+          <i class="ico i-hard"></i>
+          <span>سخت</span>
+          <% end%>
+        </div>
+        <div class="likes">
+          <i class="ico i-likes"></i>
+          <span >
+            <%= p.followers_by_type('User').count %>
+          </span>
+        </div>
+        <div class="comments">
+          <i class="ico i-comments"></i>
+          <%= link_to plant_path(p) do %>
+          <i> <%= p.comments.count %> </i>
+          <% end %>
+          <!-- <a href="http://www.themeenergy.com/themes/html/social-chef/recipe.html#comments">27</a> -->
+        </div>
       </div>
-      <div class="comments"><i class="ico i-comments"></i><%= link_to p.comments.count , plant_path(p) %></div>
     </div>
   </div>
 </div>

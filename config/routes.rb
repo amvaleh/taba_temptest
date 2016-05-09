@@ -1,5 +1,52 @@
 Rails.application.routes.draw do
 
+
+  resources :bloom_seasons
+
+  resources :physical_structures
+
+  resources :plant_shapes
+
+  resources :waterings
+
+  resources :bloom_colors
+
+  resources :leaf_colors
+
+  resources :leaf_shapes
+
+  resources :seasons
+
+  resources :plant_pests
+
+  resources :pests
+
+  resources :plant_epidemics
+
+  resources :epidemics
+
+  resources :plant_propagations
+
+  resources :propagations
+
+  resources :plant_nutritions
+
+  resources :nutritions
+
+  resources :soils
+
+  resources :plant_soils
+  resources :plants do
+    member do
+      get :follow
+      get :unfollow
+    end
+    collection do
+      get :import
+      get :find
+    end
+  end
+
   resources :planter_galleries
 
   resources :search do
@@ -47,7 +94,7 @@ Rails.application.routes.draw do
 
   resources :posts
 
-  resources :planters do
+  resources :plants do
 
     member do
       get :follow
@@ -59,13 +106,13 @@ Rails.application.routes.draw do
     end
 
   end
-
-  resources :plants do
-    member do
-      get :vote_up
-      get :del_vote_up
-    end
-  end
+  #
+  # resources :plants do
+  #   member do
+  #     get :vote_up
+  #     get :del_vote_up
+  #   end
+  # end
 
   resources :gardens
 

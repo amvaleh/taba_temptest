@@ -6,7 +6,7 @@
     <nav class="breadcrumbs">
       <ul>
         <li><a href="index.html" title="Home">خانه</a></li>
-        <li><%= link_to @post.planter.name , planter_path(@post.planter.latin_name)%></li>
+        <li><%= link_to @post.plant.latin_name , plant_path(@post.plant.slug)%></li>
         <li>نوشته</li>
       </ul>
     </nav>
@@ -144,14 +144,14 @@
               <%# if signed_in? and has_auth_post(@post)%>
 
               <%  if policy(@post).edit? %>
-                  <%= link_to 'ویرایش سوال', edit_post_path(@post , :planter_id=> @post.planter_id) , :class=>"button" %>
+                  <%= link_to 'ویرایش سوال', edit_post_path(@post , :plant_id=> @post.plant_id) , :class=>"button" %>
               <%end%>
               <% if policy(@post).destroy? %>
                   <%= link_to 'حذف سوال', @post, method: :delete, data: { confirm: 'آیا از این کار اطمینان دارید؟' }, class: "button" %>
               <% end %>
               <br>
               <br>
-              <%= link_to "برو به صفحه گیاه" , planter_path(@post.planter.latin_name) %>
+              <%= link_to "برو به صفحه گیاه" , plant_path(@post.plant.latin_name) %>
             </div>
           </li>
 
@@ -373,7 +373,7 @@
 
 <!--<p>-->
 <!--<strong>Planter:</strong>-->
-<!--<%= @post.planter_id %>-->
+<!--<%= @post.plant_id %>-->
 <!--</p>-->
 
 <!--<p>-->

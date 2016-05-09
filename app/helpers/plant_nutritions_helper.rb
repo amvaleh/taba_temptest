@@ -1,0 +1,2 @@
+module PlantNutritionsHelper
+end

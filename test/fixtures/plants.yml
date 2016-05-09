@@ -1,27 +1,33 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  race: MyString
-  age: 1
-  height: 1
-  temperature: 1.5
-  humidity_soil: 1.5
-  humidity_air: 1.5
-  light_degree: 1.5
-  health_factor: 1.5
-  image: MyString
-  description: MyText
+  farsi_name: MyString
+  latin_name: MyString
+  scientific_name: MyString
+  family: MyString
+  hardness: 1
+  geo_origin: MyString
+  min_height: 1
+  max_height: 1
+  min_light: 1
+  max_light: 1
+  min_temp: 1
+  max_temp: 1
+  min_moisture: 1
+  max_moisture: 1
 
 two:
-  name: MyString
-  race: MyString
-  age: 1
-  height: 1
-  temperature: 1.5
-  humidity_soil: 1.5
-  humidity_air: 1.5
-  light_degree: 1.5
-  health_factor: 1.5
-  image: MyString
-  description: MyText
+  farsi_name: MyString
+  latin_name: MyString
+  scientific_name: MyString
+  family: MyString
+  hardness: 1
+  geo_origin: MyString
+  min_height: 1
+  max_height: 1
+  min_light: 1
+  max_light: 1
+  min_temp: 1
+  max_temp: 1
+  min_moisture: 1
+  max_moisture: 1

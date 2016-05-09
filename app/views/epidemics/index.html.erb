@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Epidemics</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Sign</th>
+      <th>Cause</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @epidemics.each do |epidemic| %>
+      <tr>
+        <td><%= epidemic.sign %></td>
+        <td><%= epidemic.cause %></td>
+        <td><%= link_to 'Show', epidemic %></td>
+        <td><%= link_to 'Edit', edit_epidemic_path(epidemic) %></td>
+        <td><%= link_to 'Destroy', epidemic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Epidemic', new_epidemic_path %>

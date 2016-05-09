@@ -1,0 +1,2 @@
+module PlantEpidemicsHelper
+end

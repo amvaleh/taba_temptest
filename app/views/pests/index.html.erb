@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Pests</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Cause</th>
+      <th>Treatment</th>
+      <th>Avatars</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @pests.each do |pest| %>
+      <tr>
+        <td><%= pest.name %></td>
+        <td><%= pest.cause %></td>
+        <td><%= pest.treatment %></td>
+        <td><%= pest.avatars.count %></td>
+        <td><%= link_to 'Show', pest %></td>
+        <td><%= link_to 'Edit', edit_pest_path(pest) %></td>
+        <td><%= link_to 'Destroy', pest, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Pest', new_pest_path %>

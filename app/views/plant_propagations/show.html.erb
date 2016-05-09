@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Plant:</strong>
+  <%= @plant_propagation.plant_id %>
+</p>
+
+<p>
+  <strong>Propagation:</strong>
+  <%= @plant_propagation.propagation_id %>
+</p>
+
+<%= link_to 'Edit', edit_plant_propagation_path(@plant_propagation) %> |
+<%= link_to 'Back', plant_propagations_path %>

@@ -1,0 +1,17 @@
+<%= form_for(@plant_soil) do |f| %>
+  <% if @plant_soil.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@plant_soil.errors.count, "error") %> prohibited this plant_soil from being saved:</h2>
+
+      <ul>
+      <% @plant_soil.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

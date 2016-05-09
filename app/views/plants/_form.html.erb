@@ -1,6 +1,6 @@
-<section class="content center full-width wow fadeInDown animated" style="visibility: visible">
-  <div class="modal container new_forms">
-<%= form_for @plant , html: { multipart: true } do |f| %>
+<div class="full-width" style="direction: rtl;">
+  <div class="row">
+<%= form_for(@plant) do |f| %>
   <% if @plant.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@plant.errors.count, "error") %> prohibited this plant from being saved:</h2>
@@ -12,108 +12,107 @@
       </ul>
     </div>
   <% end %>
-
-<div class="col-md-7">
-  <div class="form-group">
-
-    <% if @garden.present?%>
-        <%= hidden_field_tag :garden_id , @garden.id %>
-        <p class="make_right">
-این گیاه جدید در باغچه
-        <b> <%= @garden.name %> </b>
-          کاشته خواهد شد
-        </p>
-
-  <% else %>
-        <p class="make_right">
-            انتخاب کنید که گیاه شما در کدام باغچه کاشته شود:
-        </p>
-        <%= select_tag :garden_id ,options_from_collection_for_select(current_user.profile.gardens,"id" , "name")   %>
-        <% end %>
+  <div class="one-half make_center">
+    <%= f.label :farsi_name %><br>
+    <%= f.text_field :farsi_name %>
+  </div>
+  <div class="one-half make_center">
+    <%= f.label :latin_name %><br>
+    <%= f.text_field :latin_name %>
+  </div>
+  <div class="one-half make_center">
+    <%= f.label :scientific_name %><br>
+    <%= f.text_field :scientific_name %>
+  </div>
+  <div class="one-half make_center">
+    <%= f.label :family %><br>
+    <%= f.text_field :family %>
+  </div>
+  <div class="one-half make_center">
+    <%= f.label :hardness %><br>
+    <%= f.number_field :hardness %>
+  </div>
+  <div class="one-half make_center">
+    <%= f.label :geo_origin %><br>
+    <%= f.text_field :geo_origin %>
+  </div>
+  <div class="one-half make_center">
+    <%= f.label :min_height %><br>
+    <%= f.number_field :min_height %>
+  </div>
+  <div class="one-half make_center">
+    <%= f.label :max_height %><br>
+    <%= f.number_field :max_height %>
+  </div>
+  <div class="one-half make_center">
+    <%= f.label :min_light %><br>
+    <%= f.number_field :min_light %>
+  </div>
+  <div class="one-half make_center">
+    <%= f.label :max_light %><br>
+    <%= f.number_field :max_light %>
+  </div>
+  <div class="one-half make_center">
+    <%= f.label :min_temp %><br>
+    <%= f.number_field :min_temp %>
+  </div>
+  <div class="one-half make_center">
+    <%= f.label :max_temp %><br>
+    <%= f.number_field :max_temp %>
+  </div>
+  <div class="one-half make_center">
+    <%= f.label :min_moisture %><br>
+    <%= f.number_field :min_moisture %>
+  </div>
+  <div class="one-half make_center">
+    <%= f.label :max_moisture %><br>
+    <%= f.number_field :max_moisture %>
+  </div>
+  <div class="one-half make_center">
+    <%= f.label :life_time %><br>
+    <%= f.select :life_time , options_for_select(['یک ساله','دو ساله','دایمی'],  @plant.life_time.to_s) %>
   </div>
 
-  <div class="form-group make_center">
 
-  <p class="make_right">
-    گیاه خود را انتخاب کنید:
-  </p>
-    <%= select_tag :planter_id ,options_from_collection_for_select(Planter.all,"id" , "name")  %>
+   <div class="one-half pull-right">
+     <%= f.label :avatars %><br>
+     <%= f.file_field :avatars, multiple: true %>
   </div>
 
-  <div class="field">
-    <p class="make_right">
-      سن گیاه خود را وارد کنید
-      <small>(به ماه)</small>
-    </p>
-    <%= f.number_field :age %>
-  </div>
-  </br>
-  <div class="field">
-    <p class="make_right">
-      ارتفاع کنونی گیاه خود را وارد کنید
-    <small>(به سانتی متر)</small>
-    </p>
-    <%= f.number_field :height%>
-  </div>
-  </br>
+</div>
 
-
-  <div class="field">
-    <p class="make_center bold">
-      تصویری خوب برای گیاه خود انتخاب کنید،
-      گیاه شما در اینترنت با این تصویر معرفی خواهد شد
-    :
-    </p>
-
-    <form id="form1" runat="server">
-      <div style="display:table; margin:0 auto; width:50%; height:auto;">
-        <%= image_tag "default_plant.png" , id: "blah" %>
-          <%= f.file_field :image , :id=>"imgInp"%>
-      </div>
-    </form>
-  <p>
-    <label>
-      <%= f.check_box :remove_image %>
-      Remove avatar
-      </label>
-  </p>
+<div class="row">
+  <div class="one-fourth  make_center">
+    خاک :
+    <div class="make_center">
+      <%=select_tag 'soiles[]', options_for_select(Soil.all.map {|s| [s.name, s.id]} ), :multiple => true,class:"full-width"%>
+    </div>
   </div>
 
-  <div class="field">
-    <p class="make_right">توضیحاتی مختصر برای گیاه</p>
-    <%= f.text_area :description %>
+  <div class="one-fourth  make_center">
+    تکثیر :
+    <div class="make_center">
+      <%=select_tag 'propagations[]', options_for_select(Propagation.all.map {|s| [s.name, s.id]}), :multiple => true,class:"full-width make_center"%>
+    </div>
   </div>
-  <div class="actions make_center">
-    <%= f.submit 'اضافه کردن گیاه به باغچه' , :class=>"button"%>
 
-    <%= link_to 'بازگشت', :back , :class=>"button pull-left"%>
-
+  <div class="one-fourth  make_center">
+    بیماری های فیزیولوژیک
+    <div class="make_center">
+      <%=select_tag 'epidemics[]', options_for_select(Epidemic.all.map {|s| [s.sign, s.id]}), :multiple => true,class:"full-width make_center"%>
+    </div>
   </div>
+
+  <div class="one-fourth  make_center">
+    آفت ها
+    <div class="make_center">
+      <%=select_tag 'pests[]', options_for_select(Pest.all.map {|s| [s.name, s.id]}), :multiple => true,class:"full-width make_center"%>
+    </div>
+  </div>
+
+    <%= f.submit "Submit"  , class: "btn btn-block" %>
+
+</div>
+
 <% end %>
 </div>
-</div>
-</section>
-
-
-
-
-
-<script type="text/javascript">
-    function readURL(input) {
-
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-
-            reader.onload = function (e) {
-                $('#blah').attr('src', e.target.result);
-            }
-
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-
-    $("#imgInp").change(function(){
-        readURL(this);
-    });
-
-</script>

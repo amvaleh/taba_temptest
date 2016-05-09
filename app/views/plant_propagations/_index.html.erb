@@ -1,0 +1,24 @@
+
+<h1>Listing Plant Propagations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Propagation</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @plant_propagations.each do |plant_propagation| %>
+      <tr>
+        <td><%= plant_propagation.propagation.name %></td>
+        <!-- <td><%#= link_to 'Show', plant_propagation %></td> -->
+        <!-- <td><%#= link_to 'Edit', edit_plant_propagation_path(plant_propagation) %></td> -->
+        <td><%= link_to 'Destroy', plant_propagation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

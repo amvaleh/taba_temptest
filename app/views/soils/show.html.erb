@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @soil.name %>
+</p>
+
+<p>
+  <strong>Explain:</strong>
+  <%= @soil.explain %>
+</p>
+
+<p>
+  <strong>Avatar:</strong>
+  <%= @soil.avatars.count %>
+</p>
+
+<%= link_to 'Edit', edit_soil_path(@soil) %> |
+<%= link_to 'Back', soils_path %>

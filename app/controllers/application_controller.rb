@@ -7,6 +7,8 @@ class ApplicationController < ActionController::Base
 	# protect_from_forgery unless: -> { request.format.json? }
 
 require 'nokogiri'
+require 'carrierwave/orm/activerecord'
+
 	# before_action :authenticate_user!
 
 	include Authenticable

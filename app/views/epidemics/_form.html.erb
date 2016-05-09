@@ -1,0 +1,31 @@
+<%= form_for(@epidemic) do |f| %>
+  <% if @epidemic.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@epidemic.errors.count, "error") %> prohibited this epidemic from being saved:</h2>
+
+      <ul>
+      <% @epidemic.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :sign %><br>
+    <%= f.text_area :sign %>
+  </div>
+  <div class="field">
+    <%= f.label :cause %><br>
+    <%= f.text_area :cause %>
+  </div>
+
+  <div class="field">
+  <%= f.label :avatars %><br>
+  <%= f.file_field :avatars, multiple: true %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,24 @@
+
+<h1>Listing Plant Soils</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th> name </th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @plant_soils.each do |plant_soil| %>
+      <tr>
+        <td><%= plant_soil.soil.name %></td>
+        <!-- <td><%= link_to 'Show', plant_soil %></td> -->
+        <!-- <td><%= link_to 'Edit', edit_plant_soil_path(plant_soil) %></td> -->
+        <td><%= link_to 'Destroy', plant_soil, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

@@ -1,4 +1,0 @@
-module PlantersHelper
-
-
-end

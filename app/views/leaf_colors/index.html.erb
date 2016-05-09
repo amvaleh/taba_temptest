@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Leaf Colors</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Avatar</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @leaf_colors.each do |leaf_color| %>
+      <tr>
+        <td><%= leaf_color.name %></td>
+        <td><%=image_tag leaf_color.avatar_url(:thumb) %></td>
+        <td><%= link_to 'Show', leaf_color %></td>
+        <td><%= link_to 'Edit', edit_leaf_color_path(leaf_color) %></td>
+        <td><%= link_to 'Destroy', leaf_color, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Leaf color', new_leaf_color_path %>

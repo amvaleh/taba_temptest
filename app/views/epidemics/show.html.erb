@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Sign:</strong>
+  <%= @epidemic.sign %>
+</p>
+
+<p>
+  <strong>Cause:</strong>
+  <%= @epidemic.cause %>
+</p>
+
+<p>
+  <strong>avatars:</strong>
+  <% @epidemic.avatars.each do |a| %>
+    <%= image_tag a.url(:thumb) %>
+  <% end %>
+</p>
+
+
+
+<%= link_to 'Edit', edit_epidemic_path(@epidemic) %> |
+<%= link_to 'Back', epidemics_path %>
