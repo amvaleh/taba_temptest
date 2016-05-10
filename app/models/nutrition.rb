@@ -5,5 +5,5 @@ class Nutrition < ActiveRecord::Base
 
   mount_uploaders :avatars, AvatarUploader
   serialize :avatars, JSON
-  
+
 end
