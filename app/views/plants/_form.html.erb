@@ -82,28 +82,28 @@
 </div>
 
 <div class="row">
-  <div class="one-fourth  make_center">
+  <div class="one-half  make_center">
     خاک :
     <div class="make_center">
       <%=select_tag 'soiles[]', options_for_select(Soil.all.map {|s| [s.name, s.id]} ), :multiple => true,class:"full-width"%>
     </div>
   </div>
 
-  <div class="one-fourth  make_center">
+  <div class="one-half  make_center">
     تکثیر :
     <div class="make_center">
       <%=select_tag 'propagations[]', options_for_select(Propagation.all.map {|s| [s.name, s.id]}), :multiple => true,class:"full-width make_center"%>
     </div>
   </div>
 
-  <div class="one-fourth  make_center">
+  <div class="one-half  make_center">
     بیماری های فیزیولوژیک
     <div class="make_center">
       <%=select_tag 'epidemics[]', options_for_select(Epidemic.all.map {|s| [s.sign, s.id]}), :multiple => true,class:"full-width make_center"%>
     </div>
   </div>
 
-  <div class="one-fourth  make_center">
+  <div class="one-half  make_center">
     آفت ها
     <div class="make_center">
       <%=select_tag 'pests[]', options_for_select(Pest.all.map {|s| [s.name, s.id]}), :multiple => true,class:"full-width make_center"%>

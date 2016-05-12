@@ -20,6 +20,7 @@ class PlantNutritionsController < ApplicationController
 
   # GET /plant_nutritions/1/edit
   def edit
+    @plant = Plant.find_by_farsi_name(params[:plant])
   end
 
   # POST /plant_nutritions

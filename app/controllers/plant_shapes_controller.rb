@@ -20,7 +20,7 @@ class PlantShapesController < ApplicationController
 
   # GET /plant_shapes/1/edit
   def edit
-    @plant = Plant.find(params[:plant])
+    @plant = Plant.find_by_farsi_name(params[:plant])
   end
 
   # POST /plant_shapes

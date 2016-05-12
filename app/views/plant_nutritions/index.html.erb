@@ -20,7 +20,7 @@
         <td><%= plant_nutrition.time_space %></td>
         <td><%= plant_nutrition.time %></td>
         <!-- <td><%#= link_to 'Show', plant_nutrition %></td> -->
-        <td><%= link_to 'Edit', edit_plant_nutrition_path(plant_nutrition) %></td>
+        <td><%= link_to 'Edit', edit_plant_nutrition_path(plant_nutrition,:plant=>@plant) %></td>
         <td><%= link_to 'Destroy', plant_nutrition, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>

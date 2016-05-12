@@ -20,7 +20,7 @@ class WateringsController < ApplicationController
 
   # GET /waterings/1/edit
   def edit
-    @plant = Plant.friendly.find(params[:plant])
+    @plant = Plant.find_by_farsi_name(params[:plant])
   end
 
   # POST /waterings
