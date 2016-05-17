@@ -39,11 +39,10 @@
     <section class="content three-fourth"  >
 
       <div id="pagination_table" class="landing">
-        <% @plants.first(20).each do |p| %>
+        <% @plants.each do |p| %>
         <%= render 'sample' , :p => p %>
         <% end %>
       </div>
-
     </section>
 
     <!-- </div> -->
@@ -79,7 +78,6 @@
 
 
   <div class="full-width">
-
     <h1>Listing Plants</h1>
     <%= link_to 'New Plant', new_plant_path ,class: "btn btn-success"%>
     <br>
