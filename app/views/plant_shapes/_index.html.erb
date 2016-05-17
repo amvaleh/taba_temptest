@@ -15,10 +15,10 @@
   <tbody>
     <% @plant_shapes.each do |plant_shape| %>
       <tr>
-        <td><%= plant_shape.leaf_shape %></td>
-        <td><%= plant_shape.leaf_color %></td>
-        <td><%= plant_shape.bloom_color %></td>
-        <td><%= plant_shape.physical_structure%></td>
+        <td><%= plant_shape.leaf_shape.name %></td>
+        <td><%= plant_shape.leaf_color.name %></td>
+        <td><%= plant_shape.bloom_color.name %></td>
+        <td><%= plant_shape.physical_structure.name%></td>
         <td><%= link_to 'Edit', edit_plant_shape_path(plant_shape,:plant=>@plant) %></td>
         <td><%= link_to 'Destroy', plant_shape, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
