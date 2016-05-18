@@ -115,6 +115,39 @@ class PlantsController < ApplicationController
     respond_to do |format|
       if @plant.save!
 
+        if params[:leaf_shapes].present?
+          shapes = params[:leaf_shapes]
+          shapes.each do |x|
+            shape = LeafShape.find(x)
+            @plant.plant_leaf_shapes.create!(:leaf_shape => shape ,:plant => @plant)
+          end
+        end
+
+        if params[:leaf_colors].present?
+          colors = params[:leaf_colors]
+          colors.each do |x|
+            color = LeafColor.find(x)
+            @plant.plant_leaf_colors.create!(:leaf_color => color ,:plant => @plant)
+          end
+        end
+
+        if params[:bloom_colors].present?
+          colors = params[:bloom_colors]
+          colors.each do |x|
+            color = BloomColor.find(x)
+            @plant.plant_bloom_colors.create!(:bloom_color => color ,:plant => @plant)
+          end
+        end
+
+        if params[:physical_structures].present?
+          fiziks = params[:physical_structures]
+          fiziks.each do |x|
+            fizik = PhysicalStructure.find(x)
+            @plant.plant_physical_structures.create!(:physical_structure => fizik ,:plant => @plant)
+          end
+        end
+        
+
         if params[:soiles].present?
             soils = params[:soiles]
           soils.each do |x|
@@ -122,7 +155,6 @@ class PlantsController < ApplicationController
             @plant.plant_soils.create!(:soil => soil,:plant => @plant)
           end
         end
-
 
 
         if params[:propagations].present?
@@ -138,6 +170,14 @@ class PlantsController < ApplicationController
           epids.each do |x|
             epid = Epidemic.find(x)
             @plant.plant_epidemics.create!(:epidemic => epid ,:plant => @plant)
+          end
+        end
+
+        if params[:medicals].present?
+            medics = params[:medicals]
+          medics.each do |x|
+            medic = MedicalFeature.find(x)
+            @plant.plant_medical_features.create!(:medical_feature => medic ,:plant => @plant)
           end
         end
 
@@ -164,6 +204,38 @@ class PlantsController < ApplicationController
   def update
     authorize @plant
 
+    if params[:leaf_shapes].present?
+      shapes = params[:leaf_shapes]
+      shapes.each do |x|
+        shape = LeafShape.find(x)
+        @plant.plant_leaf_shapes.create!(:leaf_shape => shape ,:plant => @plant)
+      end
+    end
+
+    if params[:leaf_colors].present?
+      colors = params[:leaf_colors]
+      colors.each do |x|
+        color = LeafColor.find(x)
+        @plant.plant_leaf_colors.create!(:leaf_color => color ,:plant => @plant)
+      end
+    end
+
+    if params[:bloom_colors].present?
+      colors = params[:bloom_colors]
+      colors.each do |x|
+        color = BloomColor.find(x)
+        @plant.plant_bloom_colors.create!(:bloom_color => color ,:plant => @plant)
+      end
+    end
+
+    if params[:physical_structures].present?
+      fiziks = params[:physical_structures]
+      fiziks.each do |x|
+        fizik = PhysicalStructure.find(x)
+        @plant.plant_physical_structures.create!(:physical_structure => fizik ,:plant => @plant)
+      end
+    end
+
     if params[:soiles].present?
       soils = params[:soiles]
       soils.each do |x|
@@ -178,6 +250,14 @@ class PlantsController < ApplicationController
       props.each do |x|
         prop = Propagation.find(x)
         @plant.plant_propagations.create!(:propagation => prop ,:plant => @plant)
+      end
+    end
+
+    if params[:medicals].present?
+        medics = params[:medicals]
+      medics.each do |x|
+        medic = MedicalFeature.find(x)
+        @plant.plant_medical_features.create!(:medical_feature_id => medic.id ,:plant => @plant)
       end
     end
 

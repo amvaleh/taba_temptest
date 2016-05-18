@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Medical Features</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @medical_features.each do |medical_feature| %>
+      <tr>
+        <td><%= medical_feature.name %></td>
+        <td><%= medical_feature.description %></td>
+        <td><%= link_to 'Show', medical_feature %></td>
+        <td><%= link_to 'Edit', edit_medical_feature_path(medical_feature) %></td>
+        <td><%= link_to 'Destroy', medical_feature, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Medical feature', new_medical_feature_path %>

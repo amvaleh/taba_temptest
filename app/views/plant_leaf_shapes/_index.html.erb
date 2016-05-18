@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Plant Leaf Shapes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Leaf shape</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @plant_leaf_shapes.each do |plant_leaf_shape| %>
+      <tr>
+        <td><%= plant_leaf_shape.leaf_shape.name %></td>
+        <td><%= link_to 'Destroy', plant_leaf_shape, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

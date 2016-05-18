@@ -1,0 +1,22 @@
+
+<h1>Listing Plant Medical Features</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Medical feature</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @plant_medical_features.each do |plant_medical_feature| %>
+      <tr>
+        <td><%= plant_medical_feature.medical_feature.name %></td>
+        <td><%= link_to 'Destroy', plant_medical_feature, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

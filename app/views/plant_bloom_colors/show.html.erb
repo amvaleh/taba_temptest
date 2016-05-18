@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Plant:</strong>
+  <%= @plant_bloom_color.plant_id %>
+</p>
+
+<p>
+  <strong>Bloom color:</strong>
+  <%= @plant_bloom_color.bloom_color_id %>
+</p>
+
+<%= link_to 'Edit', edit_plant_bloom_color_path(@plant_bloom_color) %> |
+<%= link_to 'Back', plant_bloom_colors_path %>

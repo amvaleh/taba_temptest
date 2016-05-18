@@ -1,0 +1,21 @@
+<h1>Listing Plant  shape</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Physical structure</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @plant_physical_structures.each do |plant_physical_structure| %>
+      <tr>
+        <td><%= plant_physical_structure.physical_structure.name %></td>
+        <td><%= link_to 'Destroy', plant_physical_structure, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

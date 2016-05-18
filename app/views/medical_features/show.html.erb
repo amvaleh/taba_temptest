@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @medical_feature.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @medical_feature.description %>
+</p>
+
+<%= link_to 'Edit', edit_medical_feature_path(@medical_feature) %> |
+<%= link_to 'Back', medical_features_path %>

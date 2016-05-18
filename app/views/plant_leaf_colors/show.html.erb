@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Plant:</strong>
+  <%= @plant_leaf_color.plant_id %>
+</p>
+
+<p>
+  <strong>Leaf color:</strong>
+  <%= @plant_leaf_color.leaf_color_id %>
+</p>
+
+<%= link_to 'Edit', edit_plant_leaf_color_path(@plant_leaf_color) %> |
+<%= link_to 'Back', plant_leaf_colors_path %>

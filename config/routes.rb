@@ -1,11 +1,21 @@
 Rails.application.routes.draw do
 
 
+  resources :plant_physical_structures
+
+  resources :plant_bloom_colors
+
+  resources :plant_leaf_colors
+
+  resources :plant_leaf_shapes
+
+  resources :plant_medical_features
+
+  resources :medical_features
+
   resources :bloom_seasons
 
   resources :physical_structures
-
-  resources :plant_shapes
 
   resources :waterings
 

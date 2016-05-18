@@ -1,0 +1,25 @@
+<%= form_for(@plant_medical_feature) do |f| %>
+  <% if @plant_medical_feature.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@plant_medical_feature.errors.count, "error") %> prohibited this plant_medical_feature from being saved:</h2>
+
+      <ul>
+      <% @plant_medical_feature.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :plant_id %><br>
+    <%= f.number_field :plant_id %>
+  </div>
+  <div class="field">
+    <%= f.label :medical_feature %><br>
+    <%= f.number_field :medical_feature %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

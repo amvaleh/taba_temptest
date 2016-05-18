@@ -1,0 +1,25 @@
+<%= form_for(@plant_leaf_shape) do |f| %>
+  <% if @plant_leaf_shape.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@plant_leaf_shape.errors.count, "error") %> prohibited this plant_leaf_shape from being saved:</h2>
+
+      <ul>
+      <% @plant_leaf_shape.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :plant_id %><br>
+    <%= f.number_field :plant_id %>
+  </div>
+  <div class="field">
+    <%= f.label :leaf_shape_id %><br>
+    <%= f.number_field :leaf_shape_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

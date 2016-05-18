@@ -1,0 +1,22 @@
+
+<h1>Listing Plant Leaf Colors</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Leaf color</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @plant_leaf_colors.each do |plant_leaf_color| %>
+      <tr>
+        <td><%= plant_leaf_color.leaf_color.name %></td>
+        <td><%= link_to 'Destroy', plant_leaf_color, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

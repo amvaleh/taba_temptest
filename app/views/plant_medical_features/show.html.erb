@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Plant:</strong>
+  <%= @plant_medical_feature.plant_id %>
+</p>
+
+<p>
+  <strong>Medical feature:</strong>
+  <%= @plant_medical_feature.medical_feature %>
+</p>
+
+<%= link_to 'Edit', edit_plant_medical_feature_path(@plant_medical_feature) %> |
+<%= link_to 'Back', plant_medical_features_path %>

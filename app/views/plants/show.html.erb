@@ -282,8 +282,19 @@
                     <% end %>
                   </td>
                   <td>زمان گلدهی</td>
+                </tr>
+
             <% end %>
 
+            <% if @plant.medical_features.any? %>
+                  <td style="direction:rtl;">
+                    <% @plant.medical_features.each do |mf| %>
+                      <%= mf.name %>
+                    <% end %>
+                  </td>
+                  <td class="">خواص دارویی</td>
+                </tr>
+            <% end %>
 
 
             <% if @plant.propagations.any? %>

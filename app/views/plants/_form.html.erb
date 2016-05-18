@@ -82,6 +82,36 @@
 </div>
 
 <div class="row">
+
+  <div class="one-half  make_center">
+    شکل برگ
+    <div class="make_center">
+      <%=select_tag 'leaf_shapes[]', options_for_select(LeafShape.all.map {|s| [s.name, s.id]}), :multiple => true,class:"full-width make_center"%>
+    </div>
+  </div>
+
+  <div class="one-half  make_center">
+    رنگ برگ
+    <div class="make_center">
+      <%=select_tag 'leaf_colors[]', options_for_select(LeafColor.all.map {|s| [s.name, s.id]}), :multiple => true,class:"full-width make_center"%>
+    </div>
+  </div>
+
+  <div class="one-half  make_center">
+    رنگ گل
+    <div class="make_center">
+      <%=select_tag 'bloom_colors[]', options_for_select(BloomColor.all.map {|s| [s.name, s.id]}), :multiple => true,class:"full-width make_center"%>
+    </div>
+  </div>
+
+  <div class="one-half  make_center">
+    شکل گل
+    <div class="make_center">
+      <%=select_tag 'physical_structures[]', options_for_select(PhysicalStructure.all.map {|s| [s.name, s.id]}), :multiple => true,class:"full-width make_center"%>
+    </div>
+  </div>
+
+
   <div class="one-half  make_center">
     خاک :
     <div class="make_center">
@@ -93,6 +123,13 @@
     تکثیر :
     <div class="make_center">
       <%=select_tag 'propagations[]', options_for_select(Propagation.all.map {|s| [s.name, s.id]}), :multiple => true,class:"full-width make_center"%>
+    </div>
+  </div>
+
+  <div class="one-half  make_center">
+     خواص دارویی
+    <div class="make_center">
+      <%=select_tag 'medicals[]', options_for_select(MedicalFeature.all.map {|s| [s.name, s.id]}), :multiple => true,class:"full-width make_center"%>
     </div>
   </div>
 

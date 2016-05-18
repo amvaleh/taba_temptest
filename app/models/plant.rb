@@ -29,8 +29,23 @@ class Plant < ActiveRecord::Base
   has_many :plant_pests
   has_many :pests , through: :plant_pests
 
+  has_many :plant_medical_features
+  has_many :medical_features , through: :plant_medical_features
 
-  has_many :plant_shapes
+  #  plant shapes:
+  has_many :plant_leaf_shapes
+  has_many :leaf_shapes , through: :plant_leaf_shapes
+
+  has_many :plant_leaf_colors
+  has_many :leaf_colors , through: :plant_leaf_colors
+
+  has_many :plant_bloom_colors
+  has_many :bloom_colors , through: :plant_bloom_colors
+
+  has_many :plant_physical_structures
+  has_many :physical_structures , through: :plant_physical_structures
+  #
+
   has_many :bloom_seasons
 
   has_many :waterings

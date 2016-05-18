@@ -1,4 +1,3 @@
-<p id="notice"><%= notice %></p>
 
 <div class="content full-width">
   <h1>Editing Plant</h1>
@@ -12,12 +11,10 @@
 
 <div class="one-third">
 
-  <div class="full-width">
-  <%= render 'waterings/index' , :@waterings => @plant.waterings %>
-  </div>
+
 
   <div class="full-width">
-  <%= render 'plant_shapes/index' , :@plant_shapes => @plant.plant_shapes %>
+  <%= render 'waterings/index' , :@waterings => @plant.waterings %>
   </div>
 
   <div class="full-width">
@@ -29,11 +26,28 @@
   </div>
 
   <div class="full-width">
+  <%= render 'plant_leaf_shapes/index' , :@plant_leaf_shapes => @plant.plant_leaf_shapes %>
+  </div>
+  <div class="full-width">
+  <%= render 'plant_leaf_colors/index' , :@plant_leaf_colors => @plant.plant_leaf_colors %>
+  </div>
+  <div class="full-width">
+  <%= render 'plant_bloom_colors/index' , :@plant_bloom_colors => @plant.plant_bloom_colors %>
+  </div>
+  <div class="full-width">
+  <%= render 'plant_physical_structures/index' , :@plant_physical_structures => @plant.plant_physical_structures %>
+  </div>
+
+  <div class="full-width">
   <%= render 'plant_soils/index' , :@plant_soils => @plant.plant_soils %>
   </div>
 
   <div class="full-width">
   <%= render 'plant_propagations/index' , :@plant_propagations => @plant.plant_propagations %>
+  </div>
+
+  <div class="full-width">
+  <%= render 'plant_medical_features/index' , :@plant_medical_features => @plant.plant_medical_features %>
   </div>
 
   <div class="full-width">
