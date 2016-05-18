@@ -56,7 +56,7 @@ class PlantPhysicalStructuresController < ApplicationController
   def destroy
     @plant_physical_structure.destroy
     respond_to do |format|
-      format.html { redirect_to plant_physical_structures_url, notice: 'Plant physical structure was successfully destroyed.' }
+      format.html { redirect_to :back, notice: 'Plant physical structure was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
