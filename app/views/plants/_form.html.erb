@@ -136,14 +136,14 @@
   <div class="one-half  make_center">
     بیماری های فیزیولوژیک
     <div class="make_center">
-      <%=select_tag 'epidemics[]', options_for_select(Epidemic.all.map {|s| [s.sign, s.id]}), :multiple => true,class:"full-width make_center"%>
+      <%=select_tag 'epidemics[]', options_for_select(Epidemic.all.map {|s| [s.sign+"->"+truncate(s.cause,length: 20), s.id]}), :multiple => true,class:"full-width make_center"%>
     </div>
   </div>
 
   <div class="one-half  make_center">
     آفت ها
     <div class="make_center">
-      <%=select_tag 'pests[]', options_for_select(Pest.all.map {|s| [s.name, s.id]}), :multiple => true,class:"full-width make_center"%>
+      <%=select_tag 'pests[]', options_for_select(Pest.all.map {|s| [s.name+"->"+truncate(s.cause,length: 20), s.id]}), :multiple => true,class:"full-width make_center"%>
     </div>
   </div>
 
