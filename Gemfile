@@ -14,7 +14,6 @@ gem 'simple_captcha2', require: 'simple_captcha'
 
 gem 'mail'
 
-gem 'backup'
 gem 'net-scp'
 gem 'net-ssh', '<= 2.5.2'
 
