@@ -1,0 +1,2 @@
+module PlantMedicalFeaturesHelper
+end

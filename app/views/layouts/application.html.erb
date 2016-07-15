@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%#= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
 
   <%= csrf_meta_tags %>
-  <%= favicon_link_tag 'flower.png' %>
+  <%= favicon_link_tag 'favicon.png' %>
 
 
   <%= render 'shared/header' %>
@@ -46,47 +48,12 @@
 
 </body>
 
+<% if not defined? @footer %>
 <%= render 'shared/footer' %>
-<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-
+<% end %>
 
 </html>
 
 <script type="application/javascript">
 $("#my_notice").delay(5000).show(10000).hide(1000);
-</script>
-
-<script>
-window.dynamicNumbersBound = false;
-var wow = new WOW();
-WOW.prototype.show = function(box) {
-  wow.applyStyle(box);
-  if (typeof box.parentNode !== 'undefined' && hasClass(box.parentNode, 'dynamic-numbers') && !window.dynamicNumbersBound) {
-    bindDynamicNumbers();
-    window.dynamicNumbersBound = true;
-  }
-  return box.className = "" + box.className + " " + wow.config.animateClass;
-};
-wow.init();
-
-function hasClass(element, cls) {
-  return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;
-}
-
-function bindDynamicNumbers() {
-  $('.dynamic-number').each(function() {
-    var startNumber = $(this).text();
-    var endNumber = $(this).data('dnumber');
-    var dynamicNumberControl = $(this);
-
-    $({numberValue: startNumber}).animate({numberValue: endNumber}, {
-      duration: 4000,
-      easing: 'swing',
-      step: function() {
-        $(dynamicNumberControl).text(Math.ceil(this.numberValue));
-      }
-    });
-  });
-}
-
 </script>

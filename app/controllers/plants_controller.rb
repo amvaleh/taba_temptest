@@ -83,8 +83,9 @@ class PlantsController < ApplicationController
   # GET /plants.json
   def index
     # @plants = Plant.all
-    @plants, @alphaParams = Plant.alpha_paginate(params[:letter], {db_mode: true, :enumerate=>true , :default_field=> "c" , :pagination_class => "categories"  , db_field: "latin_name"})
+    @plants, @alphaParams = Plant.alpha_paginate(params[:letter], {db_mode: true, :bootstrap3=> true, :default_field=> 'A' , :pagination_class => "categories"  , db_field: "latin_name"})
     @page_title = "گیاهان "
+    @footer = true
   end
 
 
@@ -146,7 +147,7 @@ class PlantsController < ApplicationController
             @plant.plant_physical_structures.create!(:physical_structure => fizik ,:plant => @plant)
           end
         end
-        
+
 
         if params[:soiles].present?
             soils = params[:soiles]

@@ -2,38 +2,114 @@
 <div class="wrap clearfix">
 
   <div class="row">
+
+
+        <% if user_signed_in? and current_user.admin? %>
+
+        <div class="full-width make_center">
+          <h1> Plant Models</h1>
+
+          <%= link_to "seasons " , seasons_path , class:"btn btn-default"%>
+          <%= link_to "pests " , pests_path  , class:"btn btn-default"%>
+          <%= link_to "physiologic " , epidemics_path  , class:"btn btn-default"%>
+          <%= link_to "propagations" , propagations_path  , class:"btn btn-default"%>
+          <%= link_to "nutritions" , nutritions_path , class:"btn btn-default" %>
+          <%= link_to "soils" , soils_path  , class:"btn btn-default"%>
+          <%= link_to "medical features" , medical_features_path  , class:"btn btn-default"%>
+        </div>
+
+        <div class="full-width make_center">
+
+          <%= link_to "leaf colors" , leaf_colors_path , class:"btn btn-default"%>
+          <%= link_to "leaf shapes" , leaf_shapes_path , class:"btn btn-default"  %>
+          <%= link_to "bloom colors" , bloom_colors_path  , class:"btn btn-default"%>
+          <%= link_to "physical structure" , physical_structures_path  , class:"btn btn-default"%>
+        </div>
+
+
+        <div class="full-width">
+          <h1>Listing Plants</h1>
+          <%= link_to 'New Plant', new_plant_path ,class: "btn btn-success"%>
+          <br>
+          <br>
+          <table>
+            <thead>
+              <tr>
+                <th>Farsi name</th>
+                <th>Latin name</th>
+                <th>Scientific name</th>
+                <th>Family</th>
+                <th>Hardness</th>
+                <th>Geo origin</th>
+
+                <th colspan="3"></th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% @plants.each do |plant| %>
+              <tr>
+                <td><%= plant.farsi_name %></td>
+                <td><%= plant.latin_name %></td>
+                <td><%= plant.scientific_name %></td>
+                <td><%= plant.family %></td>
+                <td><%= plant.hardness %></td>
+                <td><%= plant.geo_origin %></td>
+
+                <td><%= link_to 'Show', plant %></td>
+                <td><%= link_to 'Edit', edit_plant_path(plant) %></td>
+                <td><%= link_to 'Destroy', plant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+
+          <br>
+          <% end %>
+        </div>
+
     <h1 style="text-align: center;">جستجو بر اساس حروف الفبا</h1>
 
     <div class="row">
 
     </div>
-    <aside class="above-sidebar full-width  wow fadeInDown animated" style="visibility: visible; animation-name: fadeInDown;">
+    <aside class="above-sidebar full-width " style="visibility: visible; animation-name: fadeInDown;">
 
       <ul class="boxed">
-        <!-- <button class="button pull-right"> جستجو بر اساس حروف الفبا </button> -->
-        <% themes = ["dark" , "medium" , "light"] %>
-        <% i =1 %>
 
-        <% FaAlphabet.all.each do |fa| %>
-        <li class=" <%=themes[i%3] %> pull-right" style="height: 66px !important;">
-          <% i = i+1 %>
-          <%= link_to find_plants_path(:letter => fa.value), class: "fa" ,:remote => true  do %>
-          <!-- <a href="recipes.html" title="Appetizers"> -->
-          <h4><%=fa.name%></h4>
-          <!-- </a> -->
-          <% end %>
-        </li>
-        <% end %>
-        <li class="pull-right"  style="height: 66px !important;">
-          <%= image_tag "ajax-loader.gif" , class: "myspinner" , id: "myspinner"%>
-        </li>
       </ul>
     </aside>
 
-    <aside class="sidebar one-fourth wow fadeInLeft animated" style="visibility: visible; animation-name: fadeInLeft;"  >
-      <div class="widget">
-        <%= alphabetical_paginate @alphaParams %>
+    <aside class="sidebar one-fourth follow-scroll" style="visibility: visible; animation-name: fadeInLeft;"  >
+      <nav class="tabs">
+        <ul>
+          <li class="active" style="width: 50% !important;">
+            <a href="#tab2" data-target="#tab2" data-toggle="tab" title="Classic search">فارسی</a>
+          </li>
+          <li class="" style="width: 50% !important;">
+            <a href="#tab1" data-target="#tab1" data-toggle="tab"  title="Search by ingredients">انگلیسی</a>
+          </li>
+        </ul>
+      </nav>
+      <div class="tab-content" id="tab2" style="display: block;">
+        <div class="widget" style="overflow-y: auto; max-height: 530px; ">
+          <ul class="categories">
+            <% FaAlphabet.all.each do |fa| %>
+            <li>
+              <%= link_to find_plants_path(:letter => fa.value), class: "fa" ,:remote => true  do %>
+              <%=fa.name%>
+              <% end %>
+            </li>
+            <% end%>
+          </ul>
+        </div>
       </div>
+      <div class="tab-content " id="tab1" style="display: none;">
+        <div class="widget" style="overflow-y: auto; max-height: 530px;">
+          <%= alphabetical_paginate @alphaParams %>
+        </div>
+      </div>
+
     </aside>
 
     <section class="content three-fourth"  >
@@ -55,82 +131,33 @@
     </div>
     <!-- </div> -->
 
-    <% if user_signed_in? and current_user.admin? %>
-
-    <div class="full-width make_center">
-    <h1> Plant Models</h1>
-
-    <%= link_to "seasons " , seasons_path , class:"btn btn-default"%>
-    <%= link_to "pests " , pests_path  , class:"btn btn-default"%>
-    <%= link_to "physiologic " , epidemics_path  , class:"btn btn-default"%>
-    <%= link_to "propagations" , propagations_path  , class:"btn btn-default"%>
-    <%= link_to "nutritions" , nutritions_path , class:"btn btn-default" %>
-    <%= link_to "soils" , soils_path  , class:"btn btn-default"%>
-    <%= link_to "medical features" , medical_features_path  , class:"btn btn-default"%>
   </div>
-
-  <div class="full-width make_center">
-
-  <%= link_to "leaf colors" , leaf_colors_path , class:"btn btn-default"%>
-  <%= link_to "leaf shapes" , leaf_shapes_path , class:"btn btn-default"  %>
-  <%= link_to "bloom colors" , bloom_colors_path  , class:"btn btn-default"%>
-  <%= link_to "physical structure" , physical_structures_path  , class:"btn btn-default"%>
-</div>
-
-
-  <div class="full-width">
-    <h1>Listing Plants</h1>
-    <%= link_to 'New Plant', new_plant_path ,class: "btn btn-success"%>
-    <br>
-    <br>
-    <table>
-      <thead>
-        <tr>
-          <th>Farsi name</th>
-          <th>Latin name</th>
-          <th>Scientific name</th>
-          <th>Family</th>
-          <th>Hardness</th>
-          <th>Geo origin</th>
-
-          <th colspan="3"></th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% @plants.each do |plant| %>
-          <tr>
-            <td><%= plant.farsi_name %></td>
-            <td><%= plant.latin_name %></td>
-            <td><%= plant.scientific_name %></td>
-            <td><%= plant.family %></td>
-            <td><%= plant.hardness %></td>
-            <td><%= plant.geo_origin %></td>
-
-            <td><%= link_to 'Show', plant %></td>
-            <td><%= link_to 'Edit', edit_plant_path(plant) %></td>
-            <td><%= link_to 'Destroy', plant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-
-    <br>
-
-
-
-    <% end %>
-
-  </div>
-
-
-  </div>
-
-
 </div>
 
 <script type="application/javascript">
 $('.fa').click(function(){
-    $('#myspinner').css('display','block');
+  $('#myspinner').css('display','block');
+});
+
+(function($) {
+  var element = $('.follow-scroll'),
+  originalY = element.offset().top;
+
+  // Space between element and top of screen (when scrolling)
+  var topMargin = 20;
+
+  // Should probably be set in CSS; but here just for emphasis
+  element.css('position', 'relative');
+  // element.css('bottom', '500px');
+
+  $(window).on('scroll', function(event) {
+    var scrollTop = $(window).scrollTop();
+    element.stop(false, false).animate({
+      top: scrollTop < originalY
+      ? 0
+      : scrollTop - originalY + topMargin
+    },10);
   });
+})(jQuery);
+
 </script>

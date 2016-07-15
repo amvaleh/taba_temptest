@@ -20,397 +20,419 @@
 
           <div class="row">
             <!--two-third-->
-            <article class="two-third wow fadeInLeft animated" style="visibility: visible;">
+            <article class="two-third  animated" style="visibility: visible;">
 
               <!-- Place somewhere in the <body> of your page -->
               <div style="background: #ffffff; direction: ltr;">
                 <div class="flexslider">
                   <ul class="slides">
                     <% @plant.avatars.each do |p| %>
-                        <li data-thumb= <%=p.url(:medium)%> >
-                          <%= image_tag p.url %>
-                        </li>
+                    <li data-thumb= <%=p.url(:medium)%> >
+                      <%= image_tag p.url %>
+                    </li>
                     <% end %>
                   </ul>
                 </div>
+                <p class="make_center">نکات مهم</p>
                 <div class="intro make_right">
-                  <p >نکات مهم</p>
                   <div style="direction: rtl;">
                     <%#= %>
-                    <% if @plant.waterings.any? %>
+                    <!-- <% if @plant.waterings.any? %>
                     <div class="one-third">
-                      آبیاری:
-                            <% @plant.waterings.each do |s| %>
-                            <p>
-                              <%= s.season.name%>: هر <%= s.time_space %> <%= s.times %> نوبت
-                            </p>
-                            <% end %>
-                    </div>
-                    <% end %>
-
-                    <% if @plant.soils.any? %>
-                    <div class="one-third">
-                      خاک مناسب:
-                            <% @plant.plant_soils.each do |s| %>
-                            <button class="btn btn-xs btn-warning">
-                              <%= s.soil.name %>
-                            </button>
-                            <% end %>
-                        </div>
-                    <% end %>
-
-                    <% if @plant.plant_nutritions.any? %>
-                    <div class="one-third">
-                      کود دهی مناسب:
-                            <% @plant.plant_nutritions.each do |s| %>
-                            <p><%=link_to s.nutrition.name, "",class:"btn btn-xs btn-default"%> در <%= s.season.name if s.season.present? %> <%= s.time if s.time.present? %> بار <%= s.time_space%>ی</p>
-                            <% end %>
-                        </div>
-                    <% end %>
-                  </div>
-                </div>
-              </div>
-
-            </article>
-            <!--//two-third-->
-
-            <!--one-third-->
-            <article class="one-third wow fadeInDown animated" style="visibility: visible;">
-
-              <br>
-              <div style="direction: rtl;">
-                <% if user_signed_in? %>
-                    <%=link_to "سوال، مطلب یا نکته ای بنویسید .." , new_post_path(:plant_id=>@plant.id), :class=>"btn btn-default btn-block", :remote=>true%>
-                <% else %>
-                    <%= link_to "عضوی از گیاهدارن شو.." ,  new_user_registration_path, :class => "btn btn-success btn-block" %>
-                <% end %>
-              </div>
-
-
-              <!--//make post-->
-              <br>
-
-              <% if user_signed_in? and policy(@plant).edit? %>
-                  <%= link_to "ویرایش" , edit_plant_path(@plant) , :class => "btn btn-block btn-info" %>
-                  </br>
-              <% end %>
-              <dl class="basic make_center">
-
-
-                <% if @plant.latin_name.present? %>
-                    <dt><%= @plant.farsi_name%></dt>
-                    <dd>نام فارسی</dd>
-                <% end %>
-
-
-                <% if @plant.latin_name.present? %>
-                    <dt><%= @plant.latin_name%></dt>
-                    <dd>نام لاتین</dd>
-                <% end %>
-
-                <% if @plant.scientific_name.present? %>
-                    <dt><%= @plant.scientific_name%></dt>
-                    <dd>نام علمی</dd>
-                <% end %>
-
-
-                <% if @plant.family.present? %>
-                    <dt><%= @plant.family%></dt>
-                    <dd>
-                      خانواده
-                    </dd>
-                <% end %>
-
-              </dl>
-
-              <dl class="user make_center">
-
-                <dt>
-                  <% for x in @plant.min_temp .. @plant.max_temp do %>
-                    *
-                  <% end %>
-                </dt>
-                <dd style="background: #DC1409;"> دما </dd>
-
-                <dt>
-                  <% for x in @plant.min_moisture .. @plant.max_moisture do %>
-                    *
-                  <% end %>
-                </dt>
-                <dd style="background: rgb(0, 125, 241);"> آب </dd>
-
-                <dt >
-                  <% for x in @plant.min_light .. @plant.max_light do %>
-                    *
-                  <% end %>
-                </dt>
-                <dd style="background: rgb(255, 232, 33);"> نور </dd>
-
-
-                <dt>
-                  <div class="difficulty">
-                    <% case @plant.hardness %>
-                    <% when 1 %>
-                    <i class="ico i-easy"></i>
-                    <span>آسان</span>
-                    <% when 2 %>
-                    <i class="ico i-medium"></i>
-                    <span>متوسط</span>
-                    <% when 3 %>
-                    <i class="ico i-hard"></i>
-                    <span>سخت</span>
-                    <% end%>
-                  </div></td>
-                <dd style="background: #FF7B74;">
-                  سختی نگهداری
-                </dd>
-
-                <dt ><%=@plant.life_time%> </dt>
-                <dd  style="background: #FF7B74;">طول عمر</dd>
-
-
-
-                <dt >تعداد کامنت ها</dt>
-                <dd ><%=@plant.comments.count%></dd>
-
-                <dt >تعداد سوالات</dt>
-                <dd ><%=@plant.posts.count%></dd>
-
-              </dl>
-
-            </article>
-            <!--//one-third-->
-          </div>
-
-        </div>
-        <!--//pot-->
-
-        <!--comments-->
-        <div class="comments wow fadeIn animated" id="comments" itemprop="interactionCount" content="UserComments:0">
-          <% if @plant.comments.any? %>
-              <% @plant.comments.each do |cmnt| %>
-                  <!--a comment box-->
-                  <%= render 'comments/comment' , :cmnt => cmnt %>
-              <% end %>
-
-          <% else %>
-
-              <p class="zerocomments make_right">
-                در این باغچه نظری داده نشده است، شما اولین نفر باشید!
-              </p>
-              <!-- If comments are open, but there are no comments. -->
-          <% end %>
-
-          <div id="respond" class="comment-respond">
-            <h3 id="reply-title" class="comment-reply-title make_right">
-              نظر بدهید
-            </h3>
-            <div class="container" style="direction: rtl;">
-              <p style="direction: rtl; float: right" class="make_right">
-                <strong class="make_right">توجه:</strong>
-                <small>
-                  نظرات کاربران نشان دهنده دیدگاه شخصی نویسنده آنها است، و نه لزوما دیدگاه Gologram، به منظور خود داری از اهانت ، بی تربیتی و بیان مبتذل نظرات مغایر شئونات اخلاقی بدون اطلاع قبلی حذف می شوند.
-                </small>
-              </p>
-
-              <%= render 'comments/form' , {:object => @comment , :commentable => @plant} %>
-
-              <% if not user_signed_in? %>
-                  <p class="make_right">
-                    شما عضوی از گیاه داران نیستید، برای اینکه نظر بدهید، اینجا عضو شوید:
+                    آبیاری:
+                    <% @plant.waterings.each do |s| %>
+                    <p>
+                    <%= s.season.name%>: هر <%= s.time_space %> <%= s.times %> نوبت
                   </p>
-                  <p>
-                    <%= render "devise/registrations/form" , :resource => User.new %>
+                  <% end %>
+                </div>
+                <% end %> -->
+
+                <% if @plant.soils.any? %>
+                <div class="one-half ">
+                  خاک مناسب:
+                  <br>
+                  <% @plant.plant_soils.each do |s| %>
+                  <a tabindex="0" class="btn btn-default btn-xs " role="button" data-toggle="popover"
+                  data-trigger="focus" title="<%=s.soil.name%>"
+                  data-content="<%=s.soil.explain%>">
+                  <%= s.soil.name %>
+                </a>
+                <% end %>
+              </div>
+              <% end %>
+
+              <% if @plant.plant_nutritions.any? %>
+              <div class="one-half ">
+                کود دهی مناسب:
+                <% @plant.plant_nutritions.each do |s| %>
+                <p>
+                  <a tabindex="0" class="btn btn-default btn-xs" role="button" data-toggle="popover"
+                  data-trigger="focus" title="<%=s.nutrition.name%>"
+                  data-content="<%=s.nutrition.explain%>">
+                  <%= s.nutrition.name %>
+                </a>
+                در <%= s.season.name if s.season.present? %> <%= s.time_space%>ی <%= s.time if s.time.present? %> بار
+              </p>
               <% end %>
             </div>
-
-            <input type="hidden" id="ak_js" name="ak_js" value="1441730086571">
-            </form>
-          </div><!-- #respond -->
-
-          <!--//post comment form-->
-
-
-        </div>
-
-
-        <!--//comments-->
-
-      </section>
-      <!--//content-->
-
-      <!--right sidebar-->
-      <aside class="sidebar one-fourth wow fadeInRight animated" style="visibility: visible; direction: ltr">
-        <div class="widget nutrition">
-          <h3 class="make_center">
-            اطلاعات تکمیلی گیاه
-          </h3>
-          <table class="make_right">
-            <tbody>
-
-                <tr>
-                  <td style="direction:rtl;">
-                    <%= @plant.min_height%>سانتی متر
-                  </td>
-                  <td>
-                    حداقل ارتفاع
-                  </td>
-                </tr>
-
-                <tr>
-                  <td style="direction:rtl;">
-                     <%= @plant.max_height%>سانتی متر
-                  </td>
-                  <td>
-                    حداکثر ارتفاع
-                  </td>
-                </tr>
-
-            <% if @plant.geo_origin.present? %>
-                <tr>
-                  <td style="direction:rtl;">
-                    <%= @plant.geo_origin %>
-                  </td>
-                  <td>خاستگاه جغرافیایی</td>
-                </tr>
-            <% end %>
-
-            <% if @plant.bloom_seasons.any? %>
-                  <td style="direction:rtl;">
-                    <% @plant.bloom_seasons.each do |bs| %>
-                      <%= bs.name %>
-                    <% end %>
-                  </td>
-                  <td>زمان گلدهی</td>
-                </tr>
-
-            <% end %>
-
-            <% if @plant.medical_features.any? %>
-                  <td style="direction:rtl;">
-                    <% @plant.medical_features.each do |mf| %>
-                      <%= mf.name %>
-                    <% end %>
-                  </td>
-                  <td class="">خواص دارویی</td>
-                </tr>
             <% end %>
 
 
             <% if @plant.propagations.any? %>
-                <tr>
-                  <td style="direction:rtl;">
-                    <% @plant.propagations.each do |s| %>
-                    <%= s.name %>،
-                    <% end %>
-                  </td>
-                  <td>نحوه تکثیر</td>
-                </tr>
+            <div class="one-half ">
+              نحوه تکثیر:
+              <br>
+              <% @plant.propagations.each do |s| %>
+              <%#=link_to s.name , s , class: "btn" %>
+              <a tabindex="0" class="btn btn-default btn-xs" role="button" data-toggle="popover"
+              data-trigger="focus" title="<%=s.name%>"
+              data-content="<%=s.explain%>">
+              <%= s.name %>
+            </a>
             <% end %>
-
-            <% if @plant.epidemics.any? %>
-                <tr>
-                  <td style="direction:rtl;">
-                    <% @plant.epidemics.each do |s| %>
-                    <%= s.sign %>،
-                    <% end %>
-                  </td>
-                  <td>بیماری های ظاهری</td>
-                </tr>
-            <% end %>
-
-            <% if @plant.pests.any? %>
-                <tr>
-                  <td style="direction:rtl;">
-                    <% @plant.pests.each do |s| %>
-                    <%= s.name %>،
-                    <% end %>
-                  </td>
-                  <td>آفات گیاهی</td>
-                </tr>
-            <% end %>
-
-            </tbody>
-          </table>
-        </div>
-
-        <div class="widget share">
-          <ul class="boxed">
-            <li class="light">
-              <a href="#" title="Facebook"><i class="ico i-facebook"></i> <span>Share on Facebook</span></a>
-            </li>
-            <li class="medium">
-              <a href="#" title="Twitter"><i class="ico i-twitter"></i> <span>Share on Twitter</span></a>
-            </li>
-            <% if user_signed_in? %>
-                <li class="dark">
-                  <a href="/plants/<%=@plant.farsi_name%>/follow" class="<% if current_user.following?(@plant)%> invis <%else%> visible <%end%>" title="Favourites">
-                    <i class="ico i-favourites "></i>
-                    <span>اضافه به علاقه ها</span>
-                  </a>
-                  <a href="/plants/<%=@plant.farsi_name%>/unfollow" class="<% if current_user.following?(@plant)%> visible <%else%> invis <%end%>" title="Favourites">
-                    <i class="ico i-favourites"></i>
-                    <span>حذف از علاقه ها</span>
-                  </a>
-                </li>
-            <% end %>
-          </ul>
-        </div>
-
-        <% if @followers.present? %>
-            <div class="widget members">
-              <h3 class="make_center">افراد دنبال کننده ی این گیاه</h3>
-              <ul class="boxed">
-                <% @followers.first(15).each do |x| %>
-                    <li>
-                      <div class="avatar">
-                        <% prof = User.find(x.follower_id).profile %>
-                        <%= link_to profile_path(prof) do %>
-                            <%= image_tag prof.profile_photo_url %>
-                            <span>
-                        <%= prof.first_name %>
-                      </span>
-                        <% end %>
-                      </div>
-                    </li>
-                <% end %>
-              </ul>
-            </div>
-        <% end %>
-        <!--posts table-->
-        <div class="widget widget-sidebar">
-          <!--cwrap-->
-          <div class="cwrap">
-            <h3 class="make_center" style="direction: rtl;">
-              سوالات و مطالب
-            </h3>
-            <%@plant.posts.order("created_at DESC").each do |pos|%>
-                <ul class="articles_latest">
-                  <li style="direction: rtl;">
-                    <%=link_to  pos do%>
-                        <%if pos.image_url.present?%>
-                            <%=image_tag(pos.image_url(:thumb))%>
-                        <%else%>
-                            <%=image_tag("img11.jpg")%>
-                        <%end%>
-                        <p class="make_right">
-                          <%= pos.user.profile.first_name if pos.user.present?%>:
-                          </br>
-                          <small>
-                            <%= pos.title %>
-                          </small>
-                        </p>
-                    <% end %>
-                  </li>
-                </ul>
-            <%end%>
           </div>
-          <!--//cwrap-->
-        </div>
-        <!--//posts table-->
+          <% end %>
 
-      </aside>
-      <!--//right sidebar-->
+
+          <% if @plant.epidemics.any? %>
+          <div class="one-half ">
+            بیماری های ظاهری
+            <% @plant.epidemics.each do |s| %>
+            <p>
+              <a tabindex="0" class="btn btn-default btn-xs" role="button" data-toggle="popover"
+              data-trigger="focus" title="<%=s.sign%>"
+              data-content="<%=s.cause%>">
+              <%= s.sign %>
+            </a>
+          </p>
+          <% end %>
+        </div>
+        <% end %>
+
+
+        <% if @plant.pests.any? %>
+        <div class="full-width">
+          آقات گیاهی
+          <% @plant.pests.each do |s| %>
+          <p>
+            <a tabindex="0" class="btn btn-default btn-xs" role="button" data-toggle="popover"
+            data-trigger="focus" title="<%=s.name%>"
+            data-content="علت: <%=s.cause%>">
+            <%= s.name %>
+          </a>
+        </p>
+        <% end %>
+      </div>
+      <% end%>
+
+
     </div>
   </div>
+</div>
+
+</article>
+<!--//two-third-->
+
+<!--one-third-->
+<article class="one-third wow fadeInDown animated" style="visibility: visible;">
+
+  <br>
+  <div style="direction: rtl;">
+    <% if user_signed_in? %>
+    <%=link_to "سوال، مطلب یا نکته ای بنویسید .." , new_post_path(:plant_id=>@plant.id), :class=>"btn btn-default btn-block", :remote=>true%>
+    <% else %>
+    <%= link_to "عضوی از گیاهدارن شو.." ,  new_user_registration_path, :class => "btn btn-success btn-block" %>
+    <% end %>
+
+    <% if user_signed_in? %>
+    <br>
+    <a href="/plants/<%=@plant.farsi_name%>/follow" class="<% if current_user.following?(@plant)%> invis <%else%> visible btn btn-success btn-block <%end%> " title="Favourites">
+      <span>اضافه به علاقه ها</span>
+    </a>
+
+    <a href="/plants/<%=@plant.farsi_name%>/unfollow" class="<% if current_user.following?(@plant)%> visible btn btn-warning btn-block<%else%> invis <%end%> " title="Favourites">
+      <span>حذف از علاقه ها</span>
+    </a>
+    <% end %>
+
+  </div>
+
+
+  <!--//make post-->
+  <br>
+
+  <% if user_signed_in? and policy(@plant).edit? %>
+  <%= link_to "ویرایش" , edit_plant_path(@plant) , :class => "btn btn-block btn-info" %>
+</br>
+<% end %>
+<dl class="basic make_center">
+
+
+  <% if @plant.latin_name.present? %>
+  <dt><%= @plant.farsi_name%></dt>
+  <dd>نام فارسی</dd>
+  <% end %>
+
+
+  <% if @plant.latin_name.present? %>
+  <dt><%= @plant.latin_name%></dt>
+  <dd>نام لاتین</dd>
+  <% end %>
+
+  <% if @plant.scientific_name.present? %>
+  <dt><%= @plant.scientific_name%></dt>
+  <dd>نام علمی</dd>
+  <% end %>
+
+
+  <% if @plant.family.present? %>
+  <dt><%= @plant.family%></dt>
+  <dd>
+    خانواده
+  </dd>
+  <% end %>
+
+</dl>
+
+<!-- <dl class="user make_center">
+  <div class="widget share">
+    <ul class="boxed">
+      <li class="light">
+        <a href="#" title="Facebook"><i class="ico i-sunning"></i> <span>نور</span></a>
+      </li>
+      <li class="medium">
+        <a href="#" title="Twitter"><i class="ico i-watering"></i> <span>آب</span></a>
+      </li>
+      <li class="dark">
+        <a href="#" title="Twitter"><i class="ico i-watering"></i> <span>دما</span></a>
+      </li>
+    </ul>
+  </div>
+</di> -->
+
+
+
+<dl class="user make_center">
+
+  <dt>
+    <% for x in @plant.min_temp .. @plant.max_temp do %>
+    *
+    <% end %>
+  </dt>
+  <dd style="background: #DC1409;"> دما </dd>
+
+  <dt>
+    <% for x in @plant.min_moisture .. @plant.max_moisture do %>
+    *
+    <% end %>
+  </dt>
+  <dd style="background: rgb(0, 125, 241);"> آب </dd>
+
+  <dt >
+    <% for x in @plant.min_light .. @plant.max_light do %>
+    *
+    <% end %>
+  </dt>
+  <dd style="background: rgb(255, 232, 33);"> نور </dd>
+
+
+  <dt>
+    <div class="difficulty">
+      <% case @plant.hardness %>
+      <% when 1 %>
+      <i class="ico i-easy"></i>
+      <span>آسان</span>
+      <% when 2 %>
+      <i class="ico i-medium"></i>
+      <span>متوسط</span>
+      <% when 3 %>
+      <i class="ico i-hard"></i>
+      <span>سخت</span>
+      <% end%>
+    </div></td>
+    <dd style="background: #FF7B74;">
+      نگهداری
+    </dd>
+
+    <dt ><%=@plant.life_time%> </dt>
+    <dd  style="background: #FF7B74;">طول عمر</dd>
+
+    <dt >تعداد کامنت ها</dt>
+    <dd ><%=@plant.comments.count%></dd>
+
+    <dt >تعداد سوالات</dt>
+    <dd ><%=@plant.posts.count%></dd>
+
+  </dl>
+
+</article>
+<!--//one-third-->
+</div>
+
+</div>
+<!--//pot-->
+
+<!--comments-->
+<div class="comments wow fadeIn animated" id="comments" itemprop="interactionCount" content="UserComments:0">
+  <% if @plant.comments.any? %>
+  <% @plant.comments.each do |cmnt| %>
+  <!--a comment box-->
+  <%= render 'comments/comment' , :cmnt => cmnt %>
+  <% end %>
+
+  <% else %>
+
+  <p class="zerocomments make_right">
+    برای این گیاه نظری داده نشده است، شما اولین نفر باشید:
+  </p>
+  <!-- If comments are open, but there are no comments. -->
+  <% end %>
+
+  <div id="respond" class="comment-respond">
+    <h3 id="reply-title" class="comment-reply-title make_right">
+      نظر بدهید
+    </h3>
+    <div class="container" style="direction: rtl;">
+      <p style="direction: rtl; float: right" class="make_right">
+        <strong class="make_right">توجه:</strong>
+        <small>
+          نظرات کاربران نشان دهنده دیدگاه شخصی نویسنده آنها است، و نه لزوما دیدگاه Gologram، به منظور خود داری از اهانت ، بی تربیتی و بیان مبتذل نظرات مغایر شئونات اخلاقی بدون اطلاع قبلی حذف می شوند.
+        </small>
+      </p>
+
+      <%= render 'comments/form' , {:object => @comment , :commentable => @plant} %>
+
+      <% if not user_signed_in? %>
+      <p class="make_right">
+        شما عضوی از گیاه داران نیستید، برای اینکه نظر بدهید، اینجا عضو شوید:
+      </p>
+      <p>
+        <%= render "devise/registrations/form" , :resource => User.new %>
+        <% end %>
+      </div>
+
+      <input type="hidden" id="ak_js" name="ak_js" value="1441730086571">
+    </form>
+  </div><!-- #respond -->
+</div>
+</section>
+<aside class="sidebar one-fourth wow fadeInRight animated" style="visibility: visible; direction: ltr">
+  <div class="widget nutrition">
+    <h3 class="make_center">
+      اطلاعات تکمیلی گیاه
+    </h3>
+    <table class="make_right">
+      <tbody>
+
+        <tr>
+          <td style="direction:rtl;">
+            <%= @plant.min_height%>سانتی متر
+          </td>
+          <td>
+            حداقل ارتفاع
+          </td>
+        </tr>
+
+        <tr>
+          <td style="direction:rtl;">
+            <%= @plant.max_height%>سانتی متر
+          </td>
+          <td>
+            حداکثر ارتفاع
+          </td>
+        </tr>
+
+        <% if @plant.geo_origin.present? %>
+        <tr>
+          <td style="direction:rtl;">
+            <%= @plant.geo_origin %>
+          </td>
+          <td>خاستگاه جغرافیایی</td>
+        </tr>
+        <% end %>
+
+        <% if @plant.bloom_seasons.any? %>
+        <td style="direction:rtl;">
+          <% @plant.bloom_seasons.each do |bs| %>
+          <%= bs.name %>
+          <% end %>
+        </td>
+        <td>زمان گلدهی</td>
+      </tr>
+
+      <% end %>
+
+      <% if @plant.medical_features.any? %>
+      <td style="direction:rtl;">
+        <% @plant.medical_features.each do |mf| %>
+        <%= mf.name %>
+        <% end %>
+      </td>
+      <td class="">خواص دارویی</td>
+    </tr>
+    <% end %>
+
+  </tbody>
+</table>
+</div>
+
+<% if @followers.present? %>
+<div class="widget members">
+  <h3 class="make_center">افراد دنبال کننده ی این گیاه</h3>
+  <ul class="boxed">
+    <% @followers.first(15).each do |x| %>
+    <li>
+      <div class="avatar">
+        <% prof = User.find(x.follower_id).profile %>
+        <%= link_to profile_path(prof) do %>
+        <%= image_tag prof.profile_photo_url %>
+        <span>
+          <%= prof.first_name %>
+        </span>
+        <% end %>
+      </div>
+    </li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+<!--posts table-->
+<% if @plant.posts.any? %>
+<div class="widget widget-sidebar">
+  <!--cwrap-->
+  <div class="cwrap">
+    <h3 class="make_center" style="direction: rtl;">
+      سوالات و مطالب
+    </h3>
+    <%@plant.posts.order("created_at DESC").each do |pos|%>
+    <ul class="articles_latest">
+      <li style="direction: rtl;">
+        <%=link_to  pos do%>
+        <%if pos.image_url.present?%>
+        <%=image_tag(pos.image_url(:thumb))%>
+        <%else%>
+        <%=image_tag("img11.jpg")%>
+        <%end%>
+        <p class="make_right">
+          <%= pos.user.profile.first_name if pos.user.present?%>:
+        </br>
+        <small>
+          <%= pos.title %>
+        </small>
+      </p>
+      <% end %>
+    </li>
+  </ul>
+  <%end%>
+</div>
+<!--//cwrap-->
+</div>
+<% end %>
+<!--//posts table-->
+
+</aside>
+<!--//right sidebar-->
+</div>
+</div>
 </div> <!--end of main-->

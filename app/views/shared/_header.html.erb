@@ -3,7 +3,7 @@
   <!--wrap-->
   <div class="wrap clearfix">
     <a href="/" class="logo make_center">
-      <%= image_tag "logo.png" , width: "65px"  %>
+      <%= image_tag "logo.png" , width: "75px"  %>
     </a>
 
     <nav class="main-nav" role="navigation" id="menu">
@@ -14,7 +14,7 @@
           </a>
         </li>
         <li>
-          <%= link_to plants_path do %>
+          <%= link_to plants_path(:letter=> "A") do %>
               <span>گیاهان</span>
             <% end %>
         </li>
@@ -76,7 +76,7 @@
           <% end %>
         </li>
         <li class="light">
-        <%= link_to plants_path do %>
+        <%= link_to plants_path(:letter=>"A") do %>
           <!-- <a href="/search" title="Search for recipes"> -->
             <i class="ico i-search"></i>
             <span>جستجو</span>

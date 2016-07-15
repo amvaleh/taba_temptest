@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require wow.min
 //= require ga
+//= require bootstrap.min
 //#= require jquery.flexslider
 //#= require jquery.slicknav.min
 //#= require jquery.uniform.min
@@ -24,6 +25,8 @@
 
 
 $(document).ready(function() {
+
+$("[data-toggle=popover]").popover();
 
 	$('#main_search #query').keyup(function (e) {
 		$.get($("#main_search").attr("action"), $("#main_search").serialize(), null, 'script');
@@ -47,10 +50,43 @@ $(document).ready(function() {
 
 });
 
-    console.log("ss");
+
     $(window).load(function() {
         $('.flexslider').flexslider({
             animation: "slide",
             controlNav: "thumbnails"
         });
     });
+
+
+
+		window.dynamicNumbersBound = false;
+		var wow = new WOW();
+		WOW.prototype.show = function(box) {
+			wow.applyStyle(box);
+			if (typeof box.parentNode !== 'undefined' && hasClass(box.parentNode, 'dynamic-numbers') && !window.dynamicNumbersBound) {
+				bindDynamicNumbers();
+				window.dynamicNumbersBound = true;
+			}
+			return box.className = "" + box.className + " " + wow.config.animateClass;
+		};
+		wow.init();
+
+		function hasClass(element, cls) {
+			return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;
+		}
+		function bindDynamicNumbers() {
+			$('.dynamic-number').each(function() {
+				var startNumber = $(this).text();
+				var endNumber = $(this).data('dnumber');
+				var dynamicNumberControl = $(this);
+
+				$({numberValue: startNumber}).animate({numberValue: endNumber}, {
+					duration: 4000,
+					easing: 'swing',
+					step: function() {
+						$(dynamicNumberControl).text(Math.ceil(this.numberValue));
+					}
+				});
+			});
+		}

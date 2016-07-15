@@ -1,0 +1,2 @@
+module PlantBloomColorsHelper
+end
