@@ -3,7 +3,6 @@
       <% if @post.errors.any? %>
           <div id="error_explanation">
             <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
-
             <ul>
               <% @post.errors.full_messages.each do |message| %>
                   <li><%= message %></li>
@@ -29,7 +28,6 @@
         <%#= f.label :user_id %><br>
         <%#= f.hidden_field :user_id%>
       </div>
-
       <div class="field">
         <p class="make_right">موضوع سوال</p>
         <%= f.text_field :title %>
@@ -43,7 +41,7 @@
         <p class="make_right">یک تصویر برای ارسال
         </p>
         <small class="make_right">
-          (اجباری: برای اینکه سوال شما برای دیگران واضح تر مطرح شود عکسی از موضوع خود انتخاب کنید و در اینجا قرار دهید:)
+          (اختیاری: برای اینکه سوال شما برای دیگران واضح تر مطرح شود عکسی از موضوع خود انتخاب کنید و در اینجا قرار دهید:)
         </small>
         <div id="form1" runat="server">
           <div style="display:table; margin:0 auto; width:50%; height:auto;">

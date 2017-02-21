@@ -16,7 +16,7 @@ class InitialController < ApplicationController
         redirect_to new_user_registration_path , :alert => "شما قبلا ثبت نام نکرده اید، از طریق فورم زیر عضو گلوگرام شوید"
       end
   end
-    
+
   def home
     users = User.order("sign_in_count DESC")
 
@@ -44,7 +44,7 @@ class InitialController < ApplicationController
   def devise_mapping
     @devise_mapping ||= Devise.mappings[:user]
   end
-  
+
   def search
   end
 

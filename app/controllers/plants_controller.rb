@@ -1,7 +1,6 @@
 class PlantsController < ApplicationController
   # before_action :set_plant, only: [:show, :edit, :update, :destroy]
 
-
     before_action :authenticate_user! , :except => [:show, :index,:find]
 
     after_action :verify_authorized, :except => [:index , :show, :follow , :unfollow,:import,:find,:destroy]
@@ -304,7 +303,6 @@ class PlantsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_plant
       @plant = Plant.find_by_farsi_name(params[:id])
-
       @page_title = "گیاه"
       if @plant.present?
         @page_title = @page_title + " " + @plant.farsi_name

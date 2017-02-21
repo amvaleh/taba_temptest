@@ -1,5 +1,6 @@
 class BloomSeasonsController < ApplicationController
   before_action :set_bloom_season, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user! , :except => [:show, :index,:find]
 
   # GET /bloom_seasons
   # GET /bloom_seasons.json
@@ -21,7 +22,7 @@ class BloomSeasonsController < ApplicationController
   # GET /bloom_seasons/1/edit
   def edit
     @plant = Plant.find_by_farsi_name params[:plant]
-    
+
   end
 
   # POST /bloom_seasons

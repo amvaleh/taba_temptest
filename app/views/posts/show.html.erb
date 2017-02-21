@@ -5,16 +5,10 @@
     <!--row-->
     <nav class="breadcrumbs">
       <ul>
-        <li><a href="index.html" title="Home">خانه</a></li>
-        <li><%= link_to @post.plant.latin_name , plant_path(@post.plant.slug)%></li>
-        <li>نوشته</li>
       </ul>
     </nav>
 
     <div class="row">
-      <header class="s-title wow fadeInLeft animated" style="visibility: visible;">
-        <h2 class="make_center"><%= @post.title%></h2>
-      </header>
 
       <!--content-->
       <section class="content three-fourth wow fadeInLeft animated" style="visibility: visible;">
@@ -28,11 +22,11 @@
             </div>
             <div class="avatar">
               <% if @post.user.present? and @post.user.profile.profile_photo.present?%>
-                  <%= link_to profile_path(@post.user.profile) do %>
-                      <%= image_tag( @post.user.profile.profile_photo_url)%>
-                  <% end %>
+              <%= link_to profile_path(@post.user.profile) do %>
+              <%= image_tag( @post.user.profile.profile_photo_url)%>
+              <% end %>
               <% else %>
-                  <%= image_tag "gardener.png" , :class => "white_container" %>
+              <%= image_tag "gardener.png" , :class => "white_container" %>
               <% end %>
             </div>
           </div>
@@ -51,14 +45,14 @@
 
         <div class="comments" id="comments" itemprop="interactionCount" content="UserComments:0">
           <% if @post.comments.any? %>
-              <% @post.comments.each do |cmnt| %>
-                  <!--a comment box-->
-                  <%= render 'comments/comment' , :cmnt => cmnt %>
-              <% end %>
+          <% @post.comments.each do |cmnt| %>
+          <!--a comment box-->
+          <%= render 'comments/comment' , :cmnt => cmnt %>
+          <% end %>
           <% else %>
 
-              <p class="zerocomments make_right">برای این سوال پاسخی داده نشده. شما اولین نفر باشید!</p>
-              <!-- If comments are open, but there are no comments. -->
+          <p class="zerocomments make_right">برای این سوال پاسخی داده نشده. شما اولین نفر باشید!</p>
+          <!-- If comments are open, but there are no comments. -->
           <% end %>
 
           <div id="respond" class="comment-respond">
@@ -75,17 +69,17 @@
 
 
               <% if not user_signed_in? %>
-                  <p class="make_right">
-                    شما عضوی از گیاه داران نیستید، برای اینکه نظر بدهید، اینجا عضو شوید:
-                    </p>
-                  <p>
+              <p class="make_right">
+                شما عضوی از گیاه داران نیستید، برای اینکه نظر بدهید، اینجا عضو شوید:
+              </p>
+              <p>
 
-                  <%= render "devise/registrations/form" , :resource => User.new %>
+                <%= render "devise/registrations/form" , :resource => User.new %>
 
-              <% end %>
-            </div>
+                <% end %>
+              </div>
 
-            <input type="hidden" id="ak_js" name="ak_js" value="1441730086571">
+              <input type="hidden" id="ak_js" name="ak_js" value="1441730086571">
             </form>
           </div><!-- #respond -->
 
@@ -98,31 +92,31 @@
         <!--<p class="make_bold" style="color:#f4716a;">نظرات کاربران</p>-->
 
         <!--<%= form_for(@comment) do |f| %>-->
-            <!--<% if @comment.errors.any? %>-->
-                <!--<div id="error_explanation">-->
-                <!--<h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>-->
+        <!--<% if @comment.errors.any? %>-->
+        <!--<div id="error_explanation">-->
+        <!--<h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>-->
 
-                <!--<ul>-->
-                <!--<% @comment.errors.full_messages.each do |message| %>-->
-                    <!--<li><%= message %></li>-->
-                    <!--<% end %>-->
-                <!--</ul>-->
-                <!--</div>-->
-                <!--<% end %>-->
+        <!--<ul>-->
+        <!--<% @comment.errors.full_messages.each do |message| %>-->
+        <!--<li><%= message %></li>-->
+        <!--<% end %>-->
+        <!--</ul>-->
+        <!--</div>-->
+        <!--<% end %>-->
 
-            <!--<div class="field">-->
-            <!--<%= f.hidden_field :commentable_id , :value => @post.id %>-->
-            <!--</div>-->
-            <!--<div class="field">-->
-            <!--<%= f.hidden_field :commentable_type  , :value =>"Post"%>-->
-            <!--</div>-->
-            <!--<div class="field  make_center">-->
-            <!--<%= f.text_area :content %>-->
-            <!--</div>-->
-            <!--<div class="actions">-->
-            <!--<%= f.submit  'ثبت نظر' , :class=>"cm_bt button" %>-->
-            <!--</div>-->
-            <!--<% end %>-->
+        <!--<div class="field">-->
+        <!--<%= f.hidden_field :commentable_id , :value => @post.id %>-->
+        <!--</div>-->
+        <!--<div class="field">-->
+        <!--<%= f.hidden_field :commentable_type  , :value =>"Post"%>-->
+        <!--</div>-->
+        <!--<div class="field  make_center">-->
+        <!--<%= f.text_area :content %>-->
+        <!--</div>-->
+        <!--<div class="actions">-->
+        <!--<%= f.submit  'ثبت نظر' , :class=>"cm_bt button" %>-->
+        <!--</div>-->
+        <!--<% end %>-->
         <!--</div>-->
         <!--<div class="comments">-->
         <!--<br>-->
@@ -144,14 +138,16 @@
               <%# if signed_in? and has_auth_post(@post)%>
 
               <%  if policy(@post).edit? %>
-                  <%= link_to 'ویرایش سوال', edit_post_path(@post , :plant_id=> @post.plant_id) , :class=>"button" %>
+              <%= link_to 'ویرایش سوال', edit_post_path(@post , :plant_id=> @post.plant_id) , :class=>"button" %>
               <%end%>
               <% if policy(@post).destroy? %>
-                  <%= link_to 'حذف سوال', @post, method: :delete, data: { confirm: 'آیا از این کار اطمینان دارید؟' }, class: "button" %>
+              <%= link_to 'حذف سوال', @post, method: :delete, data: { confirm: 'آیا از این کار اطمینان دارید؟' }, class: "button" %>
               <% end %>
               <br>
               <br>
-              <%= link_to "برو به صفحه گیاه" , plant_path(@post.plant.latin_name) %>
+              <% if @post.plant.present? %>
+              <%= link_to "برو به صفحه گیاه" , plant_path(@post.plant.farsi_name) %>
+              <% end %>
             </div>
           </li>
 
@@ -327,61 +323,62 @@
               <h5>سوالات اخیر</h5>
               <ul class="articles_latest" style="direction: rtl">
                 <% Post.order("created_at DESC").first(10).each do |post| %>
-                    <li>
-                      <%= link_to post_path(post) do %>
-                          <%= image_tag post.image_url(:thumb) , :alt => post.title , :class=>"pull-right" %>
-                          <!--<img src="http://www.themeenergy.com/themes/wordpress/social-chef/wp-content/uploads/2014/11/cake-97998_1280-150x150.jpg" alt="Top 20 rustic fruit pie recipes">-->
-                          <h6 class="make_right">
-                            <%= post.title %>
-                          </h6>
-                      <% end %>
-                    </li>
+                <li>
+                  <%= link_to post_path(post) do %>
+                  <% if post.plant.present? %>
+                    <%= image_tag post.plant.avatars.first.url(:thumb) , :alt => post.title , :class=>"pull-right" %>
+                  <% end %>
+                  <h6 class="make_right">
+                    <%= post.title %>
+                  </h6>
+                  <% end %>
+                </li>
                 <% end %>
               </ul>
             </div>
             <!--//cwrap-->
           </li><li class="widget widget-sidebar">
-          <div class="textwidget">
-            <a href="themeforest.net/item/socialchef-social-recipe-wordpress-theme/6786673?ref=themeenergy" style="margin:0  -20px;float:left;">
-              <img src="http://www.themeenergy.com/themes/wordpress/social-chef/wp-content/uploads/2015/01/banner.png"></a>
-          </div>
-        </li>
-        </ul>
-      </aside>
-      <!--//content-->
+            <div class="textwidget">
+              <a href="themeforest.net/item/socialchef-social-recipe-wordpress-theme/6786673?ref=themeenergy" style="margin:0  -20px;float:left;">
+                <img src="http://www.themeenergy.com/themes/wordpress/social-chef/wp-content/uploads/2015/01/banner.png"></a>
+              </div>
+            </li>
+          </ul>
+        </aside>
+        <!--//content-->
 
 
 
+      </div>
+      <!--//row-->
     </div>
-    <!--//row-->
-  </div>
 
-  <!--comments-->
+    <!--comments-->
 
-  <!--//wrap-->
-</main>
-<!--//main-->
+    <!--//wrap-->
+  </main>
+  <!--//main-->
 
 
-<!--//comments-->
+  <!--//comments-->
 
 
-<!--<p>-->
-<!--<strong>User:</strong>-->
-<!--<%= @post.user_id %>-->
-<!--</p>-->
+  <!--<p>-->
+  <!--<strong>User:</strong>-->
+  <!--<%= @post.user_id %>-->
+  <!--</p>-->
 
-<!--<p>-->
-<!--<strong>Planter:</strong>-->
-<!--<%= @post.plant_id %>-->
-<!--</p>-->
+  <!--<p>-->
+  <!--<strong>Planter:</strong>-->
+  <!--<%= @post.plant_id %>-->
+  <!--</p>-->
 
-<!--<p>-->
-<!--<strong>Title:</strong>-->
-<!--<%= @post.title %>-->
-<!--</p>-->
+  <!--<p>-->
+  <!--<strong>Title:</strong>-->
+  <!--<%= @post.title %>-->
+  <!--</p>-->
 
-<!--<p>-->
-<!--<strong>Content:</strong>-->
-<!--<%= @post.content %>-->
-<!--</p>-->
+  <!--<p>-->
+  <!--<strong>Content:</strong>-->
+  <!--<%= @post.content %>-->
+  <!--</p>-->

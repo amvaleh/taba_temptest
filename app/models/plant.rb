@@ -53,6 +53,4 @@ class Plant < ActiveRecord::Base
   # extend FriendlyId
   # friendly_id :farsi_name, use: :slugged
 
-
-
 end

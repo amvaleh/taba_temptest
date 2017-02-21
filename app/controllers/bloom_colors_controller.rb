@@ -1,6 +1,7 @@
 class BloomColorsController < ApplicationController
   before_action :set_bloom_color, only: [:show, :edit, :update, :destroy]
 
+
   # GET /bloom_colors
   # GET /bloom_colors.json
   def index
