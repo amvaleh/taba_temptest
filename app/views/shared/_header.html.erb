@@ -33,13 +33,21 @@
         <li>
           <%= link_to services_initial_index_path  do %> <span>خدمات</span> <% end %>
           <ul>
-            <li><%=link_to "پشتیبانی گلینو", services_initial_index_path(:section=>1) , :class=>"make_right"%></li>
+            <li><%=link_to "پشتیبانی گلوگرام", services_initial_index_path(:section=>1) , :class=>"make_right"%></li>
             <li><%=link_to "فروش گل و گیاه و محصولات جانبی", services_initial_index_path(:section=>2) , :class=>"make_right"%></li>
             <li><%=link_to "خدمات باغیار", services_initial_index_path(:section=>3) , :class=>"make_right"%></li>
             <li><%=link_to "گلوگرافی", services_initial_index_path(:section=>4) , :class=>"make_right"%></li>
-            <li><%=link_to "تبلیغات", services_initial_index_path(:section=>5) , :class=>"make_right"%></li>
           </ul>
         </li>
+
+        <li>
+          <%=link_to services_initial_index_path(:section=>6) do %>
+          <span>
+            تماس با ما
+          </span>
+          <% end %>
+        </li>
+
 
         <li>
         </li>

@@ -27,6 +27,7 @@ class InitialController < ApplicationController
       end
     end
 
+    @plants, @alphaParams = Plant.alpha_paginate(params[:letter], {db_mode: true, :bootstrap3=> true, :default_field=> 'A' , :pagination_class => "categories"  , db_field: "latin_name"})
   end
 
   def shop

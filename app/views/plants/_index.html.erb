@@ -1,3 +1,4 @@
+<!--<p id="notice"><%#= notice %></p>-->
 <div class="wrap clearfix">
 
   <div class="row">
@@ -61,12 +62,16 @@
               <% end %>
             </tbody>
           </table>
-
           <br>
           <% end %>
         </div>
 
-    <h1 style="text-align: center;">جستجو بر اساس حروف الفبا</h1>
+        <header class="s-title">
+
+          <h2 class="make_center garden_title">
+            پایگاه گیاهان
+          </h2>
+        </header>
 
     <div class="row">
 
@@ -114,7 +119,7 @@
 
       <div id="pagination_table" class="landing">
         <% @plants.each do |p| %>
-        <%= render 'sample' , :p => p %>
+        <%= render 'plants/sample' , :p => p %>
         <% end %>
       </div>
     </section>
@@ -127,7 +132,6 @@
         برگرد بالا
       </a>
     </div>
-    <!-- </div> -->
 
   </div>
 </div>
