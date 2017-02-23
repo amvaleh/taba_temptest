@@ -4,8 +4,9 @@ Rails.application.routes.draw do
   devise_scope :user do
     root :to =>"initial#home"
   end
-  devise_for :admin_users, ActiveAdmin::Devise.config
-  ActiveAdmin.routes(self)
+  
+  # devise_for :admin_users, ActiveAdmin::Devise.config
+  # ActiveAdmin.routes(self)
 
   resources :plant_physical_structures
 
