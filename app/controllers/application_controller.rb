@@ -11,7 +11,7 @@ require 'carrierwave/orm/activerecord'
 
 	# before_action :authenticate_user!
 
-	include Authenticable
+	# include Authenticable
 	include SimpleCaptcha::ControllerHelpers
 	include Pundit
 	protect_from_forgery

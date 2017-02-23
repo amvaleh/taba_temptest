@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  devise_for :users, controllers: { registrations: 'user_registrations' }
+  devise_scope :user do
+    root :to =>"initial#home"
+  end
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
 
   resources :plant_physical_structures
 
@@ -73,23 +79,16 @@ Rails.application.routes.draw do
 
   get 'store/show'
 
-  devise_for :users, controllers: { registrations: 'user_registrations' }
-  devise_scope :user do
-    root :to =>"initial#home"
-  end
 
 
-  require 'api_constraints'
-  namespace :api, defaults: {format: 'json'} do
-    scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
-      resources :planters
-      resources :gardens
-      resources :profiles
-      resources :users, :only => [:show, :create, :update, :destroy]
-      resources :sessions, :only => [:create , :destroy]
-    end
-    scope module: :v2, constraints: ApiConstraints.new(version: 2) do
-      resources :planters
+  namespace :api do
+    namespace :v1 do
+      resources :probes do
+        collection do
+          post :process
+          get :process
+        end
+      end
     end
   end
   resources :comments
@@ -247,8 +246,7 @@ Rails.application.routes.draw do
   #compare
   #
 
-
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  mount RailsAdmin::Engine => '/RailsAdmin', as: 'rails_admin'
   mount Shoppe::Engine => "/store"
 
   match "/compare/new" => "compare#add_object", :as => 'add_object' , :via => :get
