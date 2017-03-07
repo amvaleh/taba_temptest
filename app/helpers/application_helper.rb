@@ -4,13 +4,13 @@ module ApplicationHelper
   private
 
 
-	def can_edit
-		@profile.user == current_user
-	end
+  def can_edit
+    @profile.user == current_user
+  end
 
-	def has_auth(comment)
-		current_user == comment.user
-	end
+  def has_auth(comment)
+    current_user == comment.user
+  end
 
   def has_auth_post(post)
     current_user.id == post.user_id
@@ -145,6 +145,18 @@ module ApplicationHelper
 
   def count_children(cat)
     cat.products.includes(:default_image, :product_categories, :variants).active.count
+  end
+
+  def images_tag(array_of_images, options={})
+    images = []
+    if array_of_images.is_a? Array
+      array_of_images.each do |image|
+        images << image_tag(image, size: options[:size], class: options[:class])
+      end
+    else
+      images << image_tag(array_of_images, size: options[:size], class: options[:class])
+    end
+    content_tag :div, images.join("\n").html_safe
   end
 
 

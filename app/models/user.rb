@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   has_many :comments , :dependent => :destroy
   has_many :posts , :dependent => :destroy
   has_many :bluetooth_devices
+
   acts_as_voter
 
   acts_as_follower
@@ -20,8 +21,6 @@ class User < ActiveRecord::Base
   def admin?
     self.role == 1
   end
-
-
 
   # before_create :generate_authentication_token!
 

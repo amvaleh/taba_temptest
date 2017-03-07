@@ -132,11 +132,8 @@
           <li class="widget make_center">
             <div class="cwrap make_center">
               <h5 class="make_center">
-                بازدید ها
+                اطلاعات
               </h5>
-
-              <%# if signed_in? and has_auth_post(@post)%>
-
               <%  if policy(@post).edit? %>
               <%= link_to 'ویرایش سوال', edit_post_path(@post , :plant_id=> @post.plant_id) , :class=>"button" %>
               <%end%>

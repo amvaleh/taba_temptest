@@ -23,7 +23,6 @@
             </div>
             <div class="one-half pull-left">
       <% end %>
-
       <div class="field">
         <%#= f.label :user_id %><br>
         <%#= f.hidden_field :user_id%>
@@ -45,7 +44,7 @@
         </small>
         <div id="form1" runat="server">
           <div style="display:table; margin:0 auto; width:50%; height:auto;">
-            <img id="blah" src="/assets/default_plant.png" alt="your image" />
+            <img id="blah" src="/assets/new_profile.jpg" alt="your image" />
             <%= f.file_field :image , :id=>"imgInp"%>
           </div>
         </div>
@@ -82,7 +81,6 @@
             reader.readAsDataURL(input.files[0]);
         }
     }
-
     $("#imgInp").change(function(){
         readURL(this);
     });

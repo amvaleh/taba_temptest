@@ -1,12 +1,50 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    resources :users
+    resources :admin_users
+    resources :bloom_colors
+    resources :bloom_seasons
+    resources :bluetooth_devices
+    resources :comments
+    resources :data_logs
+    resources :epidemics
+    resources :fa_alphabets
+    resources :follows
+    resources :gardens
+    resources :leaf_colors
+    resources :leaf_shapes
+    resources :medical_features
+    resources :nutritions
+    resources :pests
+    resources :physical_structures
+    resources :plants
+    resources :plant_bloom_colors
+    resources :plant_epidemics
+    resources :plant_leaf_colors
+    resources :plant_leaf_shapes
+    resources :plant_medical_features
+    resources :plant_nutritions
+    resources :plant_pests
+    resources :plant_physical_structures
+    resources :plant_propagations
+    resources :plant_soils
+    resources :planter_galleries
+    resources :posts
+    resources :profiles
+    resources :propagations
+    resources :seasons
+    resources :soils
+    resources :survey_ideas
+    resources :waterings
+
+    root to: "users#index"
+  end
+
   devise_for :users, controllers: { registrations: 'user_registrations' }
   devise_scope :user do
     root :to =>"initial#home"
   end
-  
-  # devise_for :admin_users, ActiveAdmin::Devise.config
-  # ActiveAdmin.routes(self)
 
   resources :plant_physical_structures
 
@@ -247,7 +285,7 @@ Rails.application.routes.draw do
   #compare
   #
 
-  mount RailsAdmin::Engine => '/RailsAdmin', as: 'rails_admin'
+  # mount RailsAdmin::Engine => '/RailsAdmin', as: 'raxils_admin'
   mount Shoppe::Engine => "/store"
 
   match "/compare/new" => "compare#add_object", :as => 'add_object' , :via => :get

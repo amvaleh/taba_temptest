@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
-gem 'activeadmin', github: 'activeadmin'
+# gem 'activeadmin', github: 'activeadmin'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
@@ -30,7 +30,7 @@ gem 'acts_as_votable', '~> 0.10.0'
 # gem 'kaminari'
 gem 'alphabetical_paginate'
 
-gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
+# gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
 
 #my additional gem
 # gem 'bootstrap-sass', '~> 3.3.4'
@@ -56,7 +56,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'haml'
 gem 'nifty-attachments'
 gem 'friendly_id', '~> 5.1.0'
-
+# gem "administrate", "~> 0.3.0"
+gem 'administrate', git: 'https://github.com/thoughtbot/administrate.git'
+# gem 'administrate-field-carrierwave', '~> 0.0.2'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

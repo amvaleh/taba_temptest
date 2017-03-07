@@ -12,3 +12,4 @@ Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.precompile += %w( appshopstyle.css )
 Rails.application.config.assets.precompile += %w( appstoration.js )
 Rails.application.config.assets.precompile += %w( alphabetical_paginate.js )
+Rails.application.config.assets.precompile += %w( g1 )
