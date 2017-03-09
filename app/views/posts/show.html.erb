@@ -7,14 +7,11 @@
       <ul>
       </ul>
     </nav>
-
     <div class="row">
-
       <!--content-->
       <section class="content three-fourth wow fadeInLeft animated" style="visibility: visible;">
         <!--blog entry-->
         <article class="post single">
-
           <div class="entry-meta">
             <div class="date">
               <span class="day"><%=@post.created_at.day%></span>
@@ -37,10 +34,9 @@
             </div>
             <div class="entry-content">
               <p class="make_right"><%=@post.title%></p>
-              <p class="make_right"><%=@post.content%></p>
+              <%= simple_format @post.content, class: "simple_format_fa" %>
             </div>
           </div>
-
         </article>
 
         <div class="comments" id="comments" itemprop="interactionCount" content="UserComments:0">
@@ -323,7 +319,7 @@
                 <li>
                   <%= link_to post_path(post) do %>
                   <% if post.plant.present? %>
-                    <%= image_tag post.plant.avatars.first.url(:thumb) , :alt => post.title , :class=>"pull-right" %>
+                  <%= image_tag post.plant.avatars.first.url(:thumb) , :alt => post.title , :class=>"pull-right" %>
                   <% end %>
                   <h6 class="make_right">
                     <%= post.title %>

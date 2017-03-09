@@ -158,6 +158,10 @@ module ApplicationHelper
     end
     content_tag :div, images.join("\n").html_safe
   end
+  
+  def nl2br(s)
+    s.gsub(/\n/, '<br>')
+  end
 
 
 end
