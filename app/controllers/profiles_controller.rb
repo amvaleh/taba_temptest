@@ -6,15 +6,13 @@ class ProfilesController < ApplicationController
 
   def my_devices
     @tempeople = Profile.all.where.not(user_id: current_user.id).first(3)
-
     respond_to do |format|
       format.js
     end
-
   end
 
   def my_gardens
-    @planters = @profile.user.following_by_type('Planter')
+    @plants = @profile.user.following_by_type('Plant')
     respond_to do |format|
       format.js
     end
@@ -37,7 +35,11 @@ class ProfilesController < ApplicationController
   # GET /profiles
   # GET /profiles.json
   def index
-    @profiles = Profile.all
+    if current_user.role == 1
+      @profiles = Profile.all
+    else
+      redirect_to root_path , :notice => "عدم دسترسی مجاز."
+    end
   end
 
   # GET /profiles/1
@@ -45,12 +47,6 @@ class ProfilesController < ApplicationController
   def show
     @garden = Garden.new
     @plant = Plant.new
-
-    @plants_count = 0
-
-    current_user.profile.gardens.each do |g|
-      @plants_count += g.plants.count
-    end
 
   end
 
@@ -84,16 +80,16 @@ class ProfilesController < ApplicationController
   # PATCH/PUT /profiles/1
   # PATCH/PUT /profiles/1.json
   def update
-   if params[:profile][:remove_profile_photo] == "1"
-    @profile.remove_profile_photo = nil
-    @profile.save
-   end
-   if params[:profile][:remove_cover_photo] == "1"
-    @profile.remove_cover_photo = nil
-    @profile.save
-   end
+    if params[:profile][:remove_profile_photo] == "1"
+      @profile.remove_profile_photo = nil
+      @profile.save
+    end
+    if params[:profile][:remove_cover_photo] == "1"
+      @profile.remove_cover_photo = nil
+      @profile.save
+    end
 
-   profile_params[:user_id] = current_user.id
+    profile_params[:user_id] = current_user.id
 
     respond_to do |format|
       if @profile.update(profile_params)
@@ -117,22 +113,22 @@ class ProfilesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_profile
-      @profile = Profile.friendly.find(params[:id])
-      if @profile.gender == 0
+  # Use callbacks to share common setup or constraints between actions.
+  def set_profile
+    @profile = Profile.friendly.find(params[:id])
+    if @profile.gender == 0
       @page_title = "آقای"
-      else
-        @page_title = "خانم"
-      end
-      if @profile.present?
-        @page_title = @page_title + " " + @profile.first_name + " " + @profile.last_name
-      end
+    else
+      @page_title = "خانم"
     end
+    if @profile.present?
+      @page_title = @page_title + " " + @profile.first_name + " " + @profile.last_name
+    end
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def profile_params
-      params.require(:profile).permit(:user_id, :profile_photo, :cover_photo ,
-       :first_name , :last_name , :gender , :remove_cover_photo , :remove_profile_photo,:full_name, :mobile_number,:id)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def profile_params
+    params.require(:profile).permit(:user_id, :profile_photo, :cover_photo ,
+    :first_name , :last_name , :gender , :remove_cover_photo , :remove_profile_photo,:full_name, :mobile_number,:id)
+  end
 end

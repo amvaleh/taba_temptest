@@ -61,7 +61,7 @@ class PlantsController < ApplicationController
         end
 
         respond_to do |format|
-          format.html { redirect_to @plant , notice: 'این باغ به علاقه های شما اضافه شد' }
+          format.html { redirect_to @plant , notice: 'این گیاه به گیاهان شما اضافه شد.' }
           format.json { render :show, status: :created, location: @plant }
           format.js
         end
@@ -71,7 +71,7 @@ class PlantsController < ApplicationController
       def unfollow
         current_user.stop_following(@plant)
         respond_to do |format|
-          format.html { redirect_to @plant , notice: 'این باغ از علاقه های شما حذف شد' }
+          format.html { redirect_to @plant , notice: 'این گیاه از گیاهان شما حذف شد.' }
           format.js
         end
       end

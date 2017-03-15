@@ -1,58 +1,15 @@
-<div class="entries row">
+<div class="row">
   <!--item-->
   <section class="content center full-width wow fadeIn animated" style="visibility: visible">
-    <% @planters.each do |p| %>
-        <div class="entry one-third" id=<%=p.id%> >
-          <figure>
-            <!-- <img src="/assets/img7.jpg" alt=""> -->
-            <%= image_tag p.image_1.url %>
-            <figcaption>
-              <!-- <a href="http://www.themeenergy.com/themes/html/social-chef/recipe.html"> -->
-              <%= link_to planter_path(p) do  %>
-                  <i class="ico i-view"></i> <span><%= p.name %></span>
-              <%end%>
-            </figcaption>
-          </figure>
-          <div class="container make_right">
-            <h2>
-              <%= link_to planter_path(p) do %>
-                  <%= p.name %>:
-                  <%= p.brief_desc %>
-              <% end %>
-            </h2>
-
-            <div class="actions">
-              <div>
-                <div class="difficulty">
-                  <!--<i class="ico i-easy"></i>-->
-                  <!--<a href="http://www.themeenergy.com/themes/html/social-chef/my_profile.html#">easy</a>-->
-                  <a href="/planters/<%=p.latin_name%>/follow" class="btn btn-success btn-xs <% if current_user.following?(p)%> invis <%else%> visible <%end%>" data-remote="true" id="follow_butt">
-                    <i class="">دنبال کن</i>
-                  </a>
-
-                  <a href="/planters/<%=p.latin_name%>/unfollow" class="btn btn-link btn-xs <% if current_user.following?(p)%> visible <%else%> invis <%end%>" data-remote="true"  id="unfollow_butt">
-                    <i class="">دنبال نکن</i>
-                  </a>
-                </div>
-                <div class="likes">
-                  <i class="ico i-likes"></i>
-                  <%= Follow.where(:followable_type => "Planter" , :followable_id => p.id).count %>
-                </div>
-                <div class="comments">
-                  <i class="ico i-comments"></i>
-                  <%= link_to planter_path(p) do %>
-                      <i> <%= p.comments.count %> </i>
-                  <% end %>
-                  <!-- <a href="http://www.themeenergy.com/themes/html/social-chef/recipe.html#comments">27</a> -->
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+    <% @plants.each do |p| %>
+    <%= render 'plants/sample' , :p => p %>
+    <% end %>
+    <% if @plants.count == 0 %>
+    <p>
+      هنوز
+      گیاهی وجود ندارد
+    </p>
     <% end %>
   </section>
-
-  <!--  -->
-
   <!--//content-->
 </div>

@@ -18,6 +18,13 @@
               <span>گیاهان</span>
             <% end %>
         </li>
+        <li>
+          <%= link_to posts_path do %>
+              <span>
+                بلاگ
+              </span>
+            <% end %>
+        </li>
         <!-- <li>
           <%= link_to store_show_path do  %>
               <span>فروشگاه</span>
@@ -39,7 +46,6 @@
             <li><%=link_to "گلوگرافی", services_initial_index_path(:section=>4) , :class=>"make_right"%></li>
           </ul>
         </li>
-
         <li>
           <%=link_to services_initial_index_path(:section=>6) do %>
           <span>

@@ -146,11 +146,13 @@
     <% if user_signed_in? %>
     <br>
     <a href="/plants/<%=@plant.farsi_name%>/follow" class="<% if current_user.following?(@plant)%> invis <%else%> visible btn btn-success btn-block <%end%> " title="Favourites">
-      <span>اضافه به علاقه ها</span>
+      <span>من این گل را دارم</span>
     </a>
 
     <a href="/plants/<%=@plant.farsi_name%>/unfollow" class="<% if current_user.following?(@plant)%> visible btn btn-warning btn-block<%else%> invis <%end%> " title="Favourites">
-      <span>حذف از علاقه ها</span>
+      <span>
+        دیگر این گل را ندارم
+      </span>
     </a>
     <% end %>
 

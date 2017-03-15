@@ -45,7 +45,7 @@
             <% end %>
           </div>
 
-          <div class="container make_center">
+          <!-- <div class="container make_center">
             <h2><%= @profile.first_name%></h2>
             <% if can_edit %>
                 <%= link_to "ساخت باغچه", new_garden_path , :class => "button btn" %>
@@ -53,7 +53,7 @@
             <% end %>
             </br>
             </br>
-          </div>
+          </div> -->
 
           <div class="container">
                 <%= link_to "همه گیاهان" , plants_path , :class => "btn btn-block btn-green" %>
@@ -78,12 +78,10 @@
             <ul>
               <li class="" style="direction: rtl;">
                 <%if current_user==@profile.user%>
-                    <%= link_to raw('اطلاعات من'), about_me_profile_path(@profile.user), :class => 'make_bold', :remote => true, :title => 'about_me', :id => "about_me2" %>
+                    <%= link_to raw('اطلاعات من'), about_me_profile_path(@profile), :class => 'make_bold', :remote => true, :title => 'about_me', :id => "about_me2" %>
                 <% else %>
-
-                    <%= link_to raw("اطلاعات #{@profile.first_name}"), about_me_profile_path(@profile.user), :class => 'make_bold', :remote => true, :title => 'about_me', :id => "about_me2" %>
+                    <%= link_to raw("اطلاعات #{@profile.first_name}"), about_me_profile_path(@profile), :class => 'make_bold', :remote => true, :title => 'about_me', :id => "about_me2" %>
                 <% end %>
-
               </li>
               <% if current_user.role == 1 %>
               <li class="" style="direction: rtl;">
@@ -92,13 +90,13 @@
 
               <!-- <li class="active"><a href="http://www.themeenergy.com/themes/html/social-chef/my_profile.html#about" title="About me">درباره ی من</a></li>
                -->
-              <!--<li class="">-->
-                <!--<% if current_user == @profile.user %>-->
-                    <!--<%= link_to raw('گیاهان مورد علاقه'), my_gardens_profile_path(@profile.user), :class => 'make_bold', :remote => true, :title => 'my gardens', :id => "gardens" %>-->
-                <!--<% else %>-->
-                    <!--<%= link_to raw('اطلاعات باغچه هایش'), my_gardens_profile_path(@profile.user), :class => 'make_bold', :remote => true, :title => 'my gardens', :id => "gardens" %>-->
-                <!--<% end %>-->
-              <!--</li>-->
+              <li class="">
+                <% if current_user == @profile.user %>
+                    <%= link_to raw('گل های من'), my_gardens_profile_path(current_user.profile), :class => 'make_bold', :remote => true, :title => 'my gardens', :id => "gardens" %>
+                <% else %>
+                    <%= link_to raw('گل های او'), my_gardens_profile_path(@profile), :class => 'make_bold', :remote => true, :title => 'my gardens', :id => "gardens" %>
+                <% end %>
+              </li>
               <!--<li class="">-->
                 <!--<% if current_user == @profile.user %>-->
                     <!--<%= link_to raw('گل ُگرافی'), my_devices_profile_path(@profile.user), :class => 'make_bold', :remote => true, :title => 'my flowers', :id => "flowers" %>-->
@@ -125,51 +123,50 @@
           <div class="tab-content" id="about" style="display: block; direction: rtl;">
             <div class="row">
               <dl class="basic two-third">
-
-
-                <dt style="text-align:center"><span>نام</span></dt>
+                <dt style="text-align:center">
+                  <span>نام</span>
+                </dt>
                 <dd ><%= @profile.first_name%></dd>
                 <dt style="text-align:center" > <span>
                   نام خانوادگی
                 </span>
                 </dt>
                 <dd><%= @profile.last_name%></dd>
-                <!--<dt class="make_center">-->
-                  <!--گیاهان مورد علاقه-->
-                <!--</dt>-->
-                <!--<dd>Blender, sharp knife</dd>-->
                 <dt class="make_center">
                   تعداد سوالات پرسیده
                 </dt>
-                <dd><%= current_user.posts.count %></dd>
-                <dt class="make_center">رتبه بین کاربران</dt>
-                <dd>۰</dd>
-                <dt class="make_center">تعداد گیاهان</dt>
+                <dd><%= @profile.user.posts.count %></dd>
+                <dt class="make_center">
+                  تعداد پاسخ ها و نظرات
+                </dt>
+                <dd><%= @profile.user.comments.count %></dd>
+                <!-- <dt class="make_center">رتبه بین کاربران</dt>
                 <dd>
-                  <%= @plants_count %>
-                </dd>
+                  ۰</dd> -->
                 <dt class="make_center">
                   گجت های فعال 
                 </dt>
                 <dd>
-                    <%= current_user.bluetooth_devices.active.count %>
+                    ...
+                </dd>
+                <dt class="make_center">
+                  گل هایی که دارد
+                 </dt>
+                <dd>
+                  <%= @profile.user.following_by_type('Plant').count %>
                 </dd>
               </dl>
-
               <div class="one-third">
                 <ul class="boxed gold">
                   <li class="light">
-                    <!--<a href="http://www.themeenergy.com/themes/html/social-chef/my_profile.html#" title="Best recipe">-->
                     <%= link_to "" do %>
                         <i class="ico i-simpleflower"></i>
                     <span>
                       گیاه جدید من
                     </span>
                     <% end %>
-                    <!--</a>-->
                   </li>
                   <li class="medium">
-                    <!--<a href="http://www.themeenergy.com/themes/html/social-chef/my_profile.html#" title="Was featured">-->
                     <%= link_to "" do %>
                         <i class="ico i-watering"></i>
                         <span>آب دهی</span>
@@ -184,14 +181,12 @@
 
                     <% end %>
                   </li>
-
                   <li class="medium">
                     <%= link_to "#" do %>
                         <i class="ico i-ghonche"></i>
                         <span>غنچه نو</span>
                     <% end %>
                   </li>
-
                   <li class="dark">
                     <%= link_to "#" do %>
                         <i class="ico i-sunning"></i>
@@ -206,7 +201,6 @@
                         </span>
                     <% end %>
                   </li>
-
                   <li class="dark">
                     <%= link_to "#" do %>
                         <i class="ico i-gheichi"></i>
@@ -237,7 +231,7 @@
           <div class="tab-content" id="about_me" >
           </div>
 
-          <div class="tab-content" id="my_gardens" >
+          <div class="tab-content" id="my_gardens" style="display: block;" >
           </div>
 
           <div class="tab-content" id="my_accounts" >
