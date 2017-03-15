@@ -434,35 +434,6 @@
           <!--//my posts-->
         </div>
       </div>
-      <div class="entry">
-        <% @profile.gardens.each do |k|  %>
-            <div class = "cwrap gardens_box wow zoomIn animated entry" >
-              <% if can_edit %>
-                  <small class="right">
-                    <%= link_to 'تنظیمات', edit_garden_path(k) , :class=>"btn btn-default btn-xs"%> |
-                    <%= link_to 'حذف باغچه', garden_path(k), :class=>"btn btn-warning btn-xs", method: :delete, data: { confirm: 'Are you sure?' }%>
-                  </small>
-                  <small class="left">
-                    <%= link_to " گل جدید", new_plant_path(garden_id: k) , :class => "btn btn-default btn-xs" %>
-                  </small>
-              <% end %>
-
-              <p style="text-align: center;">
-                گیاهان حاضر در باغچه
-                &nbsp;
-              <span class="garden_name">
-                <%= link_to k.name , k %>
-                <br>
-              </span>
-              </p>
-              <!---->
-              </br>
-              <% k.plants.each do |p| %>
-                  <%= render 'plants/sample' , :p => p %>
-              <% end %>
-            </div>
-        <% end %>
-      </div>
       <!--//row-->
     </section>
 
