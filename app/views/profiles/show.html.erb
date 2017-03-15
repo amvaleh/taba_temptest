@@ -83,13 +83,6 @@
                     <%= link_to raw("اطلاعات #{@profile.first_name}"), about_me_profile_path(@profile), :class => 'make_bold', :remote => true, :title => 'about_me', :id => "about_me2" %>
                 <% end %>
               </li>
-              <% if current_user.role == 1 %>
-              <li class="" style="direction: rtl;">
-              </li>
-                  <% end %>
-
-              <!-- <li class="active"><a href="http://www.themeenergy.com/themes/html/social-chef/my_profile.html#about" title="About me">درباره ی من</a></li>
-               -->
               <li class="">
                 <% if current_user == @profile.user %>
                     <%= link_to raw('گل های من'), my_gardens_profile_path(current_user.profile), :class => 'make_bold', :remote => true, :title => 'my gardens', :id => "gardens" %>
