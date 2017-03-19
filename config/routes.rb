@@ -37,6 +37,8 @@ Rails.application.routes.draw do
     resources :soils
     resources :survey_ideas
     resources :waterings
+    resources :probes
+    resources :records
 
     root to: "users#index"
   end

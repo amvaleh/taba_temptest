@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   has_many :comments , :dependent => :destroy
   has_many :posts , :dependent => :destroy
   has_many :bluetooth_devices
+  has_many :probes
 
   acts_as_voter
 

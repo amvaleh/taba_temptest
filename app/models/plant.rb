@@ -49,6 +49,7 @@ class Plant < ActiveRecord::Base
   has_many :bloom_seasons
 
   has_many :waterings
+  has_many :probes
   #
   # extend FriendlyId
   # friendly_id :farsi_name, use: :slugged
