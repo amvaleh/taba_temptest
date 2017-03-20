@@ -32,6 +32,7 @@ class RecordDashboard < Administrate::BaseDashboard
     :soil_moisture,
     :battery,
     :probe_time,
+    :created_at,
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
