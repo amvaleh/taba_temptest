@@ -1,0 +1,29 @@
+<div class="entry one-fourth">
+  <figure style="overflow: hidden;   height: 140px;">
+    <%= image_tag "soil_mois.jpg" , class: "fill_parent"   %>
+    <figcaption>
+      <%= link_to "#" do  %>
+      <i class="ico i-view"></i> <span>
+        رطوبت خاک
+      </span>
+      <%end%>
+    </figcaption>
+  </figure>
+  <div class="container make_right">
+    <p style="height: 60px; text-align: center;">
+     رطوبت خاک
+    </p>
+    <div class="actions">
+      <div>
+        <div class="difficulty">
+          وضعیت:
+خوب
+        </div>
+        <div class="difficulty">
+          میانگین:
+          <%= probe.records.average(:soil_moisture) %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

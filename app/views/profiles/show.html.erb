@@ -58,6 +58,8 @@
           <div class="container">
                 <%= link_to "همه گیاهان" , plants_path , :class => "btn btn-block btn-green" %>
             </br>
+            <%= link_to "پراب جدید +" , "#" , :class => "btn btn-block btn-primary" %>
+
           </div>
 
           <div class="container make_center">
@@ -83,6 +85,12 @@
                     <%= link_to raw("اطلاعات #{@profile.first_name}"), about_me_profile_path(@profile), :class => 'make_bold', :remote => true, :title => 'about_me', :id => "about_me2" %>
                 <% end %>
               </li>
+              <li>
+                <!-- <%= link_to "پراب های من" , "#probes" , :class => 'make_bold' %> -->
+                <a href="#my_devices">
+                  پراب های من
+                </a>
+              </li>
               <li class="">
                 <% if current_user == @profile.user %>
                     <%= link_to raw('گل های من'), my_gardens_profile_path(current_user.profile), :class => 'make_bold', :remote => true, :title => 'my gardens', :id => "gardens" %>
@@ -90,6 +98,7 @@
                     <%= link_to raw('گل های او'), my_gardens_profile_path(@profile), :class => 'make_bold', :remote => true, :title => 'my gardens', :id => "gardens" %>
                 <% end %>
               </li>
+
               <!--<li class="">-->
                 <!--<% if current_user == @profile.user %>-->
                     <!--<%= link_to raw('گل ُگرافی'), my_devices_profile_path(@profile.user), :class => 'make_bold', :remote => true, :title => 'my flowers', :id => "flowers" %>-->
@@ -105,13 +114,6 @@
               <!--</li>-->
             </ul>
           </nav>
-
-          <!--about-->
-          <!-- <div class="tab-content" id="about_me">
-
-          </div>
-           -->
-
 
           <div class="tab-content" id="about" style="display: block; direction: rtl;">
             <div class="row">
@@ -171,7 +173,6 @@
                         <span>
                           گل بکار
                         </span>
-
                     <% end %>
                   </li>
                   <li class="medium">
@@ -218,7 +219,12 @@
             </div>
           </div>
           <!--//about-->
-          <div class="tab-content" id="my_devices" >
+          <div class="tab-content" id="my_devices"  style="display: none;" >
+            <div class=" clearfix container">
+              <% @profile.user.probes.each do |p| %>
+              <%= render "probes/vertical_probe" , :p => p %>
+              <% end %>
+            </div>
           </div>
 
           <div class="tab-content" id="about_me" >

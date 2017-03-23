@@ -7,7 +7,7 @@ module Admin
     #   super
     #   @resources = Record.
     #     page(params[:page]).
-    #     per(10)
+    #     per(2)
     # end
 
     # Define a custom finder by overriding the `find_resource` method:

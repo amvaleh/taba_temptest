@@ -8,9 +8,9 @@ gem 'sqlite3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 gem 'mini_magick'
-#gem "chartkick"
+gem "chartkick"
 #gem 'ancestry'
-#gem 'groupdate'
+gem 'groupdate'
 gem 'simple_captcha2', require: 'simple_captcha'
 # gem 'mysql2'
 
