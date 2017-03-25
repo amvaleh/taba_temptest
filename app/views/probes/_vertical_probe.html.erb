@@ -34,7 +34,7 @@
       battery
     </div>
     <div class="three-fourth">
-      <%= area_chart p.records.where(:created_at=> Time.now-3.days .. Time.now).group(:created_at).sum(:battery) , xtitle: "ساعت", ytitle: "باتری" , colors: ["#eee"]  %>
+      <%= area_chart p.records.where(:created_at=> Time.now-3.days .. Time.now).group(:created_at).sum(:battery) , xtitle: "ساعت", ytitle: "باتری" , colors: ["#b5f12f"]  %>
     </div>
   </div>
 
