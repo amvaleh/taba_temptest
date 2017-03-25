@@ -58,7 +58,7 @@
           <div class="container">
                 <%= link_to "همه گیاهان" , plants_path , :class => "btn btn-block btn-green" %>
             </br>
-            <%= link_to "پراب جدید +" , "#" , :class => "btn btn-block btn-primary" %>
+            <%#= link_to "پراب جدید +" , "#" , :class => "btn btn-block btn-primary" %>
 
           </div>
 
@@ -86,10 +86,16 @@
                 <% end %>
               </li>
               <li>
-                <!-- <%= link_to "پراب های من" , "#probes" , :class => 'make_bold' %> -->
+
+                <%if current_user==@profile.user%>
                 <a href="#my_devices">
                   پراب های من
                 </a>
+                <% else %>
+                <a href="#my_devices">
+                  پراب های <%= @profile.first_name %>
+                </a>
+                <% end %>
               </li>
               <li class="">
                 <% if current_user == @profile.user %>
@@ -139,10 +145,10 @@
                 <dd>
                   ۰</dd> -->
                 <dt class="make_center">
-                  گجت های فعال 
+                  پراب های فعال 
                 </dt>
                 <dd>
-                    ...
+                  <%= @profile.user.probes.count %>
                 </dd>
                 <dt class="make_center">
                   گل هایی که دارد
@@ -220,9 +226,15 @@
           </div>
           <!--//about-->
           <div class="tab-content" id="my_devices"  style="display: none;" >
-            <div class=" clearfix container">
-              <% @profile.user.probes.each do |p| %>
-              <%= render "probes/vertical_probe" , :p => p %>
+            <div class="clearfix container">
+              <% if @profile.user.probes.any? %>
+                <% @profile.user.probes.each do |p| %>
+                  <%= render "probes/vertical_probe" , :p => p %>
+                <% end %>
+                <% else %>
+                <h4 class="make_center">
+                  به زودی ...
+                </h4>
               <% end %>
             </div>
           </div>
