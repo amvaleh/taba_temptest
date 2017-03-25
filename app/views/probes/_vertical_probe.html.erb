@@ -11,21 +11,31 @@
   <div class="row">
     <%= render 'probes/moisture' , :probe => p %>
     <div class="three-fourth">
-      <%= area_chart p.records.where(:created_at=> Time.now-7.days .. Time.now).group_by_hour(:created_at).sum(:soil_moisture) , xtitle: "ساعت", ytitle: "رطوبت خاک" %>
+      <%= area_chart p.records.where(:created_at=> Time.now-3.days .. Time.now).group(:created_at).sum(:soil_moisture) , xtitle: "ساعت", ytitle: "رطوبت خاک" %>
     </div>
   </div>
 
   <div class="row">
     <%= render 'probes/temp' , :probe => p %>
     <div class="three-fourth">
-      <%= area_chart p.records.where(:created_at=> Time.now-7.days .. Time.now).group_by_hour(:created_at).sum(:tempreature) , xtitle: "ساعت", ytitle: "دما" , colors: ["#ff7a09"] %>
+      <%= area_chart p.records.where(:created_at=> Time.now-3.days .. Time.now).group(:created_at).sum(:tempreature) , xtitle: "ساعت", ytitle: "دما" , colors: ["#ff7a09"] %>
     </div>
   </div>
 
   <div class="row">
     <%= render 'probes/light' , :probe => p %>
     <div class="three-fourth">
-      <%= area_chart p.records.where(:created_at=> Time.now-7.days .. Time.now).group_by_hour(:created_at).sum(:light) , xtitle: "ساعت", ytitle: "نور" , colors: ["#f0ad4e"]  %>
+      <%= area_chart p.records.where(:created_at=> Time.now-3.days .. Time.now).group(:created_at).sum(:light) , xtitle: "ساعت", ytitle: "نور" , colors: ["#f0ad4e"]  %>
     </div>
   </div>
+
+  <div class="row">
+    <div class="one-fourth">
+      battery
+    </div>
+    <div class="three-fourth">
+      <%= area_chart p.records.where(:created_at=> Time.now-3.days .. Time.now).group(:created_at).sum(:battery) , xtitle: "ساعت", ytitle: "باتری" , colors: ["#eee"]  %>
+    </div>
+  </div>
+
 </div>
