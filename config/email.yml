@@ -1,14 +1,14 @@
 development:
   :address: smtp.gmail.com
   :port: 587
-  :authentication: plain
+  :authentication: login
   :user_name: golograam
   :password: googlegologram
   :enable_starttls_auto: true
 production:
   :address: smtp.gmail.com
   :port: 587
-  :authentication: plain
+  :authentication: login
   :user_name: golograam
   :password: googlegologram
   :enable_starttls_auto: true
