@@ -12,9 +12,6 @@ default from: "amvaleh@gmail.com"
 			mail(to: email, subject: 'تغیر رمز عبور')
 	end
 
-
-
-
 	def order_confirmed_mail(email)
 
 		puts email.to_s
@@ -23,12 +20,10 @@ default from: "amvaleh@gmail.com"
 
 	end
 
-
 	def new_order_mail
 
 		email = "amvaleh@gmail.com"
 		mail(to: email, subject: "سفارش جدید")
-
 
 	end
 

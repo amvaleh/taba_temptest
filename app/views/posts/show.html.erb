@@ -14,9 +14,12 @@
         <article class="post single">
           <div class="entry-meta">
             <div class="date">
-              <span class="day"><%=@post.created_at.day%></span>
-              <span class="my"><%=@post.created_at.month%>, <%=@post.created_at.year%></span>
+
+
+              <span class="day"><%=@post.created_at.to_parsi.strftime " %d  " %></span>
+              <span class="my"><%=@post.created_at.to_parsi.strftime " %B "%>,<%=@post.created_at.to_parsi.strftime " %Y "%></span>
             </div>
+            <!-- %A %d %B -->
             <div class="avatar">
               <% if @post.user.present? and @post.user.profile.profile_photo.present?%>
               <%= link_to profile_path(@post.user.profile) do %>
@@ -78,50 +81,8 @@
               <input type="hidden" id="ak_js" name="ak_js" value="1441730086571">
             </form>
           </div><!-- #respond -->
-
-          <!--//post comment form-->
-
-
         </div>
-        <!--<div class="modal wow one-one fadeInLeft animated" style="visibility: visible; display:table; margin:0 auto;">-->
-        <!--<div class=" container new_forms">-->
-        <!--<p class="make_bold" style="color:#f4716a;">نظرات کاربران</p>-->
-
-        <!--<%= form_for(@comment) do |f| %>-->
-        <!--<% if @comment.errors.any? %>-->
-        <!--<div id="error_explanation">-->
-        <!--<h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>-->
-
-        <!--<ul>-->
-        <!--<% @comment.errors.full_messages.each do |message| %>-->
-        <!--<li><%= message %></li>-->
-        <!--<% end %>-->
-        <!--</ul>-->
-        <!--</div>-->
-        <!--<% end %>-->
-
-        <!--<div class="field">-->
-        <!--<%= f.hidden_field :commentable_id , :value => @post.id %>-->
-        <!--</div>-->
-        <!--<div class="field">-->
-        <!--<%= f.hidden_field :commentable_type  , :value =>"Post"%>-->
-        <!--</div>-->
-        <!--<div class="field  make_center">-->
-        <!--<%= f.text_area :content %>-->
-        <!--</div>-->
-        <!--<div class="actions">-->
-        <!--<%= f.submit  'ثبت نظر' , :class=>"cm_bt button" %>-->
-        <!--</div>-->
-        <!--<% end %>-->
-        <!--</div>-->
-        <!--<div class="comments">-->
-        <!--<br>-->
-        <!--</div>-->
-        <!--</div>-->
-        <!--//blog entry-->
       </section>
-
-
       <aside id="secondary-right" class="right-sidebar sidebar widget-area one-fourth" role="complementary">
         <ul>
           <!--user post control-->
@@ -144,173 +105,6 @@
             </div>
           </li>
 
-          <!--<li class="widget widget-sidebar">-->
-          <!--<h5>Recipe categories with icons</h5>-->
-          <!--<ul class="boxed">-->
-          <!--<li class="light">-->
-          <!--<a href="http://www.themeenergy.com/themes/wordpress/social-chef/recipe-category/appetizers/" title="Appetizers">-->
-          <!--<i class="ico eldorado_cheese_2"></i>-->
-          <!--<span>Appetizers</span>-->
-          <!--</a>-->
-          <!--</li>-->
-          <!--<li class="medium">-->
-          <!--<a href="http://www.themeenergy.com/themes/wordpress/social-chef/recipe-category/asian/" title="Asian">-->
-          <!--<i class="ico eldorado_sushi_1"></i>-->
-          <!--<span>Asian</span>-->
-          <!--</a>-->
-          <!--</li>-->
-          <!--<li class="dark">-->
-          <!--<a href="http://www.themeenergy.com/themes/wordpress/social-chef/recipe-category/deserts/" title="Deserts">-->
-          <!--<i class="ico eldorado_cake_1"></i> <span>Deserts</span></a></li>-->
-          <!--<li class="medium">-->
-          <!--<a href="http://www.themeenergy.com/themes/wordpress/social-chef/recipe-category/eggs/" title="Eggs">-->
-          <!--<i class="ico eldorado_egg"></i> <span>Eggs</span></a></li>-->
-          <!--</ul>-->
-          <!--&lt;!&ndash;<li class="dark"><a href="http://www.themeenergy.com/themes/wordpress/social-chef/recipe-category/equipment/" title="Equipment"><i class="ico eldorado_blender"></i> <span>Equipment</span></a></li><li class="light"><a href="http://www.themeenergy.com/themes/wordpress/social-chef/recipe-category/events/" title="Events"><i class="ico eldorado_rolls_1"></i> <span>Events</span></a></li><li class="dark"><a href="http://www.themeenergy.com/themes/wordpress/social-chef/recipe-category/fish/" title="Fish"><i class="ico eldorado_fish"></i> <span>Fish</span></a></li><li class="light"><a href="http://www.themeenergy.com/themes/wordpress/social-chef/recipe-category/fitness/" title="Fitness"><i class="ico eldorado_run_exit_1"></i> <span>Fitness</span></a></li><li class="medium"><a href="http://www.themeenergy.com/themes/wordpress/social-chef/recipe-category/healthy/" title="Healthy"><i class="ico eldorado_apple_1"></i> <span>Healthy</span></a></li><li class="light"><a href="http://www.themeenergy.com/themes/wordpress/social-chef/recipe-category/kids/" title="Kids"><i class="ico eldorado_smile_3"></i> <span>Kids</span></a></li><li class="medium"><a href="http://www.themeenergy.com/themes/wordpress/social-chef/recipe-category/meat/" title="Meat"><i class="ico eldorado_ham"></i> <span>Meat</span></a></li><li class="dark"><a href="http://www.themeenergy.com/themes/wordpress/social-chef/recipe-category/pizza/" title="Pizza"><i class="ico eldorado_pizza"></i> <span>Pizza</span></a></li>			</ul>&ndash;&gt;-->
-          <!--</li>-->
-          <!--<li class="widget widget-sidebar">-->
-          <!--<h5>Members</h5>-->
-
-          <!--<div class="item-options" id="members-list-options">-->
-          <!--<a href="http://www.themeenergy.com/themes/wordpress/social-chef/members/" id="newest-members">Newest</a>-->
-          <!--|  <a href="http://www.themeenergy.com/themes/wordpress/social-chef/members/" id="recently-active-members" class="selected">Active</a>-->
-          <!--| <a href="http://www.themeenergy.com/themes/wordpress/social-chef/members/" id="popular-members">Popular</a>-->
-
-
-          <!--</div>-->
-
-          <!--<ul id="members-list" class="item-list">-->
-
-
-          <!--<li class="vcard">-->
-          <!--<div class="item-avatar">-->
-          <!--<a href="http://www.themeenergy.com/themes/wordpress/social-chef/members/amedic/" title="Ante"><img src="//www.gravatar.com/avatar/8c0efd47367f473783eb4afd4d54c5e5?d=http://www.themeenergy.com/themes/wordpress/social-chef/wp-content/themes/socialchef/images/avatar.jpg&amp;s=90&amp;r=G" class="avatar user-55054-avatar avatar-90 photo" width="90" height="90" alt="Profile picture of Ante"></a>-->
-          <!--</div>-->
-
-          <!--<div class="item">-->
-          <!--<div class="item-title fn"><a href="http://www.themeenergy.com/themes/wordpress/social-chef/members/amedic/" title="Ante">Ante</a></div>-->
-          <!--<div class="item-meta">-->
-          <!--<span class="activity">Never active</span>-->
-          <!--</div>-->
-          <!--</div>-->
-          <!--</li>-->
-
-
-          <!--<li class="vcard">-->
-          <!--<div class="item-avatar">-->
-          <!--<a href="http://www.themeenergy.com/themes/wordpress/social-chef/members/djim/" title="djim"><img src="//www.gravatar.com/avatar/2a8fe1c4a951cb681c7ecd9f8dcab2f1?d=http://www.themeenergy.com/themes/wordpress/social-chef/wp-content/themes/socialchef/images/avatar.jpg&amp;s=90&amp;r=G" class="avatar user-55044-avatar avatar-90 photo" width="90" height="90" alt="Profile picture of djim"></a>-->
-          <!--</div>-->
-
-          <!--<div class="item">-->
-          <!--<div class="item-title fn"><a href="http://www.themeenergy.com/themes/wordpress/social-chef/members/djim/" title="djim">djim</a></div>-->
-          <!--<div class="item-meta">-->
-          <!--<span class="activity">active 36 minutes ago</span>-->
-          <!--</div>-->
-          <!--</div>-->
-          <!--</li>-->
-
-
-          <!--<li class="vcard">-->
-          <!--<div class="item-avatar">-->
-          <!--<a href="http://www.themeenergy.com/themes/wordpress/social-chef/members/rupeshkagu/" title="rupesh"><img src="//www.gravatar.com/avatar/39c68470d1b7708667f051698e8d12dd?d=http://www.themeenergy.com/themes/wordpress/social-chef/wp-content/themes/socialchef/images/avatar.jpg&amp;s=90&amp;r=G" class="avatar user-55036-avatar avatar-90 photo" width="90" height="90" alt="Profile picture of rupesh"></a>-->
-          <!--</div>-->
-
-          <!--<div class="item">-->
-          <!--<div class="item-title fn"><a href="http://www.themeenergy.com/themes/wordpress/social-chef/members/rupeshkagu/" title="rupesh">rupesh</a></div>-->
-          <!--<div class="item-meta">-->
-          <!--<span class="activity">active 1 hour, 4 minutes ago</span>-->
-          <!--</div>-->
-          <!--</div>-->
-          <!--</li>-->
-
-
-          <!--<li class="vcard">-->
-          <!--<div class="item-avatar">-->
-          <!--<a href="http://www.themeenergy.com/themes/wordpress/social-chef/members/testingthis/" title="test"><img src="//www.gravatar.com/avatar/9dc25c6a13bf6a618dd497ce37fbb606?d=http://www.themeenergy.com/themes/wordpress/social-chef/wp-content/themes/socialchef/images/avatar.jpg&amp;s=90&amp;r=G" class="avatar user-55041-avatar avatar-90 photo" width="90" height="90" alt="Profile picture of test"></a>-->
-          <!--</div>-->
-
-          <!--<div class="item">-->
-          <!--<div class="item-title fn"><a href="http://www.themeenergy.com/themes/wordpress/social-chef/members/testingthis/" title="test">test</a></div>-->
-          <!--<div class="item-meta">-->
-          <!--<span class="activity">active 1 hour, 50 minutes ago</span>-->
-          <!--</div>-->
-          <!--</div>-->
-          <!--</li>-->
-
-
-          <!--<li class="vcard">-->
-          <!--<div class="item-avatar">-->
-          <!--<a href="http://www.themeenergy.com/themes/wordpress/social-chef/members/grcntml/" title="grcntml"><img src="//www.gravatar.com/avatar/f362e5b47e0acbabce399e3f5f29f2ce?d=http://www.themeenergy.com/themes/wordpress/social-chef/wp-content/themes/socialchef/images/avatar.jpg&amp;s=90&amp;r=G" class="avatar user-55051-avatar avatar-90 photo" width="90" height="90" alt="Profile picture of grcntml"></a>-->
-          <!--</div>-->
-
-          <!--<div class="item">-->
-          <!--<div class="item-title fn"><a href="http://www.themeenergy.com/themes/wordpress/social-chef/members/grcntml/" title="grcntml">grcntml</a></div>-->
-          <!--<div class="item-meta">-->
-          <!--<span class="activity">active 7 hours, 15 minutes ago</span>-->
-          <!--</div>-->
-          <!--</div>-->
-          <!--</li>-->
-
-
-          <!--<li class="vcard">-->
-          <!--<div class="item-avatar">-->
-          <!--<a href="http://www.themeenergy.com/themes/wordpress/social-chef/members/olaflubaszenko/" title="Olaf Lubaszenko"><img src="//www.gravatar.com/avatar/41eab56ee8fe2ff56e9671c04dcc9395?d=http://www.themeenergy.com/themes/wordpress/social-chef/wp-content/themes/socialchef/images/avatar.jpg&amp;s=90&amp;r=G" class="avatar user-55050-avatar avatar-90 photo" width="90" height="90" alt="Profile picture of Olaf Lubaszenko"></a>-->
-          <!--</div>-->
-
-          <!--<div class="item">-->
-          <!--<div class="item-title fn"><a href="http://www.themeenergy.com/themes/wordpress/social-chef/members/olaflubaszenko/" title="Olaf Lubaszenko">Olaf Lubaszenko</a></div>-->
-          <!--<div class="item-meta">-->
-          <!--<span class="activity">active 8 hours, 56 minutes ago</span>-->
-          <!--</div>-->
-          <!--</div>-->
-          <!--</li>-->
-
-
-          <!--<li class="vcard">-->
-          <!--<div class="item-avatar">-->
-          <!--<a href="http://www.themeenergy.com/themes/wordpress/social-chef/members/admin/" title="admin"><img src="http://www.themeenergy.com/themes/wordpress/social-chef/wp-content/uploads/avatars/1/92ab22bbcbe4ac974c27a964c4fa96ec-bpthumb.jpg" class="avatar user-1-avatar avatar-90 photo" width="90" height="90" alt="Profile picture of admin"></a>-->
-          <!--</div>-->
-
-          <!--<div class="item">-->
-          <!--<div class="item-title fn"><a href="http://www.themeenergy.com/themes/wordpress/social-chef/members/admin/" title="admin">admin</a></div>-->
-          <!--<div class="item-meta">-->
-          <!--<span class="activity">active 4 months, 3 weeks ago</span>-->
-          <!--</div>-->
-          <!--</div>-->
-          <!--</li>-->
-
-
-          <!--<li class="vcard">-->
-          <!--<div class="item-avatar">-->
-          <!--<a href="http://www.themeenergy.com/themes/wordpress/social-chef/members/cybrpanda/" title="cybrpanda"><img src="//www.gravatar.com/avatar/6adf1565f510d1d659a561cd9bc02039?d=http://www.themeenergy.com/themes/wordpress/social-chef/wp-content/themes/socialchef/images/avatar.jpg&amp;s=90&amp;r=G" class="avatar user-55046-avatar avatar-90 photo" width="90" height="90" alt="Profile picture of cybrpanda"></a>-->
-          <!--</div>-->
-
-          <!--<div class="item">-->
-          <!--<div class="item-title fn"><a href="http://www.themeenergy.com/themes/wordpress/social-chef/members/cybrpanda/" title="cybrpanda">cybrpanda</a></div>-->
-          <!--<div class="item-meta">-->
-          <!--<span class="activity">active 20 hours, 3 minutes ago</span>-->
-          <!--</div>-->
-          <!--</div>-->
-          <!--</li>-->
-
-
-          <!--<li class="vcard">-->
-          <!--<div class="item-avatar">-->
-          <!--<a href="http://www.themeenergy.com/themes/wordpress/social-chef/members/wovawefo/" title="wovawefo"><img src="//www.gravatar.com/avatar/697acff9f8a2f22ecd69763ca7396e9a?d=http://www.themeenergy.com/themes/wordpress/social-chef/wp-content/themes/socialchef/images/avatar.jpg&amp;s=90&amp;r=G" class="avatar user-54999-avatar avatar-90 photo" width="90" height="90" alt="Profile picture of wovawefo"></a>-->
-          <!--</div>-->
-
-          <!--<div class="item">-->
-          <!--<div class="item-title fn"><a href="http://www.themeenergy.com/themes/wordpress/social-chef/members/wovawefo/" title="wovawefo">wovawefo</a></div>-->
-          <!--<div class="item-meta">-->
-          <!--<span class="activity">active 1 day, 3 hours ago</span>-->
-          <!--</div>-->
-          <!--</div>-->
-          <!--</li>-->
-
-
-          <!--</ul>-->
-          <!--</li>-->
-
           <li class="widget widget-sidebar">		<!--cwrap-->
             <div class="cwrap make_center">
               <h5>سوالات اخیر</h5>
@@ -320,6 +114,12 @@
                   <%= link_to post_path(post) do %>
                   <% if post.plant.present? %>
                   <%= image_tag post.plant.avatars.first.url(:thumb) , :alt => post.title , :class=>"pull-right" %>
+                  <% elsif post.image.present? %>
+                  <%= image_tag post.image_url(:thumb) , :alt => post.title , :class=>"pull-right" %>
+                  <% elsif post.user.profile.profile_photo.present? %>
+                  <%= image_tag post.user.profile.profile_photo_url(:thumb) , :alt => post.title , :class=>"pull-right" %>
+                  <% else %>
+                  <%= image_tag 'gardener.png' , :alt => post.title , :class=>"pull-right" %>
                   <% end %>
                   <h6 class="make_right">
                     <%= post.title %>
@@ -338,40 +138,6 @@
             </li>
           </ul>
         </aside>
-        <!--//content-->
-
-
-
       </div>
-      <!--//row-->
     </div>
-
-    <!--comments-->
-
-    <!--//wrap-->
   </main>
-  <!--//main-->
-
-
-  <!--//comments-->
-
-
-  <!--<p>-->
-  <!--<strong>User:</strong>-->
-  <!--<%= @post.user_id %>-->
-  <!--</p>-->
-
-  <!--<p>-->
-  <!--<strong>Planter:</strong>-->
-  <!--<%= @post.plant_id %>-->
-  <!--</p>-->
-
-  <!--<p>-->
-  <!--<strong>Title:</strong>-->
-  <!--<%= @post.title %>-->
-  <!--</p>-->
-
-  <!--<p>-->
-  <!--<strong>Content:</strong>-->
-  <!--<%= @post.content %>-->
-  <!--</p>-->

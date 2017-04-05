@@ -40,9 +40,6 @@
 
     <div class="comment-box">
       <div class="comment-author meta make_center">
-        <a rel="nofollow" class="comment-reply-link pull-right" href="#" aria-label="Reply to admin">
-          جواب بده
-        </a>
         <strong>
           <!--<a href="http://www.themeenergy.com/themes/wordpress/social-chef/members/admin/" rel="external nofollow" class="url">-->
           <!--admin-->
@@ -57,20 +54,20 @@
 
       </div>
       <div class="comment-text rtl_dir">
-        <p style="text-align: right; margin-right: 2%">
+        <p style="text-align: right; margin-right: 5%;">
           <%= cmnt.content %>
         </p>
       </div>
     </div>
-    <div class="avatar">
+    <div class="avatar" style="left:none; right:0 !important">
       <!--<img src="http://www.themeenergy.com/themes/wordpress/social-chef/wp-content/uploads/avatars/1/66244049ec442247c05ab60c29b6ecbe-bpthumb.jpg" class="avatar user-1-avatar avatar-90 photo" width="90" height="90" alt="Profile photo of admin">-->
       <% if cmnt.user.profile.profile_photo.present?%>
           <%= link_to profile_path(cmnt.user.profile) do %>
-              <%=image_tag cmnt.user.profile.profile_photo_url, :class => "avatar user-1-avatar avatar-90 photo"%>
+              <%=image_tag cmnt.user.profile.profile_photo_url, :class => " user-1-avatar avatar-90 photo"%>
           <% end %>
       <%else %>
           <%= link_to profile_path(cmnt.user.profile) do %>
-              <%=image_tag "default_plant.png"  , :class => "avatar user-1-avatar avatar-90 photo"%>
+              <%=image_tag "default_plant.png"  , :class => " user-1-avatar avatar-90 photo"%>
           <% end %>
       <%end%>
       <div class="comment-meta commentmetadata"></div>
