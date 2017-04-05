@@ -1,7 +1,7 @@
 development:
   :address: smtp.gmail.com
   :port: 587
-  domain: 'gologram.com',
+  :domain: 'gologram.com'
   :authentication: 'plain'
   :user_name: golograam
   :password: googlegologram
@@ -9,7 +9,7 @@ development:
 production:
   :address: smtp.gmail.com
   :port: 587
-  domain: 'gologram.com',
+  :domain: 'gologram.com'
   :authentication: 'plain'
   :user_name: golograam
   :password: googlegologram
