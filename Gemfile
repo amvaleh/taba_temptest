@@ -58,6 +58,9 @@ gem 'nifty-attachments'
 gem 'friendly_id', '~> 5.1.0'
 # gem "administrate", "~> 0.3.0"
 gem 'administrate', git: 'https://github.com/thoughtbot/administrate.git'
+gem 'elasticsearch-rails'
+gem 'elasticsearch-model'
+gem 'tire'
 # gem 'administrate-field-carrierwave', '~> 0.0.2'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

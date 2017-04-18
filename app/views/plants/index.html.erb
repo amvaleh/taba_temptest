@@ -64,15 +64,25 @@
       <% end %>
     </div>
 
-    <h1 style="text-align: center;">جستجو بر اساس حروف الفبا</h1>
+    <h1 style="text-align: center;">
+      جستجو در پایگاه داده گیاهان
+    </h1>
 
     <div class="row">
 
     </div>
     <aside class="above-sidebar full-width " style="visibility: visible; animation-name: fadeInDown;">
-
-      <ul class="boxed">
-
+      <ul class="boxed plant_search">
+        <%= form_tag search_plants_path , remote: true, id: "search_form"  do %>
+        <%= text_field_tag :input, "" , id: "search_input", class: "" , placeholder: "نام گیاه مورد نظرتان را وارد کنید: مثلا بن سای" %>
+        <% end %>
+        <script>
+        $(document).ready(function() {
+          $('#search_input').bind('keyup', function() {
+            $('#search_form').delay(200).submit();
+          });
+        });
+        </script>
       </ul>
     </aside>
 

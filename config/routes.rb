@@ -101,6 +101,7 @@ Rails.application.routes.draw do
     collection do
       get :import
       get :find
+      post :search
     end
   end
 

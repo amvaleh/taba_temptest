@@ -5,48 +5,48 @@
   <!--intro-->
   <!-- <div class="intro"> -->
 
-    <div class="wrap clearfix">
-      <!--row-->
-      <div class="row">
-      <style>.h_iframe-aparat_embed_frame{position:relative;} .h_iframe-aparat_embed_frame .ratio {width:100%;height:auto;} .h_iframe-aparat_embed_frame iframe {position:absolute;top:0;left:0;width:100%; height:100%;}</style><div class="h_iframe-aparat_embed_frame"> <span style="display: block;padding-top: 57%"></span><iframe src="https://www.aparat.com/video/video/embed/videohash/6rR7t/vt/frame" allowFullScreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" ></iframe></div>
-      </div>
-    </div>
-
-    <!-- <figure class="bg"> -->
-      <%#= image_tag "initial_image.jpg" %>
-    <!-- </figure> -->
-    <!--wrap-->
-    <div class="wrap clearfix">
-      <!--row-->
-      <div class="row">
-        <!-- <article class="three-fourth text wow zoomIn" data-wow-delay=".2s">
-        <h3 style="margin-right:21%;text-align:center; color:#C31108;" dir="rtl">گلوگرام</h3>
-
-        <p class="bold_main make_right main_text main_text_margin" dir="rtl"> تکنولوژی خانگی نگهداری نوین گیاهان </p>
-
-        <p class="make_right main_text main_text_margin" dir="rtl"> ثبت و نمونه برداری شرایط محیطی گیاه من</p>
-
-        <p class="make_right main_text main_text_margin" dir="rtl"> چه زمانی باید گیاه رو آب بدم؟</p>
-
-        <p class="make_right main_text main_text_margin" dir="rtl"> گیاه من چه میزان نور و دمایی رو لازم داره ؟</p>
-
-        <p class="make_right main_text main_text_margin" dir="rtl"> من چه زمانی باید به گیاهم کود بدهم و اون رو هرس کنم؟ </p>
-
-        <a href="users/sign_up" class="button white  medium">
-        عضوی از گیاه داران شو
-      </a>
-    </article> -->
-    <!--search recipes widget-->
-    <!-- <% if not user_signed_in? %>
-    <div class="one-fourth wow fadeInDown pull-right" data-wow-delay=".5s">
-    <div class="widget container" style="padding-bottom: 4%">
-    <div class="textwrap make_center">
-    <h3 class="make_center"> گیاهدار </h3>
-
-    <%= image_tag "glography.jpg"%>
+  <div class="wrap clearfix">
+    <!--row-->
+    <div class="row">
+    <style>.h_iframe-aparat_embed_frame{position:relative;} .h_iframe-aparat_embed_frame .ratio {width:100%;height:auto;} .h_iframe-aparat_embed_frame iframe {position:absolute;top:0;left:0;width:100%; height:100%;}</style><div class="h_iframe-aparat_embed_frame"> <span style="display: block;padding-top: 57%"></span><iframe src="https://www.aparat.com/video/video/embed/videohash/6rR7t/vt/frame" allowFullScreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" ></iframe></div>
   </div>
-  <%= form_for("user", :url => user_session_path) do |f| %>
-  <%= f.text_field :email , :placeholder => "ایمیل"  , class: "make_center" %>
+</div>
+
+<!-- <figure class="bg"> -->
+<%#= image_tag "initial_image.jpg" %>
+<!-- </figure> -->
+<!--wrap-->
+<div class="wrap clearfix">
+  <!--row-->
+  <div class="row">
+    <!-- <article class="three-fourth text wow zoomIn" data-wow-delay=".2s">
+    <h3 style="margin-right:21%;text-align:center; color:#C31108;" dir="rtl">گلوگرام</h3>
+
+    <p class="bold_main make_right main_text main_text_margin" dir="rtl"> تکنولوژی خانگی نگهداری نوین گیاهان </p>
+
+    <p class="make_right main_text main_text_margin" dir="rtl"> ثبت و نمونه برداری شرایط محیطی گیاه من</p>
+
+    <p class="make_right main_text main_text_margin" dir="rtl"> چه زمانی باید گیاه رو آب بدم؟</p>
+
+    <p class="make_right main_text main_text_margin" dir="rtl"> گیاه من چه میزان نور و دمایی رو لازم داره ؟</p>
+
+    <p class="make_right main_text main_text_margin" dir="rtl"> من چه زمانی باید به گیاهم کود بدهم و اون رو هرس کنم؟ </p>
+
+    <a href="users/sign_up" class="button white  medium">
+    عضوی از گیاه داران شو
+  </a>
+</article> -->
+<!--search recipes widget-->
+<!-- <% if not user_signed_in? %>
+<div class="one-fourth wow fadeInDown pull-right" data-wow-delay=".5s">
+<div class="widget container" style="padding-bottom: 4%">
+<div class="textwrap make_center">
+<h3 class="make_center"> گیاهدار </h3>
+
+<%= image_tag "glography.jpg"%>
+</div>
+<%= form_for("user", :url => user_session_path) do |f| %>
+<%= f.text_field :email , :placeholder => "ایمیل"  , class: "make_center" %>
 </br>
 <%= f.password_field :password , :placeholder => "رمز عبور", class: "make_center" %>
 </br>
@@ -175,143 +175,201 @@
       <!--entries-->
       <div class="entries row">
         <!--featured garden-->
-        <div style="" class="   wow fadeIn" >
-          <header class="s-title">
-            <h2 class="make_center garden_title">
-                تکنولوژی گلوگرام
-              </h2>
-            </header>
-            <article class="entry">
-              <figure>
-                <%= image_tag "g1" , :width => "100%" %>
-                <figcaption>
-                  <%= link_to "https://www.instagram.com/p/BDL7Wuxm2EG" do %>
-                  <i class="ico i-view"></i>
-                  <span>
-                    در اینستاگرام دنبال کنید
-                  </span>
-                </figcaption>
-                <% end %>
-              </figure>
-              <div class="container">
-                <h2 class="make_center">
-                  G1
-                </h2>
-                <p class="make_right">
-                  <%= t('home.text1') %>
-                </p>
-                <p class="make_right">
-                  <%= t('home.text2') %>
-                </p>
-                <p class="make_right ">
-                  افرادی که قبل از تجاری شدن محصول عضو گلوگرام باشند
-                  در خرید تکنولوژی گلوگرام ۱۰٪ تخفیف خواهند گرفت..
-                </p>
-                <div class="actions">
-                  <br>
-                  <%= link_to new_user_registration_path , :class => "btn btn-success btn-block" do%>
-                  عضویت
-                  <% end %>
-                  <br>
-                  <br>
-                </div>
-              </div>
-            </article>
-          </div>
-          <!--//featured garden-->
-          <% if @guy.present? and false %>
-
-          <!--featured member-->
-          <div class="featured one-third wow fadeInRight" data-wow-delay=".2s">
-            <header class="s-title">
-              <h2 class="ribbon star">Featured member</h2>
-            </header>
-            <header class="s-title">
-              <h2 class="make_center garden_title">باغچه دار برتر</h2>
-            </header>
-            <article class="entry">
-              <figure class="make_center">
-                <% if  @guy.profile_photo.present?%>
-                <%= image_tag @guy.profile_photo_url %>
-                <% else %>
-                <%= image_tag "gardener.png" %>
-                <% end %>
-                <figcaption>
-                  <%= link_to profile_path(@guy) do %>
-                  <i class="ico i-view">
-                  </i>
-                  <span>
-                    <%= @guy.full_name %>
-                    <% end %>
-                  </span>
-                </figcaption>
-              </figure>
-              <div class="container">
-                <h2 class="make_center">
-                  <%= link_to @guy.full_name ,  profile_path(@guy) %>
-                </h2>
-                <blockquote class="make_right">
-                  ...من از گل هام مثل بچه هام مراقبت میکنم
-                </br>
-                مرسی از گلوگرافی
-              </blockquote>
-              <div class="actions">
-                <div>
-                  <%= link_to "دیدن پروفایل باغچه دار برتر" , profile_path(@guy) , :class => "button" %>
-                  <div class="more"><a href="#">نفرات برتر بعدی</a></div>
-                </div>
-              </div>
-            </div>
-          </article>
-        </div>
-        <!--//featured member-->
-        <% end %>
-      </div>
-      <!--//entries-->
-    </div>
-    <!--//cwrap-->
-
-    <!--cwrap-->
-    <div class="cwrap">
-      <header class="s-title">
-
+        <!-- <div style="" class="   wow fadeIn" >
+        <header class="s-title">
         <h2 class="make_center garden_title">
-          سوالات متداول
-        </h2>
-      </header>
+        تکنولوژی گلوگرام
+      </h2>
+    </header>
 
-      <!--entries-->
-      <div class="entries row">
-        <!--item-->
-        <% Post.all.each do |post| %>
-        <%= render 'posts/post' , :post=> post %>
+  </div> -->
+  <!--//featured garden-->
+  <% if @guy.present? and false %>
+
+  <!--featured member-->
+  <div class="featured one-third wow fadeInRight" data-wow-delay=".2s">
+    <header class="s-title">
+      <h2 class="ribbon star">Featured member</h2>
+    </header>
+    <header class="s-title">
+      <h2 class="make_center garden_title">باغچه دار برتر</h2>
+    </header>
+    <article class="entry">
+      <figure class="make_center">
+        <% if  @guy.profile_photo.present?%>
+        <%= image_tag @guy.profile_photo_url %>
+        <% else %>
+        <%= image_tag "gardener.png" %>
         <% end %>
-        <!--item-->
-
-        <div class="quicklinks">
-          <%= link_to "همه سوالات" , posts_path , class: "button" %>
-          <a href="javascript:void(0)" class="button scroll-to-top">
-            برگرد بالا
-          </a>
+        <figcaption>
+          <%= link_to profile_path(@guy) do %>
+          <i class="ico i-view">
+          </i>
+          <span>
+            <%= @guy.full_name %>
+            <% end %>
+          </span>
+        </figcaption>
+      </figure>
+      <div class="container">
+        <h2 class="make_center">
+          <%= link_to @guy.full_name ,  profile_path(@guy) %>
+        </h2>
+        <blockquote class="make_right">
+          ...من از گل هام مثل بچه هام مراقبت میکنم
+        </br>
+        مرسی از گلوگرافی
+      </blockquote>
+      <div class="actions">
+        <div>
+          <%= link_to "دیدن پروفایل باغچه دار برتر" , profile_path(@guy) , :class => "button" %>
+          <div class="more"><a href="#">نفرات برتر بعدی</a></div>
         </div>
       </div>
-      <!--//entries-->
     </div>
+  </article>
+</div>
+<!--//featured member-->
+<% end %>
+</div>
+<!--//entries-->
+</div>
+<!--//cwrap-->
 
-
-    <div class="cwrap">
-    <%= render "plants/index" ,:@plants => @plants.first(20)  %>
-    </div>
-
-    <!--//cwrap-->
-
-    <!--cwrap-->
-    <!-- <div class="cwrap">
+<div class="content full-width">
+  <div class="recipefinder">
     <header class="s-title">
-    <h2 class="make_right title_in_middle">
-    محصولات اخیر
-    <%= link_to "فروشگاه" , store_show_path%>
-  </h2>
+      <h2 class="make_center garden_title">
+        تکنولوژی گلوگرام
+      </h2>
+    </header>
+    <nav class="tabs">
+      <ul>
+        <li class="active"><a href="#g1" >
+          G1
+        </a></li>
+        <li class=""><a href="#moisture" >
+          رطوبت خاک
+        </a></li>
+        <li class=""><a href="#temp" >
+          دما
+        </a></li>
+        <li class=""><a href="#light" >
+          نور خورشید
+        </a></li>
+      </ul>
+    </nav>
+    <div class="tab-content" id="g1" style="display: none;">
+      <article class="entry">
+        <div class="one-half">
+          <figure>
+            <%= image_tag "g1" , :width => "100%" %>
+            <figcaption>
+              <%= link_to "https://www.instagram.com/p/BDL7Wuxm2EG" do %>
+              <i class="ico i-view"></i>
+              <span>
+                در اینستاگرام دنبال کنید
+              </span>
+            </figcaption>
+            <% end %>
+          </figure>
+        </div>
+        <div class="one-half">
+
+          <div class="container">
+            <h2 class="make_center">
+              G1
+            </h2>
+            <p class="make_right">
+              <%= t('home.text1') %>
+            </p>
+            <p class="make_right">
+              <%= t('home.text2') %>
+            </p>
+            <p class="make_right ">
+              افرادی که قبل از تجاری شدن محصول عضو گلوگرام باشند
+              در خرید تکنولوژی گلوگرام ۱۰٪ تخفیف خواهند گرفت..
+            </p>
+            <div class="actions">
+              <br>
+              <%= link_to new_user_registration_path , :class => "btn btn-success btn-block" do%>
+              عضویت
+              <% end %>
+              <br>
+              <br>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+    <div class="tab-content" id="moisture" style="display: none;">
+      <article class="entry">
+        <figure>
+          <%= image_tag "soil_mois.jpg" , :width => "100%" %>
+        </figure>
+      </article>
+    </div>
+    <div class="tab-content" id="temp" style="display: none;">
+      <article class="entry">
+        <figure>
+          <%= image_tag "warm2.jpg" , :width => "100%" %>
+        </figure>
+      </article>
+    </div>
+    <div class="tab-content" id="light" style="display: none;">
+      <article class="entry">
+        <figure>
+          <%= image_tag "warm.jpg" , :width => "100%" %>
+        </figure>
+      </article>
+    </div>
+
+  </div>
+</div>
+
+
+
+<div class="cwrap">
+</div>
+
+
+<div class="cwrap">
+  <%= render "plants/index" ,:@plants => @plants.first(20)  %>
+</div>
+
+<div class="cwrap">
+  <header class="s-title">
+    <h2 class="make_center garden_title">
+      بلاگ
+    </h2>
+  </header>
+
+  <!--entries-->
+  <div class="entries row">
+    <!--item-->
+    <% Post.all.order("created_at DESC").last(8).each do |post| %>
+    <%= render 'posts/post' , :post=> post %>
+    <% end %>
+    <!--item-->
+
+    <div class="quicklinks">
+      <%= link_to "همه سوالات" , posts_path , class: "button" %>
+      <a href="javascript:void(0)" class="button scroll-to-top">
+        برگرد بالا
+      </a>
+    </div>
+  </div>
+</div>
+
+<!--//cwrap-->
+
+<!--cwrap-->
+<!-- <div class="cwrap">
+<header class="s-title">
+<h2 class="make_right title_in_middle">
+محصولات اخیر
+<%= link_to "فروشگاه" , store_show_path%>
+</h2>
 </header>
 <div class="entries row">
 <% Shoppe::Product.all.active.featured.first(8).each do |prod| %>

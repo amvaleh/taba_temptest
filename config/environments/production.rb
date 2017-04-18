@@ -82,5 +82,5 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
    Rails.application.routes.default_url_options[:host] = 'gologram.com'
-   
+
 end

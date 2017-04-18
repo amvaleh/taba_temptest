@@ -1,0 +1,7 @@
+<% if @results.present? and  @results.total > 0 %>
+$('.landing').html("");
+  <% @results.each_with_hit do |result, hit| %>
+  <% p = Plant.find(result.id)%>
+  $('.landing').prepend("<%= escape_javascript(render 'sample' , :p => p)%>");
+  <% end %>
+<% end %>

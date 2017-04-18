@@ -31,7 +31,7 @@ class CommentsController < ApplicationController
       # mail to  @comment.commentable.user.email
       CommentMailer.new_reply(@comment.commentable.user,@comment,@comment.commentable).deliver
     end
-    
+
     @comment.user_id = current_user.id
     respond_to do |format|
       if @comment.save

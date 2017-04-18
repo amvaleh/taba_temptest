@@ -31,9 +31,12 @@ class PlantPolicy
     true
   end
 
+  def search?
+    true
+  end
+
   def destroy?
     user.admin?
   end
-
 
 end

@@ -1,41 +1,78 @@
-<section class="content center full-width wow fadeInDown animated style="visibility: visible;"">
-<div class="modal container new_forms">
-<h2 class="center">ثبت نام در گلوگرافی</h2>
+<section class="full-width wow fadeInDown animated style="visibility: visible;"">
+  <div class="modal container">
+    <!-- <h2 class="center">ثبت نام در گلوگرافی</h2> -->
+    <div class="content full-width">
+      <nav class="tabs" style="width:100%;">
+        <ul>
+          <li class="active " style="width:50%;"><a href="#register" >
+            ثبت نام
+          </a></li>
+          <li class="" style="width:50%;" ><a href="#signin" >
+            ورود
+          </a></li>
+        </ul>
+      </nav>
+      <div class="tab-content" id="register" style="display: block;">
+        <br>
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= devise_error_messages! %>
+        <div class="field">
+          <p class="make_right"><%= f.label :ایمیل%></p>
+          <%= f.email_field :email, autofocus: true%>
+        </div>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
-  <div class="field">
-    <p class="make_right"><%= f.label :ایمیل%></p>
-    <%= f.email_field :email, autofocus: true%>
-  </div>
+        <div class="field">
+          <p class="make_right">رمز عبور</p>
+          <% if @validatable %>
+          <p class="make_right"><em>(<%= @minimum_password_length %> حداقل تعداد کاراکتر)</em></p>
+          <% end %>
+          <%= f.password_field :password, autocomplete: "off" %>
+        </div>
 
-  <div class="field">
-    <p class="make_right">رمز عبور</p>
-    <% if @validatable %>
-    <p class="make_right"><em>(<%= @minimum_password_length %> حداقل تعداد کاراکتر)</em></p>
-    <% end %>
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
+        <div class="field">
+          <p class="make_right">تایید رمز عبور</p>
+          <%= f.password_field :password_confirmation, autocomplete: "off" %>
+        </div>
+      </br>
+      <div style="display:table; margin:10px auto; ">
+        <%=show_simple_captcha %>
+      </div>
+      <div class="center">
+        <%= f.submit "ثبت نام", :class=>"button btn-block" %>
+      </div>
+      <br>
+      <br>
+      <br>
+      <% end %>
+    </div>
 
-  <div class="field">
-    <p class="make_right">تایید رمز عبور</p>
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
+    <div class="tab-content make_right" style="direction: rtl;" id="signin" style="display: none;">
+      <br>
+
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class= "field">
+        <%= f.label "ایمیل", :class=>"" %><br />
+        <%= f.email_field :email, autofocus: true , :class => "form-control make_center" %>
+      </div>
+    </br>
+
+
+    <div class="field">
+
+      <%= f.label "رمز عبور", :class=>"" %><br />
+      <%= f.password_field :password, autocomplete: "off"  , :class => "form-control make_center" %>
+    </div>
+
+
   </br>
-  <div style="display:table; margin:10px auto; ">
-    <%=show_simple_captcha %>
-  </div>
-  <div class="center">
-    <%= f.submit "ثبت نام", :class=>"button btn-block" %>
+  <div class="actions make_center">
+    <%= f.submit "وارد شو", :class=>"btn btn-default btn-block" %>
   </div>
   <br>
   <br>
   <br>
-  <%= link_to "ورود" , new_user_session_path , class: "btn btn-default pull-right"%>
-<% end %>
-
+  <% end %>
+</div>
+</div>
 </div>
 </section>
-<div>
-<%#= render "devise/shared/links"%>
-</div>

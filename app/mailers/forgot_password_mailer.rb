@@ -1,6 +1,5 @@
 class ForgotPasswordMailer < ApplicationMailer
-
-default from: "amvaleh@gmail.com"
+default from: "golograam@gmail.com"
 
 	def forgot_mail_sender(email)
 		@mis_user = User.find_by_email(email)

@@ -1,4 +1,13 @@
 class Plant < ActiveRecord::Base
+  # include Elasticsearch::Model
+  # include Elasticsearch::Model::Callbacks
+
+
+  include Tire::Model::Search
+  include Tire::Model::Callbacks
+
+  # index_name Rails.application.class.parent_name.underscore
+  # document_type self.name.downcase
 
   def to_param
     farsi_name
@@ -52,6 +61,22 @@ class Plant < ActiveRecord::Base
   has_many :probes
   #
   # extend FriendlyId
-  # friendly_id :farsi_name, use: :slugged
+  # friendly_id :farsi_name, use: :slugged'
+
+  # settings index: {number_of_shards: 5} do
+  #   mapping dynamic: false do
+  #     indexes :farsi_name , analyzer: 'persian'
+  #     indexes :latin_name , analyzer: 'english'
+  #   end
+  # end
+  #
+  # def as_indexed_json
+  #   self.as_json({
+  #     only: [:farsi_name, :latin_name]})
+  #   end
+
+  # tire.mapping do
+  #   indexes :farsi_name, :type => 'string', :index => :not_analyzed
+  # end
 
 end

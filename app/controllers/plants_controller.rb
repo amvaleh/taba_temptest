@@ -1,80 +1,92 @@
 class PlantsController < ApplicationController
   # before_action :set_plant, only: [:show, :edit, :update, :destroy]
 
-    before_action :authenticate_user! , :except => [:show, :index,:find]
+  before_action :authenticate_user! , :except => [:show, :index,:find]
 
-    after_action :verify_authorized, :except => [:index , :show, :follow , :unfollow,:import,:find,:destroy]
+  after_action :verify_authorized, :except => [:search, :index , :show, :follow , :unfollow,:import,:find,:destroy]
 
-    before_action :set_plant, only: [:show, :edit, :update, :destroy, :follow , :unfollow]
+  before_action :set_plant, only: [:show, :edit, :update, :destroy, :follow , :unfollow]
 
+  def search
 
-      def find
-        @plants = []
-        Plant.all.each do |pl|
-          if pl.farsi_name.start_with? params[:letter]
-            @plants.push(pl)
-          end
-        end
+    unless params[:input].blank?
+      query = params[:input]
+      @results = Plant.tire.search do
+        query { string "*#{query}*" }
       end
+    end
+    respond_to do |format|
+      format.js
+    end
+  end
 
-      def import
-      puts "****************************************************"
-      doc = Nokogiri::XML(File.open("plants.xml"))
-      co = 1
-        doc.css('طبقه_x0020_بندی_x0020_اطلاعات_x0020_گیاهان').each do |node|
-          children = node.children
-          plant = Planter.new(
-            :id => co,
-            :name => children.css('farsi_name').inner_text,
-            :latin_name => children.css('latin_name').inner_text,
-            :category => children.css('category').inner_text,
-            :family => children.css('family').inner_text,
-            :brief_desc => children.css('summary').inner_text,
-            :explanation => children.css('explanation').inner_text,
-            :types => children.css('types').inner_text,
-            :soil => children.css('soil').inner_text,
-            :keeping => children.css('triment').inner_text,
-            :germination => children.css('propagatoin').inner_text,
-            :usage => children.css('usage').inner_text,
-            :note => children.css('note').inner_text
-          )
-          co = co + 1
-          plant.save
-        end
-        puts "||||||||||||||||||||||||||||||||||||||||||||||||||||||"
-
-        redirect_to plants_path
+  def find
+    @plants = []
+    Plant.all.each do |pl|
+      if pl.farsi_name.start_with? params[:letter]
+        @plants.push(pl)
       end
+    end
+  end
+
+  def import
+    puts "****************************************************"
+    doc = Nokogiri::XML(File.open("plants.xml"))
+    co = 1
+    doc.css('طبقه_x0020_بندی_x0020_اطلاعات_x0020_گیاهان').each do |node|
+      children = node.children
+      plant = Planter.new(
+      :id => co,
+      :name => children.css('farsi_name').inner_text,
+      :latin_name => children.css('latin_name').inner_text,
+      :category => children.css('category').inner_text,
+      :family => children.css('family').inner_text,
+      :brief_desc => children.css('summary').inner_text,
+      :explanation => children.css('explanation').inner_text,
+      :types => children.css('types').inner_text,
+      :soil => children.css('soil').inner_text,
+      :keeping => children.css('triment').inner_text,
+      :germination => children.css('propagatoin').inner_text,
+      :usage => children.css('usage').inner_text,
+      :note => children.css('note').inner_text
+      )
+      co = co + 1
+      plant.save
+    end
+    puts "||||||||||||||||||||||||||||||||||||||||||||||||||||||"
+
+    redirect_to plants_path
+  end
 
 
-      def follow
+  def follow
 
-        @follow = Follow.new
+    @follow = Follow.new
 
-        if not current_user.following?(@plant)
-          @follow.followable_id=@plant.id
-          @follow.followable_type=@plant.class
-          @follow.follower_id=current_user.id
-          @follow.follower_type=current_user.class
-          @follow.created_at=Time.now
-          @follow.save
-        end
+    if not current_user.following?(@plant)
+      @follow.followable_id=@plant.id
+      @follow.followable_type=@plant.class
+      @follow.follower_id=current_user.id
+      @follow.follower_type=current_user.class
+      @follow.created_at=Time.now
+      @follow.save
+    end
 
-        respond_to do |format|
-          format.html { redirect_to @plant , notice: 'این گیاه به گیاهان شما اضافه شد.' }
-          format.json { render :show, status: :created, location: @plant }
-          format.js
-        end
-      end
+    respond_to do |format|
+      format.html { redirect_to @plant , notice: 'این گیاه به گیاهان شما اضافه شد.' }
+      format.json { render :show, status: :created, location: @plant }
+      format.js
+    end
+  end
 
 
-      def unfollow
-        current_user.stop_following(@plant)
-        respond_to do |format|
-          format.html { redirect_to @plant , notice: 'این گیاه از گیاهان شما حذف شد.' }
-          format.js
-        end
-      end
+  def unfollow
+    current_user.stop_following(@plant)
+    respond_to do |format|
+      format.html { redirect_to @plant , notice: 'این گیاه از گیاهان شما حذف شد.' }
+      format.js
+    end
+  end
 
 
 
@@ -85,6 +97,12 @@ class PlantsController < ApplicationController
     @plants, @alphaParams = Plant.alpha_paginate(params[:letter], {db_mode: true, :bootstrap3=> true, :default_field=> 'A' , :pagination_class => "categories"  , db_field: "latin_name"})
     @page_title = "گیاهان "
     @footer = true
+
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
 
@@ -149,7 +167,7 @@ class PlantsController < ApplicationController
 
 
         if params[:soiles].present?
-            soils = params[:soiles]
+          soils = params[:soiles]
           soils.each do |x|
             soil = Soil.find(x)
             @plant.plant_soils.create!(:soil => soil,:plant => @plant)
@@ -158,7 +176,7 @@ class PlantsController < ApplicationController
 
 
         if params[:propagations].present?
-            props = params[:propagations]
+          props = params[:propagations]
           props.each do |x|
             prop = Propagation.find(x)
             @plant.plant_propagations.create!(:propagation => prop ,:plant => @plant)
@@ -166,7 +184,7 @@ class PlantsController < ApplicationController
         end
 
         if params[:epidemics].present?
-            epids = params[:epidemics]
+          epids = params[:epidemics]
           epids.each do |x|
             epid = Epidemic.find(x)
             @plant.plant_epidemics.create!(:epidemic => epid ,:plant => @plant)
@@ -174,7 +192,7 @@ class PlantsController < ApplicationController
         end
 
         if params[:medicals].present?
-            medics = params[:medicals]
+          medics = params[:medicals]
           medics.each do |x|
             medic = MedicalFeature.find(x)
             @plant.plant_medical_features.create!(:medical_feature => medic ,:plant => @plant)
@@ -182,7 +200,7 @@ class PlantsController < ApplicationController
         end
 
         if params[:pests].present?
-            pests = params[:pests]
+          pests = params[:pests]
           pests.each do |x|
             pest = Pest.find(x)
             @plant.plant_pests.create!(:pest => pest ,:plant => @plant)
@@ -246,7 +264,7 @@ class PlantsController < ApplicationController
 
 
     if params[:propagations].present?
-        props = params[:propagations]
+      props = params[:propagations]
       props.each do |x|
         prop = Propagation.find(x)
         @plant.plant_propagations.create!(:propagation => prop ,:plant => @plant)
@@ -254,7 +272,7 @@ class PlantsController < ApplicationController
     end
 
     if params[:medicals].present?
-        medics = params[:medicals]
+      medics = params[:medicals]
       medics.each do |x|
         medic = MedicalFeature.find(x)
         @plant.plant_medical_features.create!(:medical_feature_id => medic.id ,:plant => @plant)
@@ -262,7 +280,7 @@ class PlantsController < ApplicationController
     end
 
     if params[:epidemics].present?
-        epids = params[:epidemics]
+      epids = params[:epidemics]
       epids.each do |x|
         epid = Epidemic.find(x)
         @plant.plant_epidemics.create!(:epidemic => epid ,:plant => @plant)
@@ -270,7 +288,7 @@ class PlantsController < ApplicationController
     end
 
     if params[:pests].present?
-        pests = params[:pests]
+      pests = params[:pests]
       pests.each do |x|
         pest = Pest.find(x)
         @plant.plant_pests.create!(:pest => pest ,:plant => @plant)
@@ -300,19 +318,19 @@ class PlantsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_plant
-      @plant = Plant.find_by_farsi_name(params[:id])
-      @page_title = "گیاه"
-      if @plant.present?
-        @page_title = @page_title + " " + @plant.farsi_name
-      end
-
+  # Use callbacks to share common setup or constraints between actions.
+  def set_plant
+    @plant = Plant.find_by_farsi_name(params[:id])
+    @page_title = "گیاه"
+    if @plant.present?
+      @page_title = @page_title + " " + @plant.farsi_name
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def plant_params
-      params.require(:plant).permit(:farsi_name, :latin_name, :scientific_name, :family, :hardness, :geo_origin, :min_height, :max_height, :min_light, :max_light, :min_temp, :max_temp, :min_moisture, :max_moisture , {avatars: []},
-      :leaf_color_id,:leaf_shape_id,:bloom_color_id , :life_time)
-    end
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def plant_params
+    params.require(:plant).permit(:farsi_name, :latin_name, :scientific_name, :family, :hardness, :geo_origin, :min_height, :max_height, :min_light, :max_light, :min_temp, :max_temp, :min_moisture, :max_moisture , {avatars: []},
+    :leaf_color_id,:leaf_shape_id,:bloom_color_id , :life_time)
+  end
 end
