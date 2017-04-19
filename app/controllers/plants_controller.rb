@@ -1,7 +1,7 @@
 class PlantsController < ApplicationController
   # before_action :set_plant, only: [:show, :edit, :update, :destroy]
 
-  before_action :authenticate_user! , :except => [:show, :index,:find]
+  before_action :authenticate_user! , :except => [:search , :show, :index,:find]
 
   after_action :verify_authorized, :except => [:search, :index , :show, :follow , :unfollow,:import,:find,:destroy]
 
