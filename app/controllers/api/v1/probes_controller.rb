@@ -17,9 +17,9 @@ class Api::V1::ProbesController < Api::V1::BaseController
         record.battery = battery if battery.present?
         record.probe_time = clock if clock.present?
         record.save
-        render json: { success: true , recieved: params }
+        render json: { success: true , time: Time.now , recieved: params }
       else
-        render json: { success: false , recieved: params }
+        render json: { success: false, time: Time.now , recieved: params }
       end
     else
       render json: { success: false , recieved: params }
