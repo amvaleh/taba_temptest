@@ -34,7 +34,7 @@ class SearchController < ApplicationController
     else
       redirect_to :back
     end
-  
+
   end
 
   def search_page

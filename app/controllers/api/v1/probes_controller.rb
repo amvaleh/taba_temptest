@@ -6,6 +6,7 @@ class Api::V1::ProbesController < Api::V1::BaseController
     battery = params[:b] if params[:b].present?
     clock = params[:c] if params[:c].present?
     probe_id = params[:s] if params[:s].present?
+    antenna = params[:a] if params[:a].present?
     if probe_id
       if Probe.where(:serial_number => probe_id).any?
         probe = Probe.find_by_serial_number(probe_id)
@@ -16,6 +17,7 @@ class Api::V1::ProbesController < Api::V1::BaseController
         record.soil_moisture = moisture if moisture.present?
         record.battery = battery if battery.present?
         record.probe_time = clock if clock.present?
+        record.antenna = antenna if antenna.present?
         record.save
         render json: { success: true , time: Time.now , recieved: params }
       else
