@@ -7,6 +7,8 @@ class Api::V1::ProbesController < Api::V1::BaseController
     clock = params[:c] if params[:c].present?
     probe_id = params[:s] if params[:s].present?
     antenna = params[:a] if params[:a].present?
+    Time.zone = "Asia/Tehran"
+    t = Time.zone.now
     if probe_id
       if Probe.where(:serial_number => probe_id).any?
         probe = Probe.find_by_serial_number(probe_id)
@@ -19,9 +21,9 @@ class Api::V1::ProbesController < Api::V1::BaseController
         record.probe_time = clock if clock.present?
         record.antenna = antenna if antenna.present?
         record.save
-        render json: { success: true , time: Time.now , recieved: params }
+        render json: { success: true , time: t , recieved: params }
       else
-        render json: { success: false, time: Time.now , recieved: params }
+        render json: { success: false, time: t, recieved: params }
       end
     else
       render json: { success: false , recieved: params }
