@@ -14,6 +14,7 @@ class RecordDashboard < Administrate::BaseDashboard
     tempreature: Field::Number,
     soil_moisture: Field::Number,
     battery: Field::Number,
+    antenna: Field::String,
     probe_time: Field::String,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
@@ -31,7 +32,7 @@ class RecordDashboard < Administrate::BaseDashboard
     :tempreature,
     :soil_moisture,
     :battery,
-    :probe_time,
+    :antenna,
     :created_at,
   ].freeze
 
